@@ -12,10 +12,10 @@ export class TestHttpService {
   }
 
   getTest(): Observable<any> {
-    return this.httpClient.get<any>('/v1/items/public/test')
+    return this.httpClient.get<any>('/v1/items/public/test');
   }
 
   getTest1(): Observable<any> {
-    return this.httpClient.get<any>('v1/items/public/test')
+    return this.httpClient.get<any>('v1/items/public/test');
   }
 }
