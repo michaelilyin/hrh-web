@@ -1,0 +1,9 @@
+.idea
+.git
+*.iml
+node_modules
+src
+e2e
+Dockerfile
+package.json
+package-lock.json
