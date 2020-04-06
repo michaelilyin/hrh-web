@@ -1,4 +1,4 @@
-import {Inject, Injectable, isDevMode, Optional, Provider} from '@angular/core';
+import {Inject, Injectable, Optional, Provider} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -34,9 +34,9 @@ export class ApiInterceptor implements HttpInterceptor {
         switchMap(env => {
           return next.handle(request.clone({
             url: concatUrl(env.api, request.url)
-          }))
+          }));
         })
-      )
+      );
     }
     if (this.request !== undefined && this.request !== null) {
       const host = `${this.request.protocol}://${this.request.get('host')}`;
