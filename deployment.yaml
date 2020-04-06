@@ -4,7 +4,7 @@ metadata:
   namespace: hrh-cloud
   name: hrh-cloud-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /index.html
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
   labels:
@@ -18,10 +18,10 @@ spec:
     - host: hrh.michaelilyin.ru
       http:
         paths:
-          - path: /web(/|$)(.*)
+          - path: /($|[^a][^p][^i].*)
             backend:
               serviceName: web
-              servicePort: 80
+              servicePort: 4000
           - path: /
 
 
@@ -66,10 +66,10 @@ metadata:
   name: web
 spec:
   ports:
-  - name: 80-80
-    port: 80
+  - name: 4000-4000
+    port: 4000
     protocol: TCP
-    targetPort: 80
+    targetPort: 4000
   selector:
     app: web
   type: ClusterIP
