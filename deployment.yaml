@@ -54,6 +54,9 @@ spec:
       - image: michaelilyin/hrh-web:latest
         imagePullPolicy: Always
         name: hrh-cloud-web
+        env:
+          - name: API
+            value: api.hrh.michaelilyin.ru
 ---
 apiVersion: v1
 kind: Service
