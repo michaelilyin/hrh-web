@@ -1,3 +1,9 @@
-FROM nginx:1.17.1-alpine
+FROM node:12
 
-COPY /dist/hrh /usr/share/nginx/html
+ADD /dist /opt/service/dist
+
+WORKDIR /opt/service
+
+EXPOSE 4000
+
+CMD [ "node", "/opt/service/dist/hrh/server/main.js" ]
