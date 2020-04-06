@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 import {REQUEST} from '@nguniversal/express-engine/tokens';
 import {Request} from 'express';
 import {EnvironmentService} from '../services/environment.service';
-import {first, switchMap} from 'rxjs/operators';
+import {first, switchMap, tap} from 'rxjs/operators';
 
 function concatUrl(host: string, path: string): string {
   if (path.startsWith('/')) {
@@ -28,9 +28,11 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.warn(request.url);
     if (request.url.startsWith('/v1') || request.url.startsWith('v1')) {
       return this.environmentService.environment$.pipe(
         first(),
+        tap(env => console.warn(env)),
         switchMap(env => {
           return next.handle(request.clone({
             url: concatUrl(`https://${env.api}`, request.url)
@@ -38,6 +40,7 @@ export class ApiInterceptor implements HttpInterceptor {
         })
       );
     }
+    console.warn('render', request.url);
     if (this.request !== undefined && this.request !== null) {
       const host = `${this.request.protocol}://${this.request.get('host')}`;
       const slash = request.url.startsWith('/') === true ? '' : '/';
