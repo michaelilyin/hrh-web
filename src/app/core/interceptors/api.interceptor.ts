@@ -17,7 +17,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.warn(request.url);
-    if (this.request != undefined) {
+    if (this.request !== undefined && this.request !== null) {
       const host = `${this.request.protocol}://${this.request.get('host')}`;
       const slash = request.url.startsWith('/') === true ? '' : '/';
       const newUrl = `${host}${slash}${request.url}`;
