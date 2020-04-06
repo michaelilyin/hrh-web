@@ -33,7 +33,7 @@ export class ApiInterceptor implements HttpInterceptor {
         first(),
         switchMap(env => {
           return next.handle(request.clone({
-            url: concatUrl(env.api, request.url)
+            url: concatUrl(`https://${env.api}`, request.url)
           }));
         })
       );
