@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TestHttpService} from "./core/services/test-http.service";
+import {TestHttpService} from './core/services/test-http.service';
 
 @Component({
   selector: 'hrh-root',
