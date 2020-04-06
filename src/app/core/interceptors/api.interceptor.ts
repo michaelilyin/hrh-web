@@ -14,7 +14,7 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.info(request.url)
+    console.warn(request.url);
     return next.handle(request);
   }
 }

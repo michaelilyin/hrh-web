@@ -1,16 +1,16 @@
 import {APP_INITIALIZER, Injectable, Provider} from '@angular/core';
-import {ReplaySubject} from "rxjs";
-import {Environment} from "../models/environment.model";
-import {HttpClient} from "@angular/common/http";
+import {ReplaySubject} from 'rxjs';
+import {Environment} from '../models/environment.model';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnvironmentService {
 
-  private readonly _environment = new ReplaySubject<Environment>(1);
+  private readonly environment = new ReplaySubject<Environment>(1);
 
-  readonly environment = this._environment.asObservable();
+  readonly environment$ = this.environment.asObservable();
 
   constructor(private readonly http: HttpClient) {
   }
@@ -19,11 +19,11 @@ export class EnvironmentService {
     return new Promise<void>((resolve, reject) => {
       this.http.get<Environment>('/environment').subscribe(
         result => {
-          this._environment.next(result);
+          this.environment.next(result);
           resolve();
         },
         error => reject(error)
-      )
+      );
     });
   }
 }
