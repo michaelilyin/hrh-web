@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4201 --proxy-config proxy.conf.js",
+    "start:cloud": "ng serve --port 4201 --proxy-config proxy-cloud.conf.js",
     "build": "ng build",
     "build:prod": "ng build --prod",
     "test": "ng test",
@@ -27,6 +28,8 @@
     "@angular/router": "~9.0.7",
     "@nguniversal/express-engine": "^9.0.2",
     "express": "^4.15.2",
+    "keycloak-angular": "^7.2.0",
+    "keycloak-js": "^9.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

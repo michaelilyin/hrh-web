@@ -1,0 +1,8 @@
+{
+  "realm": "kiss-cloud",
+  "auth-server-url": "https://auth.michaelilyin.ru/auth/",
+  "ssl-required": "external",
+  "resource": "hrh-web-dev",
+  "public-client": true,
+  "confidential-port": 0
+}

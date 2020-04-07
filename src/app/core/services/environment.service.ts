@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, Injectable, Provider} from '@angular/core';
+import {APP_INITIALIZER, Injectable, isDevMode, Provider} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
 import {Environment} from '../models/environment.model';
 import {HttpClient} from '@angular/common/http';
@@ -17,6 +17,13 @@ export class EnvironmentService {
 
   reload(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
+      if (isDevMode()) {
+        this.environment.next({
+          api: `${window.location.protocol}//${window.location.host}`
+        });
+        resolve();
+        return;
+      }
       this.http.get<Environment>('/environment').subscribe(
         result => {
           this.environment.next(result);

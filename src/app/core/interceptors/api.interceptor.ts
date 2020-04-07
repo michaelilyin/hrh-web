@@ -45,14 +45,21 @@ export class ApiInterceptor implements HttpInterceptor {
     if (this.request !== undefined && this.request !== null) {
       return `${this.request.protocol}://`;
     }
-    return `${window.location.protocol}//`;
+    return `https://`;
   }
 
   concatUrl(host: string, path: string): string {
-    if (path.startsWith('/')) {
-      return `${this.protocol}${host}${path}`;
+    if (host.startsWith('http')) {
+      return this.concatWithProtocol('', path, host);
     }
-    return `${this.protocol}${host}/${path}`;
+    return this.concatWithProtocol(this.protocol, path, host);
+  }
+
+  private concatWithProtocol(proto: string, path: string, host: string) {
+    if (path.startsWith('/')) {
+      return `${proto}${host}${path}`;
+    }
+    return `${proto}${host}/${path}`;
   }
 }
 
