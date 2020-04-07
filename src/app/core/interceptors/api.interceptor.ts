@@ -32,23 +32,27 @@ export class ApiInterceptor implements HttpInterceptor {
     if (request.url.startsWith('/v1') || request.url.startsWith('v1')) {
       return this.environmentService.environment$.pipe(
         first(),
-        tap(env => console.warn(env)),
         switchMap(env => {
+          console.warn(env);
+          const newUrl = concatUrl(`https://${env.api}`, request.url);
           return next.handle(request.clone({
-            url: concatUrl(`https://${env.api}`, request.url)
-          }));
+            url: newUrl
+          })).pipe(
+            tap(response => console.warn('resp', response.type), error => console.warn('error', error))
+          );
         })
       );
     }
     console.warn('render', request.url);
     if (this.request !== undefined && this.request !== null) {
       const host = `${this.request.protocol}://${this.request.get('host')}`;
-      const slash = request.url.startsWith('/') === true ? '' : '/';
-      const newUrl = `${host}${slash}${request.url}`;
-      const newReq = request.clone({url: newUrl});
+      const newUrl = concatUrl(host, request.url);
 
-      return next.handle(newReq);
+      console.warn('handle render', newUrl);
+      return next.handle(request.clone({url: newUrl}));
     }
+
+    console.warn('handle default', request.url);
     return next.handle(request);
   }
 }
