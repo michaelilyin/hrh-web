@@ -10,8 +10,8 @@ import {TestHttpService} from './core/services/test-http.service';
 export class AppComponent {
   title = 'hrh';
 
-  private test$ = this.testHttpService.getTest();
-  private test1$ = this.testHttpService.getTest1();
+  readonly test$ = this.testHttpService.getTest();
+  readonly test1$ = this.testHttpService.getTest1();
 
   constructor(public readonly testHttpService: TestHttpService) {
   }
