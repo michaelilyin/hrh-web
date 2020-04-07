@@ -27,7 +27,7 @@ export class ApiInterceptor implements HttpInterceptor {
   ) {
   }
 
-  private id: number = 0;
+  private id = 0;
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.warn('start request', ++this.id, request.url);
