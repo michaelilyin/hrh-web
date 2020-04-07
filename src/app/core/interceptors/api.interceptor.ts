@@ -45,7 +45,7 @@ export class ApiInterceptor implements HttpInterceptor {
     if (this.request !== undefined && this.request !== null) {
       return `${this.request.protocol}://`;
     }
-    return `${window.location.protocol}://`;
+    return `${window.location.protocol}//`;
   }
 
   concatUrl(host: string, path: string): string {
