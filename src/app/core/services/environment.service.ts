@@ -1,7 +1,8 @@
-import {APP_INITIALIZER, Injectable, isDevMode, Provider} from '@angular/core';
+import {APP_INITIALIZER, Inject, Injectable, isDevMode, PLATFORM_ID, Provider} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
 import {Environment} from '../models/environment.model';
 import {HttpClient} from '@angular/common/http';
+import {isPlatformBrowser} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,15 @@ export class EnvironmentService {
 
   readonly environment$ = this.environment.asObservable();
 
-  constructor(private readonly http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient,
+    @Inject(PLATFORM_ID) private readonly platformId: Object
+  ) {
   }
 
   reload(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      if (isDevMode()) {
+      if (isDevMode() && isPlatformBrowser(this.platformId)) {
         this.environment.next({
           api: `${window.location.protocol}//${window.location.host}`
         });

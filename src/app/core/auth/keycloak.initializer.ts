@@ -8,9 +8,9 @@ export function keycloakInitializer(keycloak: KeycloakService): () => Promise<an
       url: 'https://auth.michaelilyin.ru/auth/',
       clientId: 'hrh-web-dev',
     },
-    initOptions: {
-      onLoad: 'check-sso'
-    }
+    // initOptions: {
+    //   onLoad: 'check-sso'
+    // }
   });
 }
 
