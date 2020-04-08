@@ -3,6 +3,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { EnvironmentService } from '../services/environment.service';
 import { first, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 export function authInitializer(
   envService: EnvironmentService,
@@ -14,7 +15,9 @@ export function authInitializer(
       .pipe(
         first(),
         switchMap((env) => {
-          console.warn(env.auth.loginRedirect);
+          if (!platform.isBrowser) {
+            return of(true);
+          }
           oauth.configure({
             clientId: 'hrh-web-dev',
             issuer: env.auth.path,
