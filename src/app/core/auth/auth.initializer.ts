@@ -15,6 +15,7 @@ export function authInitializer(oauth: OAuthService, platform: Platform): () => 
         responseType: 'code',
         scope: 'openid profile email',
         showDebugInformation: true,
+        disableAtHashCheck: true
       });
       oauth.loadDiscoveryDocumentAndTryLogin()
       .then(() => resolve())
