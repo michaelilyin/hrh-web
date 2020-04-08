@@ -14,6 +14,7 @@ export function authInitializer(
       .pipe(
         first(),
         switchMap((env) => {
+          console.warn(env.auth.loginRedirect);
           oauth.configure({
             clientId: 'hrh-web-dev',
             issuer: env.auth.path,

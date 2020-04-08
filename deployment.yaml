@@ -56,13 +56,13 @@ spec:
         name: hrh-cloud-web
         env:
           - name: API
-            value: api.hrh.michaelilyin.ru
+            value: "api.hrh.michaelilyin.ru"
           - name: AUTH_HOST
-            value: auth.michaelilyin.ru
+            value: "auth.michaelilyin.ru"
           - name: AUTH_PATH
-            value: https://auth.michaelilyin.ru/auth/realms/kiss-cloud
+            value: "https://auth.michaelilyin.ru/auth/realms/kiss-cloud"
           - name: AUTH_LOGIN_REDIRECT
-            value: https://hrh.michaelilyin.ru
+            value: "https://hrh.michaelilyin.ru"
 ---
 apiVersion: v1
 kind: Service
