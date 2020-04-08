@@ -4,9 +4,9 @@ import {Platform} from '@angular/cdk/platform';
 import {EnvironmentService} from '../services/environment.service';
 import {first, map, switchMap} from 'rxjs/operators';
 
-export function authInitializer(env: EnvironmentService, oauth: OAuthService, platform: Platform): () => Promise<any> {
+export function authInitializer(envService: EnvironmentService, oauth: OAuthService, platform: Platform): () => Promise<any> {
   return () => {
-    return env.environment$.pipe(
+    return envService.environment$.pipe(
       first(),
       switchMap(env => {
         oauth.configure({

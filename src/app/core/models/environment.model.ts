@@ -4,5 +4,5 @@ export interface Environment {
     host: string;
     path: string;
     loginRedirect: string;
-  }
+  };
 }
