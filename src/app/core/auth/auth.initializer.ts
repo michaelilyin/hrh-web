@@ -1,39 +1,27 @@
 import {APP_INITIALIZER, Provider} from '@angular/core';
 import {OAuthService} from 'angular-oauth2-oidc';
 import {Platform} from '@angular/cdk/platform';
+import {EnvironmentService} from '../services/environment.service';
+import {first, map, switchMap} from 'rxjs/operators';
 
-export function authInitializer(oauth: OAuthService, platform: Platform): () => Promise<any> {
-  return (): Promise<any> => new Promise<void>((resolve, reject) => {
-    try {
-      if (!platform.isBrowser) {
-        resolve();
-      }
-      oauth.configure({
-        clientId: 'hrh-web-dev',
-        issuer: 'https://auth.michaelilyin.ru/auth/realms/kiss-cloud',
-        redirectUri: window.location.origin,
-        responseType: 'code',
-        scope: 'openid profile email',
-        showDebugInformation: true,
-        disableAtHashCheck: true
-      });
-      oauth.loadDiscoveryDocumentAndTryLogin()
-      .then(() => resolve())
-      .catch((e) => reject(e));
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-    // oauth.init({
-    //   config: {
-    //     realm: 'kiss-cloud',
-    //     url: 'https://auth.michaelilyin.ru/auth/',
-    //     clientId: 'hrh-web-dev',
-    //   },
-    //   // initOptions: {
-    //   //   onLoad: 'check-sso'
-    //   // }
-  });
+export function authInitializer(env: EnvironmentService, oauth: OAuthService, platform: Platform): () => Promise<any> {
+  return () => {
+    return env.environment$.pipe(
+      first(),
+      switchMap(env => {
+        oauth.configure({
+          clientId: 'hrh-web-dev',
+          issuer: env.auth.path,
+          redirectUri: env.auth.loginRedirect,
+          responseType: 'code',
+          scope: 'openid profile email',
+          showDebugInformation: true,
+          disableAtHashCheck: true
+        });
+        return oauth.loadDiscoveryDocumentAndTryLogin();
+      })
+    ).toPromise();
+  };
 }
 
 export const AUTH_INITIALIZER: Provider = {
@@ -41,6 +29,7 @@ export const AUTH_INITIALIZER: Provider = {
   useFactory: authInitializer,
   multi: true,
   deps: [
+    EnvironmentService,
     OAuthService,
     Platform
   ]

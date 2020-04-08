@@ -24,7 +24,13 @@ export class EnvironmentService {
     return new Promise<void>((resolve, reject) => {
       if (isDevMode() && this.platform.isBrowser) {
         this.environment.next({
-          api: `${window.location.protocol}//${window.location.host}`
+          api: `${window.location.protocol}//${window.location.host}`,
+          // TODO: proxy all to cloud for config
+          auth: {
+            host: 'auth.michaelilyin.ru',
+            path: 'https://auth.michaelilyin.ru/auth/realms/kiss-cloud',
+            loginRedirect: 'https://hrh.michaelilyin.ru'
+          }
         });
         resolve();
         return;

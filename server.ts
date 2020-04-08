@@ -1,12 +1,20 @@
 import 'zone.js/dist/zone-node';
 
-import { ngExpressEngine } from '@nguniversal/express-engine';
+import {ngExpressEngine} from '@nguniversal/express-engine';
 import * as express from 'express';
-import { join } from 'path';
+import {join} from 'path';
 
-import { AppServerModule } from './src/main.server';
-import { APP_BASE_HREF } from '@angular/common';
-import { existsSync } from 'fs';
+import {AppServerModule} from './src/main.server';
+import {APP_BASE_HREF} from '@angular/common';
+import {existsSync} from 'fs';
+import {Environment} from './src/app/core/models/environment.model';
+
+function requireDefined(name: string, value: string | undefined): string {
+  if (value === undefined || value === null || value.trim().length === 0) {
+    throw Error(`${name} must be defined`);
+  }
+  return value;
+}
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
@@ -14,6 +22,7 @@ export function app() {
   const distFolder = join(process.cwd(), 'dist/hrh/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
+  // @ts-ignore
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
     bootstrap: AppServerModule,
@@ -24,8 +33,16 @@ export function app() {
 
   // Example Express Rest API endpoints
   server.get('/environment', (req, res) => {
+    const env: Environment = {
+      api: requireDefined('API', process.env.API),
+      auth: {
+        host: requireDefined('AUTH_HOST', process.env.AUTH_HOST),
+        path: requireDefined('AUTH_PATH', process.env.AUTH_PATH),
+        loginRedirect: requireDefined('AUTH_LOGIN_REDIRECT', process.env.AUTH_LOGIN_REDIRECT)
+      }
+    };
     res.send({
-      api: process.env.API
+
     })
   });
   // Serve static files from /browser
