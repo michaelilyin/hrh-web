@@ -21,12 +21,12 @@ export class AppComponent {
   login() {
     this.keycloakService.login().then(() => {
       console.warn('logged in');
-    })
+    });
   }
 
   logout() {
     this.keycloakService.logout().then(() => {
       console.warn('logged out');
-    })
+    });
   }
 }
