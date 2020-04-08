@@ -22,7 +22,7 @@ export class EnvironmentService {
 
   reload(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      if (isDevMode() && isPlatformBrowser(this.platform.isBrowser)) {
+      if (isDevMode() && this.platform.isBrowser) {
         this.environment.next({
           api: `${window.location.protocol}//${window.location.host}`
         });

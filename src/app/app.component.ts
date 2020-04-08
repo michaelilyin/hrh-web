@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {TestHttpService} from './core/services/test-http.service';
-import {KeycloakService} from 'keycloak-angular';
+import {OAuthService} from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'hrh-root',
@@ -15,18 +15,14 @@ export class AppComponent {
   readonly test1$ = this.testHttpService.getTest1();
 
   constructor(public readonly testHttpService: TestHttpService,
-              private readonly keycloakService: KeycloakService) {
+              private readonly authService: OAuthService) {
   }
 
   login() {
-    this.keycloakService.login().then(() => {
-      console.warn('logged in');
-    });
+    this.authService.initLoginFlow();
   }
 
   logout() {
-    this.keycloakService.logout().then(() => {
-      console.warn('logged out');
-    });
+    this.authService.revokeTokenAndLogout().then(() => console.warn('Logged out'));
   }
 }
