@@ -9,7 +9,7 @@
     "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint --typeCheck=true",
-    "prettier": "prettier --check",
+    "prettier": "prettier --check \"**/*.ts\"",
     "e2e": "ng e2e",
     "dev:ssr": "ng run hrh:serve-ssr",
     "serve:ssr": "node dist/hrh/server/main.js",
