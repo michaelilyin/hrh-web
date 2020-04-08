@@ -7,10 +7,10 @@ export function authInitializer(oauth: OAuthService): () => Promise<any> {
       oauth.configure({
         clientId: 'hrh-web-dev',
         issuer: 'https://auth.michaelilyin.ru/auth/realms/kiss-cloud',
-        redirectUri: window.location.href,
+        redirectUri: window.location.origin,
         responseType: 'code',
         scope: 'openid profile email',
-        showDebugInformation: true
+        showDebugInformation: true,
       });
       oauth.loadDiscoveryDocumentAndTryLogin()
       .then(() => resolve())

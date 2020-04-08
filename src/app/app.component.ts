@@ -23,6 +23,6 @@ export class AppComponent {
   }
 
   logout() {
-    this.authService.revokeTokenAndLogout().then(() => console.warn('Logged out'));
+    this.authService.logOut();
   }
 }
