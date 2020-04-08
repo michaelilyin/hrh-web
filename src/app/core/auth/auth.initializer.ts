@@ -1,21 +1,17 @@
-import {APP_INITIALIZER, Inject, Optional, Provider} from '@angular/core';
+import {APP_INITIALIZER, Provider} from '@angular/core';
 import {OAuthService} from 'angular-oauth2-oidc';
-import {REQUEST} from '@nguniversal/express-engine/tokens';
-import {Request} from 'express';
+import {Platform} from '@angular/cdk/platform';
 
-export function authInitializer(oauth: OAuthService, request?: Request): () => Promise<any> {
-  function getHost(): string {
-    if (request !== undefined && request !== null) {
-      return `${request.protocol}://${request.get('host')}`;
-    }
-    return window.location.origin;
-  }
+export function authInitializer(oauth: OAuthService, platform: Platform): () => Promise<any> {
   return (): Promise<any> => new Promise<void>((resolve, reject) => {
     try {
+      if (!platform.isBrowser) {
+        resolve();
+      }
       oauth.configure({
         clientId: 'hrh-web-dev',
         issuer: 'https://auth.michaelilyin.ru/auth/realms/kiss-cloud',
-        redirectUri: getHost(),
+        redirectUri: window.location.origin,
         responseType: 'code',
         scope: 'openid profile email',
         showDebugInformation: true,
@@ -45,6 +41,6 @@ export const AUTH_INITIALIZER: Provider = {
   multi: true,
   deps: [
     OAuthService,
-    [new Optional(), new Inject(REQUEST), Request]
+    Platform
   ]
 };
