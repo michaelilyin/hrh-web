@@ -56,9 +56,9 @@ export class AppComponent implements OnInit {
       console.info('oauth/oidc event', e);
     });
 
-    if (this.platform.isBrowser) {
-      this.authService.loadDiscoveryDocumentAndTryLogin().then((e) => {});
-    }
+    // if (this.platform.isBrowser) {
+    this.authService.loadDiscoveryDocumentAndTryLogin().then((e) => {});
+    // }
   }
 
   login() {

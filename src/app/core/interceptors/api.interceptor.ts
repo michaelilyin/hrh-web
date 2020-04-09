@@ -14,6 +14,10 @@ export class ApiInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (request.url.startsWith('http')) {
+      return next.handle(request);
+    }
+
     if (request.url.startsWith('/v1') || request.url.startsWith('v1')) {
       return this.environmentService.environment$.pipe(
         first(),
