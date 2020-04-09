@@ -23,7 +23,7 @@ export class EnvironmentService {
           auth: {
             host: 'auth.michaelilyin.ru',
             path: 'https://auth.michaelilyin.ru/auth/realms/kiss-cloud',
-            loginRedirect: 'https://hrh.michaelilyin.ru'
+            loginRedirect: window.location.origin
           }
         });
         resolve();

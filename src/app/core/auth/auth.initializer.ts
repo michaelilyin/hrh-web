@@ -2,7 +2,7 @@ import { APP_INITIALIZER, Provider } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { EnvironmentService } from '../services/environment.service';
-import { first, switchMap } from 'rxjs/operators';
+import { first, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 export function authInitializer(
@@ -14,10 +14,7 @@ export function authInitializer(
     return envService.environment$
       .pipe(
         first(),
-        switchMap((env) => {
-          if (!platform.isBrowser) {
-            return of(true);
-          }
+        tap((env) => {
           oauth.configure({
             clientId: 'hrh-web-dev',
             issuer: env.auth.path,
@@ -25,9 +22,9 @@ export function authInitializer(
             responseType: 'code',
             scope: 'openid profile email',
             showDebugInformation: true,
-            disableAtHashCheck: true
+            disableAtHashCheck: true,
+            clearHashAfterLogin: true
           });
-          return oauth.loadDiscoveryDocumentAndTryLogin();
         })
       )
       .toPromise();
