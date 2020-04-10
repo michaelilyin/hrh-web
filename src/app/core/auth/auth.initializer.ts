@@ -4,12 +4,13 @@ import { Platform } from '@angular/cdk/platform';
 import { EnvironmentService } from '../services/environment.service';
 import { first, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Environment } from '../models/environment.model';
 
 export function authInitializer(
   envService: EnvironmentService,
   oauth: OAuthService,
   platform: Platform
-): () => Promise<any> {
+): () => Promise<Environment> {
   return () => {
     return envService.environment$
       .pipe(

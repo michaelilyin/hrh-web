@@ -8,11 +8,7 @@ import { Observable } from 'rxjs';
 export class TestHttpService {
   constructor(private httpClient: HttpClient) {}
 
-  getTest(): Observable<any> {
-    return this.httpClient.get<any>('/v1/items/public/test');
-  }
-
-  getTest1(): Observable<any> {
-    return this.httpClient.get<any>('v1/items/public/test');
+  getTest(): Observable<{ api: string }> {
+    return this.httpClient.get<{ api: string }>('/v1/items/public/test');
   }
 }

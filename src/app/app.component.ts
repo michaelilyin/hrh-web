@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   profile = 'Unauthorized';
 
   readonly test$ = this.testHttpService.getTest();
-  readonly test1$ = this.testHttpService.getTest1();
 
   constructor(
     public readonly testHttpService: TestHttpService,
@@ -31,8 +30,7 @@ export class AppComponent implements OnInit {
         filter((e) => {
           if (
             e.type === 'discovery_document_loaded' &&
-            (e as OAuthInfoEvent).info !== undefined &&
-            (e as OAuthInfoEvent).info !== null &&
+            (e as OAuthInfoEvent).info != undefined &&
             this.authService.hasValidAccessToken()
           ) {
             return true;
@@ -43,9 +41,10 @@ export class AppComponent implements OnInit {
       .subscribe((_) => {
         // tslint:disable-next-line:no-console
         console.info('state', this.authService.state);
-        this.authService.loadUserProfile().then((profile: any) => {
+        this.authService.loadUserProfile().then((profile) => {
           console.warn('profile', profile);
-          this.profile = profile.preferred_username;
+          const pr = profile as { preferred_username: string };
+          this.profile = pr.preferred_username;
           this.cd.markForCheck();
         });
       });

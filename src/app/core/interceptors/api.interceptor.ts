@@ -32,7 +32,7 @@ export class ApiInterceptor implements HttpInterceptor {
       );
     }
 
-    if (this.request !== undefined && this.request !== null) {
+    if (this.request != undefined) {
       const newUrl = this.concatUrl(this.request.get('host') as string, request.url);
       return next.handle(request.clone({ url: newUrl }));
     }
@@ -41,7 +41,7 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   get protocol(): string {
-    if (this.request !== undefined && this.request !== null) {
+    if (this.request != undefined) {
       return `${this.request.protocol}://`;
     }
     return `https://`;

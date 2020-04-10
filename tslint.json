@@ -83,7 +83,17 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "no-invalid-template-strings": true,
+    "prefer-template": true,
+
+    "triple-equals": [true, "allow-undefined-check"],
+    "prefer-on-push-component-change-detection": true,
+    "strict-boolean-expressions": true,
+    "cyclomatic-complexity": [true, 20],
+    "no-conditional-assignment": true,
+    "no-any": true,
+    "no-unsafe-any": true
   },
   "rulesDirectory": [
     "codelyzer"
