@@ -62,8 +62,10 @@ spec:
             value: "auth.michaelilyin.ru"
           - name: AUTH_PATH
             value: "https://auth.michaelilyin.ru/auth/realms/kiss-cloud"
-          - name: AUTH_LOGIN_REDIRECT
+          - name: AUTH_LOGIN_REDIRECT_HOST
             value: "https://hrh.michaelilyin.ru"
+          - name: AUTH_CLIENT_ID
+            value: "hrh-web-dev"
 ---
 apiVersion: v1
 kind: Service

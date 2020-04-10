@@ -7,6 +7,12 @@ const CONF = [
     },
     changeOrigin: true,
     secure: false,
+  },
+  {
+    context: '/environment',
+    target: 'https://hrh.michaelilyin.ru',
+    changeOrigin: true,
+    secure: true,
   }
 ];
 

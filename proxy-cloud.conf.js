@@ -1,7 +1,13 @@
 const CONF = [
   {
-    context: '/v1/items',
+    context: '/v1',
     target: 'https://api.hrh.michaelilyin.ru',
+    changeOrigin: true,
+    secure: true,
+  },
+  {
+    context: '/environment',
+    target: 'https://hrh.michaelilyin.ru',
     changeOrigin: true,
     secure: true,
   }

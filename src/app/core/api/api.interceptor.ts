@@ -3,7 +3,7 @@ import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Observable } from 'rxjs';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
-import { EnvironmentService } from '../services/environment.service';
+import { EnvironmentService } from '../environment/environment.service';
 import { first, switchMap } from 'rxjs/operators';
 
 @Injectable()

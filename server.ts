@@ -7,7 +7,7 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-import { Environment } from './src/app/core/models/environment.model';
+import { Environment } from './src/app/core/environment/environment.model';
 
 function requireDefined(name: string, value: string | undefined): string {
   if (value === undefined || value === null || value.trim().length === 0) {
@@ -39,9 +39,10 @@ export function app() {
     const env: Environment = {
       api: requireDefined('API', process.env.API),
       auth: {
+        clientId: requireDefined('AUTH_CLIENT_ID', process.env.AUTH_HOST),
         host: requireDefined('AUTH_HOST', process.env.AUTH_HOST),
         path: requireDefined('AUTH_PATH', process.env.AUTH_PATH),
-        loginRedirect: requireDefined('AUTH_LOGIN_REDIRECT', process.env.AUTH_LOGIN_REDIRECT)
+        loginRedirectHost: requireDefined('AUTH_LOGIN_REDIRECT', process.env.AUTH_LOGIN_REDIRECT_HOST)
       }
     };
     res.send(env);
