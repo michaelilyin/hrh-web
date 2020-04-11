@@ -1,11 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { Authentication } from './auth.model';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { Environment } from '../environment/environment.model';
-import { DOCUMENT } from '@angular/common';
 
 interface OAuthProfile {
   preferred_username: string;
@@ -24,11 +23,7 @@ export class AuthService {
 
   public auth$ = this._auth$.pipe(shareReplay(1));
 
-  constructor(
-    private readonly oAuthService: OAuthService,
-    private readonly platform: Platform,
-    @Inject(DOCUMENT) private readonly document: Document
-  ) {}
+  constructor(private readonly oAuthService: OAuthService, private readonly platform: Platform) {}
 
   init(env: Environment): Promise<void> {
     if (!this.platform.isBrowser) {
@@ -57,23 +52,23 @@ export class AuthService {
   }
 
   public login() {
-    const login = this.document.open(
-      `${this.document.location.origin}/auth/login`,
+    const login = window.open(
+      `${window.location.origin}/auth/login`,
       'Log In',
       'menubar=no,toolbar=no,location=no,status=no'
     );
   }
 
   public logout() {
-    const logout = this.document.open(
-      `${this.document.location.origin}/auth/logout`,
+    const logout = window.open(
+      `${window.location.origin}/auth/logout`,
       'Log Out',
       'menubar=no,toolbar=no,location=no,status=no'
     );
   }
 
   private initReloadProfileOnNewToken() {
-    fromEvent(document, 'storage')
+    fromEvent(window, 'storage')
       .pipe(
         filter((event) => event.type === 'storage'),
         map((event) => event as StorageEvent),
