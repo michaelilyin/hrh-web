@@ -85,7 +85,8 @@ export class AuthService {
   }
 
   private loadProfile(): Promise<Authentication> {
-    return this.oAuthService.loadUserProfile().then((profile) => {
+    return this.oAuthService.loadUserProfile().then((profileObj) => {
+      const profile = profileObj as OAuthProfile;
       const auth: Authentication = {
         authenticated: true,
         email: profile.email as string,
