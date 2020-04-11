@@ -6,9 +6,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { SdkModule } from '../sdk/sdk.module';
 
 @NgModule({
   declarations: [ShellComponent],
-  imports: [CommonModule, ShellRoutingModule, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule]
+  imports: [
+    CommonModule,
+    ShellRoutingModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    SdkModule
+  ]
 })
 export class ShellModule {}

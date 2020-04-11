@@ -3,19 +3,21 @@
     <h1>HRH</h1>
     <div class="fill"></div>
 
-    <ng-container *ngIf="profile$ | async as profile">
-      <ng-container *ngIf="profile.authenticated; else loginTemplate">
-        <div ngPreserveWhitespaces>{{ profile.firstName }} {{ profile.lastName }}</div>
-        <button mat-icon-button [mat-menu-trigger-for]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">Logout</button>
-        </mat-menu>
+    <ng-container *hrhOnlyBrowser>
+      <ng-container *ngIf="profile$ | async as profile">
+        <ng-container *ngIf="profile.authenticated; else loginTemplate">
+          <div ngPreserveWhitespaces>{{ profile.firstName }} {{ profile.lastName }}</div>
+          <button mat-icon-button [mat-menu-trigger-for]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </ng-container>
+        <ng-template #loginTemplate>
+          <button mat-flat-button (click)="login()" color="accent">Login</button>
+        </ng-template>
       </ng-container>
-      <ng-template #loginTemplate>
-        <button mat-flat-button (click)="login()" color="accent">Login</button>
-      </ng-template>
     </ng-container>
   </mat-toolbar-row>
 </mat-toolbar>
