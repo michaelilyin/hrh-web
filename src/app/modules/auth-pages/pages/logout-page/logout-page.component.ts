@@ -11,6 +11,6 @@ export class LogoutPageComponent implements OnInit {
   constructor(private readonly oAuthService: OAuthService) {}
 
   ngOnInit(): void {
-    this.oAuthService.loadDiscoveryDocument().then(() => this.oAuthService.logOut());
+    this.oAuthService.logOut();
   }
 }

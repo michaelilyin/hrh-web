@@ -11,6 +11,6 @@ export class LoginPageComponent implements OnInit {
   constructor(private readonly oAuthService: OAuthService) {}
 
   ngOnInit(): void {
-    this.oAuthService.loadDiscoveryDocument().then(() => this.oAuthService.initLoginFlow());
+    this.oAuthService.initCodeFlow();
   }
 }

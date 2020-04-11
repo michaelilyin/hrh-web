@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'hrh-login-result-page',
@@ -7,7 +8,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginResultPageComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly platform: Platform) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.platform.isBrowser) {
+      window.close();
+    }
+  }
 }

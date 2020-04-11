@@ -15,7 +15,7 @@ export class EnvironmentService {
 
   constructor(private readonly http: HttpClient, private readonly platform: Platform) {}
 
-  load(): Promise<Environment> {
+  init(): Promise<Environment> {
     return this.http
       .get<Environment>('/environment')
       .pipe(
@@ -39,7 +39,7 @@ export class EnvironmentService {
 }
 
 export function initializeEnvironment(service: EnvironmentService): () => Promise<Environment> {
-  return () => service.load();
+  return () => service.init();
 }
 
 export const ENVIRONMENT_INITIALIZER: Provider = {

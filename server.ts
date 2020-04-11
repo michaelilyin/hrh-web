@@ -9,7 +9,8 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 import { Environment } from './src/app/core/environment/environment.model';
 
-function requireDefined(name: string, value: string | undefined): string {
+function requireEnv(name: string): string {
+  const value = process.env[name];
   if (value === undefined || value === null || value.trim().length === 0) {
     throw Error(`${name} must be defined`);
   }
@@ -37,12 +38,12 @@ export function app() {
   // Example Express Rest API endpoints
   server.get('/environment', (req, res) => {
     const env: Environment = {
-      api: requireDefined('API', process.env.API),
+      api: requireEnv('API'),
       auth: {
-        clientId: requireDefined('AUTH_CLIENT_ID', process.env.AUTH_HOST),
-        host: requireDefined('AUTH_HOST', process.env.AUTH_HOST),
-        path: requireDefined('AUTH_PATH', process.env.AUTH_PATH),
-        loginRedirectHost: requireDefined('AUTH_LOGIN_REDIRECT', process.env.AUTH_LOGIN_REDIRECT_HOST)
+        clientId: requireEnv('AUTH_CLIENT_ID'),
+        host: requireEnv('AUTH_HOST'),
+        path: requireEnv('AUTH_PATH'),
+        loginRedirectHost: requireEnv('AUTH_LOGIN_REDIRECT_HOST')
       }
     };
     res.send(env);

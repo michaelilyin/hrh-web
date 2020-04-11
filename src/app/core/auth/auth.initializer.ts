@@ -1,33 +1,14 @@
 import { APP_INITIALIZER, Provider } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { Platform } from '@angular/cdk/platform';
 import { EnvironmentService } from '../environment/environment.service';
-import { first, switchMap, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { Environment } from '../environment/environment.model';
+import { first, switchMap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
-export function authInitializer(
-  envService: EnvironmentService,
-  oauth: OAuthService,
-  platform: Platform
-): () => Promise<Environment> {
+export function authInitializer(envService: EnvironmentService, authService: AuthService): () => Promise<void> {
   return () => {
     return envService.environment$
       .pipe(
         first(),
-        tap((env) => {
-          oauth.configure({
-            clientId: env.auth.clientId,
-            issuer: env.auth.path,
-            redirectUri: `${env.auth.loginRedirectHost}/auth/login/result`,
-            postLogoutRedirectUri: `${env.auth.loginRedirectHost}/auth/logout/result`,
-            responseType: 'code',
-            scope: 'openid profile email',
-            showDebugInformation: true,
-            disableAtHashCheck: true,
-            clearHashAfterLogin: true
-          });
-        })
+        switchMap((env) => authService.init(env))
       )
       .toPromise();
   };
@@ -37,5 +18,5 @@ export const AUTH_INITIALIZER: Provider = {
   provide: APP_INITIALIZER,
   useFactory: authInitializer,
   multi: true,
-  deps: [EnvironmentService, OAuthService, Platform]
+  deps: [EnvironmentService, AuthService]
 };

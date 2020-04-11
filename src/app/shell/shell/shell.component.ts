@@ -11,13 +11,9 @@ import { AuthService } from '../../core/auth/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellComponent implements OnInit {
-  constructor(
-    public readonly testHttpService: TestHttpService,
-    private readonly oAuthService: OAuthService,
-    private readonly cd: ChangeDetectorRef,
-    private readonly platform: Platform,
-    private readonly authService: AuthService
-  ) {}
+  readonly profile$ = this.authService.auth$;
+
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit(): void {}
 
