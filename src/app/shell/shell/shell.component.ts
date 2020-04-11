@@ -13,7 +13,9 @@ import { AuthService } from '../../core/auth/auth.service';
 export class ShellComponent implements OnInit {
   readonly profile$ = this.authService.auth$;
 
-  constructor(private readonly authService: AuthService) {}
+  readonly test$ = this.testHttpService.getTest();
+
+  constructor(private readonly authService: AuthService, private readonly testHttpService: TestHttpService) {}
 
   ngOnInit(): void {}
 
