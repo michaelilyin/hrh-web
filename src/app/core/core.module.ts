@@ -5,10 +5,12 @@ import { API_INTERCEPTOR } from './api/api.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { AUTH_INITIALIZER, OAUTH_STORAGE } from './auth/auth.initializer';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { AuthShellComponent } from './auth/auth-shell/auth-shell.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, HttpClientModule, OAuthModule.forRoot()],
+  declarations: [AuthShellComponent],
+  imports: [CommonModule, HttpClientModule, OAuthModule.forRoot(), RouterModule],
   providers: [ENVIRONMENT_INITIALIZER, AUTH_INITIALIZER, API_INTERCEPTOR, OAUTH_STORAGE]
 })
 export class CoreModule {}
