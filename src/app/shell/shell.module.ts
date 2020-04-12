@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { SdkModule } from '../sdk/sdk.module';
+import { CoreModule } from '@hrh/core/core.module';
 
 @NgModule({
   declarations: [ShellComponent],
@@ -17,7 +18,8 @@ import { SdkModule } from '../sdk/sdk.module';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    SdkModule
+    SdkModule,
+    CoreModule
   ]
 })
 export class ShellModule {}

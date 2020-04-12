@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginResultPageComponent } from './pages/login-result-page/login-result-page.component';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { LogoutResultPageComponent } from './pages/logout-result-page/logout-result-page.component';
-import { SsrComponent } from '@hrh/pages/auth-pages/pages/ssr/ssr.component';
+import { SsrProtectionPageComponent } from '@hrh/pages/auth-pages/pages/ssr-protection-page/ssr-protection-page.component';
 
 const routes: Routes = [
   {
@@ -24,8 +24,8 @@ const routes: Routes = [
     component: LogoutResultPageComponent
   },
   {
-    path: 'ssr',
-    component: SsrComponent
+    path: 'ssr-protection',
+    component: SsrProtectionPageComponent
   }
 ];
 

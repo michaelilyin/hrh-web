@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
+  ActivatedRouteSnapshot,
   CanActivate,
   CanActivateChild,
-  ActivatedRouteSnapshot,
+  Router,
   RouterStateSnapshot,
-  UrlTree,
-  Router
+  UrlTree
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '@hrh/core/auth/auth.service';
 import { first, map } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
-import { AuthShellComponent } from '@hrh/core/auth/auth-shell/auth-shell.component';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +26,9 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (next.component !== AuthShellComponent) {
-      throw Error('Only Auth Shell allowed as target component');
-    }
     return this.checkAuthAndRedirect.call(this);
   }
+
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -47,10 +44,11 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
           return true;
         }
         if (this.platform.isBrowser) {
+          // TODO: redirect to auth page with backward redirect
           return this.router.createUrlTree(['/']);
         }
-        // For SSR return true and disable view in AuthShell component
-        return this.router.createUrlTree(['auth', 'ssr']);
+
+        return this.router.createUrlTree(['auth', 'ssr-protection']);
       })
     );
   }

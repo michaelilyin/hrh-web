@@ -2,11 +2,11 @@
   <mat-toolbar-row>
     <h1>HRH</h1>
 
-    <a mat-button routerLink="shopping">Shopping</a>
+    <a *hrhOnlyAuthenticated mat-button routerLink="shopping">Shopping</a>
 
     <div class="fill"></div>
 
-    <ng-container *hrhOnlyBrowser>
+    <ng-template hrhOnlyBrowser else="spinner">
       <ng-container *ngIf="profile$ | async as profile">
         <ng-container *ngIf="profile.authenticated; else loginTemplate">
           <div ngPreserveWhitespaces>{{ profile.firstName }} {{ profile.lastName }}</div>
@@ -21,7 +21,7 @@
           <button mat-flat-button (click)="login()" color="accent">Login</button>
         </ng-template>
       </ng-container>
-    </ng-container>
+    </ng-template>
   </mat-toolbar-row>
 </mat-toolbar>
 
