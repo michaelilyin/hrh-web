@@ -15,6 +15,7 @@ export class EmailAvatarComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // tslint:disable-next-line:no-unsafe-any
   @HostBinding('style.background-image')
   get url(): SafeStyle {
     const url = `url(https://www.gravatar.com/avatar/${md5(this.email?.toLowerCase() ?? '')}?d=mp)`;
