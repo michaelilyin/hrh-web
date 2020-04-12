@@ -50,7 +50,7 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
           return this.router.createUrlTree(['/']);
         }
         // For SSR return true and disable view in AuthShell component
-        return true;
+        return this.router.createUrlTree(['auth', 'ssr']);
       })
     );
   }
