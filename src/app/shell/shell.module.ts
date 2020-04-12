@@ -10,9 +10,10 @@ import { SdkModule } from '../sdk/sdk.module';
 import { CoreModule } from '@hrh/core/core.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { PersonsModule } from '../features/persons/persons.module';
+import { UserMenuComponent } from './user/user-menu/user-menu.component';
 
 @NgModule({
-  declarations: [ShellComponent],
+  declarations: [ShellComponent, UserMenuComponent],
   imports: [
     CommonModule,
     ShellRoutingModule,

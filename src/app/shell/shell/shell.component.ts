@@ -11,19 +11,9 @@ import { AuthService } from '../../core/auth/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellComponent implements OnInit {
-  readonly profile$ = this.authService.auth$;
-
   readonly test$ = this.testHttpService.getTest();
 
-  constructor(private readonly authService: AuthService, private readonly testHttpService: TestHttpService) {}
+  constructor(private readonly testHttpService: TestHttpService) {}
 
   ngOnInit(): void {}
-
-  login() {
-    this.authService.login();
-  }
-
-  logout() {
-    this.authService.logout();
-  }
 }
