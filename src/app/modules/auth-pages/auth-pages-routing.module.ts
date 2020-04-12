@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginResultPageComponent } from './pages/login-result-page/login-result-page.component';
 import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { LogoutResultPageComponent } from './pages/logout-result-page/logout-result-page.component';
+import { SsrAuthNoticeComponent } from '@hrh/pages/auth-pages/pages/ssr-auth-notice/ssr-auth-notice.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'logout/result',
     component: LogoutResultPageComponent
+  },
+  {
+    path: 'ssr',
+    component: SsrAuthNoticeComponent
   }
 ];
 

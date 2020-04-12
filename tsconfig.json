@@ -12,10 +12,11 @@
     "importHelpers": true,
     "target": "es2015",
     "strict": true,
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@hrh/core/*": ["src/app/core/*"],
+      "@hrh/pages/*": ["src/app/modules/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
