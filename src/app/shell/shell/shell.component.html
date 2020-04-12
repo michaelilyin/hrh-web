@@ -9,12 +9,21 @@
     <ng-template hrhOnlyBrowser else="spinner">
       <ng-container *ngIf="profile$ | async as profile">
         <ng-container *ngIf="profile.authenticated; else loginTemplate">
-          <div ngPreserveWhitespaces>{{ profile.firstName }} {{ profile.lastName }}</div>
           <button mat-icon-button [mat-menu-trigger-for]="menu">
-            <mat-icon>more_vert</mat-icon>
+            <hrh-email-avatar [email]="profile.email"></hrh-email-avatar>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="logout()">Logout</button>
+            <ng-container *matMenuContent>
+              <a mat-menu-item routerLink="profile" ngPreserveWhitespaces>
+                {{ profile.firstName }} {{ profile.lastName }}
+              </a>
+              <mat-divider></mat-divider>
+              <a mat-menu-item routerLink="settings">
+                Settings
+              </a>
+              <mat-divider></mat-divider>
+              <button mat-menu-item (click)="logout()">Logout</button>
+            </ng-container>
           </mat-menu>
         </ng-container>
         <ng-template #loginTemplate>

@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { SdkModule } from '../sdk/sdk.module';
 import { CoreModule } from '@hrh/core/core.module';
+import { MatDividerModule } from '@angular/material/divider';
+import { PersonsModule } from '../features/persons/persons.module';
 
 @NgModule({
   declarations: [ShellComponent],
@@ -19,7 +21,9 @@ import { CoreModule } from '@hrh/core/core.module';
     MatIconModule,
     MatMenuModule,
     SdkModule,
-    CoreModule
+    CoreModule,
+    MatDividerModule,
+    PersonsModule
   ]
 })
 export class ShellModule {}
