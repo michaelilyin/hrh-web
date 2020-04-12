@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, fromEvent } from 'rxjs';
+import { fromEvent, ReplaySubject } from 'rxjs';
 import { Authentication } from './auth.model';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { Environment } from '../environment/environment.model';
@@ -17,16 +17,17 @@ interface OAuthProfile {
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly _auth$ = new BehaviorSubject<Authentication>({
-    authenticated: false
-  });
+  private readonly _auth$ = new ReplaySubject<Authentication>(1);
 
-  public auth$ = this._auth$.pipe(shareReplay(1));
+  public auth$ = this._auth$.asObservable();
 
   constructor(private readonly oAuthService: OAuthService, private readonly platform: Platform) {}
 
   init(env: Environment): Promise<void> {
     if (!this.platform.isBrowser) {
+      this._auth$.next({
+        authenticated: false
+      });
       return Promise.resolve();
     }
 
@@ -48,6 +49,9 @@ export class AuthService {
       if (this.oAuthService.hasValidAccessToken()) {
         return this.loadProfile().then((auth) => this._auth$.next(auth));
       }
+      this._auth$.next({
+        authenticated: false
+      });
     });
   }
 
