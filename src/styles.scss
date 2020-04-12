@@ -1,14 +1,22 @@
 @import '~@angular/material/theming';
+@import 'src/app/sdk/platform/css-only-spinner/css-only-spinner.theme';
 
 @include mat-core();
 
-$hrh-primary: mat-palette($mat-indigo);
-$hrh-accent: mat-palette($mat-pink, A200, A100, A400);
+$hrh-primary: mat-palette($mat-blue-gray);
+$hrh-accent: mat-palette($mat-amber);
 $hrh-warn: mat-palette($mat-red);
 
 $hrh-theme: mat-light-theme($hrh-primary, $hrh-accent, $hrh-warn);
 
 @include angular-material-theme($hrh-theme);
+@include hrh-css-only-spinner($hrh-theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
