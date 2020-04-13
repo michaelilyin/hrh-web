@@ -20,7 +20,7 @@ export class OnlyBrowserDirective implements OnInit, OnDestroy {
   @Input() else?: TemplateRef<void> | 'spinner';
 
   private view?: EmbeddedViewRef<void>;
-  private component?: ComponentRef<CssOnlySpinnerComponent>;
+  private component?: ComponentRef<MatSpinner>;
 
   constructor(
     private readonly viewContainerRef: ViewContainerRef,
@@ -31,11 +31,13 @@ export class OnlyBrowserDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.platform.isBrowser) {
-      this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
+      // this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else if (this.else != undefined) {
       if (typeof this.else === 'string') {
-        const spinnerFactory = this.componentFactoryResolver.resolveComponentFactory(CssOnlySpinnerComponent);
+        const spinnerFactory = this.componentFactoryResolver.resolveComponentFactory(MatSpinner);
         this.component = this.viewContainerRef.createComponent(spinnerFactory);
+        this.component.instance.color = 'accent';
+        this.component.instance.diameter = 25;
         this.component.changeDetectorRef.markForCheck();
       } else {
         this.view = this.viewContainerRef.createEmbeddedView(this.else);
