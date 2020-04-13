@@ -1,8 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { TestHttpService } from '../../core/services/test-http.service';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { Platform } from '@angular/cdk/platform';
-import { AuthService } from '../../core/auth/auth.service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { TestHttpService } from '@hrh/core/services/test-http.service';
 
 @Component({
   selector: 'hrh-shell',

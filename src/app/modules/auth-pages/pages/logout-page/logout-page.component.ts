@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'hrh-logout-page',
@@ -8,9 +9,17 @@ import { OAuthService } from 'angular-oauth2-oidc';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogoutPageComponent implements OnInit {
-  constructor(private readonly oAuthService: OAuthService) {}
+  constructor(private readonly oAuthService: OAuthService, private readonly platform: Platform) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  handleLogoutClick() {
     this.oAuthService.logOut();
+  }
+
+  handleReturnClick() {
+    if (this.platform.isBrowser) {
+      window.close();
+    }
   }
 }

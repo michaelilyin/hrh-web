@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AuthService } from '@hrh/core/auth/auth.service';
+import { AuthService } from '../../../features/auth/auth.service';
 import { TestHttpService } from '@hrh/core/services/test-http.service';
 
 @Component({

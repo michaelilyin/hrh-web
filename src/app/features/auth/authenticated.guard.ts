@@ -8,7 +8,7 @@ import {
   UrlTree
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '@hrh/core/auth/auth.service';
+import { AuthService } from './auth.service';
 import { first, map } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 

@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { MatSpinner } from '@angular/material/progress-spinner';
-import { CssOnlySpinnerComponent } from './css-only-spinner/css-only-spinner.component';
 
 @Directive({
   selector: '[hrhOnlyBrowser]'
@@ -35,11 +34,12 @@ export class OnlyBrowserDirective implements OnInit, OnDestroy {
     if (this.platform.isBrowser) {
       this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else if (this.else != undefined) {
-      if (typeof this.else === 'string') {
+      if (this.else === 'spinner') {
         const spinnerFactory = this.componentFactoryResolver.resolveComponentFactory(MatSpinner);
         this.component = this.viewContainerRef.createComponent(spinnerFactory);
         this.component.instance.color = 'accent';
         this.component.instance.diameter = 25;
+
         this.renderer.addClass(this.component.instance._elementRef.nativeElement, 'ssr-spinner');
         this.component.changeDetectorRef.markForCheck();
       } else {

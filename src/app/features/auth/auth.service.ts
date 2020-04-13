@@ -4,7 +4,7 @@ import { Authentication } from './auth.model';
 import { filter, map } from 'rxjs/operators';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
-import { Environment } from '../environment/environment.model';
+import { Environment } from '@hrh/core/environment/environment.model';
 
 interface OAuthProfile {
   preferred_username: string;

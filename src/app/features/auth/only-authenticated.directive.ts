@@ -1,5 +1,5 @@
 import { Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, ViewRef } from '@angular/core';
-import { AuthService } from '@hrh/core/auth/auth.service';
+import { AuthService } from './auth.service';
 import { Subscription } from 'rxjs';
 
 @Directive({

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OnlyBrowserDirective } from './platform/only-browser.directive';
-import { CssOnlySpinnerComponent } from './platform/css-only-spinner/css-only-spinner.component';
+import { ColoredDialogHeaderDirective } from './layout/colored-dialog-header.directive';
 
 @NgModule({
-  declarations: [OnlyBrowserDirective, CssOnlySpinnerComponent],
-  exports: [OnlyBrowserDirective],
+  declarations: [OnlyBrowserDirective, ColoredDialogHeaderDirective],
+  exports: [OnlyBrowserDirective, ColoredDialogHeaderDirective],
   imports: [CommonModule]
 })
 export class SdkModule {}

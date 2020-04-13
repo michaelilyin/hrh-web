@@ -1,0 +1,5 @@
+@import 'src/sass/layout/layout';
+
+:host {
+  @include toolbar-and-body;
+}

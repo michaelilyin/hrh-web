@@ -4,6 +4,7 @@
       <button mat-icon-button [mat-menu-trigger-for]="menu">
         <hrh-email-avatar [email]="profile.email"></hrh-email-avatar>
       </button>
+
       <mat-menu #menu="matMenu">
         <ng-container *matMenuContent>
           <a mat-menu-item routerLink="profile" ngPreserveWhitespaces>
@@ -18,6 +19,7 @@
         </ng-container>
       </mat-menu>
     </ng-container>
+
     <ng-template #loginTemplate>
       <button mat-flat-button (click)="login()" color="accent">Login</button>
     </ng-template>

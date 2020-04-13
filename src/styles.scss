@@ -1,16 +1,5 @@
-@import '~@angular/material/theming';
-@import 'src/app/sdk/platform/css-only-spinner/css-only-spinner.theme';
-
-@include mat-core();
-
-$hrh-primary: mat-palette($mat-blue-gray);
-$hrh-accent: mat-palette($mat-amber);
-$hrh-warn: mat-palette($mat-red);
-
-$hrh-theme: mat-light-theme($hrh-primary, $hrh-accent, $hrh-warn);
-
-@include angular-material-theme($hrh-theme);
-@include hrh-css-only-spinner($hrh-theme);
+@import 'sass/components/components';
+@import 'sass/theme/theme';
 
 html,
 body {
@@ -19,16 +8,4 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-}
-
-// TODO: move to separate folder
-.ssr-spinner._mat-animation-noopable.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode='indeterminate'] {
-  animation: mat-progress-spinner-linear-rotate 2000ms linear infinite;
-
-  circle {
-    transition-property: stroke;
-    animation-duration: 4000ms;
-    animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
-    animation-iteration-count: infinite;
-  }
 }
