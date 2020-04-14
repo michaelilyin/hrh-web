@@ -12,6 +12,7 @@ import { AUTH_DELAY } from '@hrh/pages/auth-pages/models/config.model';
 import { MatCardModule } from '@angular/material/card';
 import { SdkModule } from '../../sdk/sdk.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatButtonModule } from '@angular/material/button';
     BasicLayoutModule,
     MatCardModule,
     SdkModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

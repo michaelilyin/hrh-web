@@ -1,8 +1,2 @@
-@mixin toolbar-and-body {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 100%;
-
-  justify-items: center;
-  align-items: center;
-}
+@import 'containers';
+@import 'constants';

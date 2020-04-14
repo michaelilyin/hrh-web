@@ -1,0 +1,19 @@
+@import 'src/sass/utils';
+
+:host {
+  @include toolbar-and-body;
+}
+
+.content {
+  padding: $unit * 2;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ssr-spinner {
+  margin-bottom: $unit * 2;
+}
