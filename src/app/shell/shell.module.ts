@@ -6,12 +6,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { SdkModule } from '../sdk/sdk.module';
 import { MatDividerModule } from '@angular/material/divider';
-import { PersonsModule } from '../features/persons/persons.module';
 import { UserMenuComponent } from './user/user-menu/user-menu.component';
-import { BasicLayoutModule } from '../features/basic-layout/basic-layout.module';
-import { AuthModule } from '../features/auth/auth.module';
+import { BasicLayoutModule } from '@hrh/layout/basic-layout.module';
+import { AuthModule } from '@hrh/auth/auth.module';
+import { SdkModule } from '@hrh/sdk/sdk.module';
+import { PersonsModule } from '@hrh/persons/persons.module';
 
 @NgModule({
   declarations: [ShellComponent, UserMenuComponent],

@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../features/auth/auth.service';
-import { TestHttpService } from '@hrh/core/services/test-http.service';
+import { AuthService } from '@hrh/auth/auth.service';
 
 @Component({
   selector: 'hrh-user-menu',
@@ -11,7 +10,7 @@ import { TestHttpService } from '@hrh/core/services/test-http.service';
 export class UserMenuComponent implements OnInit {
   readonly profile$ = this.authService.auth$;
 
-  constructor(private readonly authService: AuthService, private readonly testHttpService: TestHttpService) {}
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit(): void {}
 

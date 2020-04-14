@@ -14,8 +14,11 @@
     "strict": true,
     "lib": ["es2018", "dom"],
     "paths": {
-      "@hrh/core/*": ["src/app/core/*"],
-      "@hrh/pages/*": ["src/app/modules/*"]
+      "@hrh/sdk/*": ["src/app/sdk/*"],
+      "@hrh/env/*": ["src/app/features/env/*"],
+      "@hrh/auth/*": ["src/app/features/auth/*"],
+      "@hrh/persons/*": ["src/app/features/persons/*"],
+      "@hrh/layout/*": ["src/app/features/basic-layout/*"]
     }
   },
   "angularCompilerOptions": {

@@ -7,12 +7,12 @@ import { LogoutPageComponent } from './pages/logout-page/logout-page.component';
 import { LogoutResultPageComponent } from './pages/logout-result-page/logout-result-page.component';
 import { SsrProtectionPageComponent } from './pages/ssr-protection-page/ssr-protection-page.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BasicLayoutModule } from '../../features/basic-layout/basic-layout.module';
-import { AUTH_DELAY } from '@hrh/pages/auth-pages/models/config.model';
+import { BasicLayoutModule } from '@hrh/layout/basic-layout.module';
 import { MatCardModule } from '@angular/material/card';
-import { SdkModule } from '../../sdk/sdk.module';
+import { SdkModule } from '@hrh/sdk/sdk.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AUTH_DELAY } from './models/config.model';
 
 @NgModule({
   declarations: [

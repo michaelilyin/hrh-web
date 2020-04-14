@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
-import { countdown } from '../../../../sdk/observable/countdown';
-import { AUTH_DELAY } from '@hrh/pages/auth-pages/models/config.model';
-import { AuthService } from '../../../../features/auth/auth.service';
+import { countdown } from '@hrh/sdk/observable/countdown';
+import { AuthService } from '@hrh/auth/auth.service';
 import { filter, first, switchMap } from 'rxjs/operators';
+import { AUTH_DELAY } from '../../models/config.model';
 
 @Component({
   selector: 'hrh-login-result-page',

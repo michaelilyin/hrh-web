@@ -1,9 +1,9 @@
 import { APP_INITIALIZER, Provider } from '@angular/core';
-import { EnvironmentService } from '@hrh/core/environment/environment.service';
 import { first, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Platform } from '@angular/cdk/platform';
 import { OAuthStorage } from 'angular-oauth2-oidc';
+import { EnvironmentService } from '@hrh/env/environment.service';
 
 export function authInitializer(envService: EnvironmentService, authService: AuthService): () => Promise<void> {
   return () => {

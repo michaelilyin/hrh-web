@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { TestHttpService } from '@hrh/core/services/test-http.service';
+import { TestHttpService } from './test-http.service';
 
 @Component({
   selector: 'hrh-shell',

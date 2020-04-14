@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ENVIRONMENT_INITIALIZER } from './environment/environment.service';
+import { ENVIRONMENT_INITIALIZER } from '@hrh/env/environment.service';
 import { API_INTERCEPTOR } from './api/api.interceptor';
 import { HttpClientModule } from '@angular/common/http';
-import { AUTH_INITIALIZER, OAUTH_STORAGE } from '../features/auth/auth.initializer';
+import { AUTH_INITIALIZER, OAUTH_STORAGE } from '@hrh/auth/auth.initializer';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { RouterModule } from '@angular/router';
 

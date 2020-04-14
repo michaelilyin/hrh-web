@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
-import { AUTH_DELAY } from '@hrh/pages/auth-pages/models/config.model';
-import { countdown } from '../../../../sdk/observable/countdown';
+import { countdown } from '@hrh/sdk/observable/countdown';
+import { AUTH_DELAY } from '../../models/config.model';
 
 @Component({
   selector: 'hrh-logout-result-page',

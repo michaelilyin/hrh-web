@@ -7,7 +7,7 @@ import { join } from 'path';
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
-import { Environment } from './src/app/core/environment/environment.model';
+import { Environment } from '@hrh/env/environment.model';
 
 function requireEnv(name: string): string {
   const value = process.env[name];

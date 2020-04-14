@@ -11,7 +11,11 @@
     "directive-class-suffix": true,
     "directive-selector": [true, "attribute", "hrh", "camelCase"],
     "component-selector": [true, "element", "hrh", "kebab-case"],
-    "import-blacklist": [true, "rxjs/Rx"],
+    "import-blacklist": [
+      true,
+      "rxjs/Rx",
+      [".*/features/.*", ".*\\.\\./modules/.*", ".*\\.\\./shell/.*", ".*\\.\\./core/.*", ".*\\.\\./sdk/.*"]
+    ],
     "interface-name": false,
     "max-classes-per-file": false,
     "max-line-length": [true, 140],
