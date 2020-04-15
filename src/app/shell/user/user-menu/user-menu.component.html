@@ -15,13 +15,19 @@
             Settings
           </a>
           <mat-divider></mat-divider>
-          <button mat-menu-item (click)="logout()">Logout</button>
+          <button mat-menu-item (click)="logout()">
+            <span>Logout</span>
+            <mat-icon class="open-in-new">open_in_new</mat-icon>
+          </button>
         </ng-container>
       </mat-menu>
     </ng-container>
 
     <ng-template #loginTemplate>
-      <button mat-flat-button (click)="login()" color="accent">Login</button>
+      <button mat-flat-button (click)="login()" color="accent">
+        <span>Login</span>
+        <mat-icon class="open-in-new">open_in_new</mat-icon>
+      </button>
     </ng-template>
   </ng-container>
 </ng-template>

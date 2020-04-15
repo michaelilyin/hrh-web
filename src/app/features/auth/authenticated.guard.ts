@@ -26,17 +26,17 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.checkAuthAndRedirect.call(this);
+    return this.checkAuthAndRedirect(next);
   }
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.checkAuthAndRedirect.call(this);
+    return this.checkAuthAndRedirect(next);
   }
 
-  checkAuthAndRedirect(): Observable<boolean | UrlTree> {
+  checkAuthAndRedirect(next: ActivatedRouteSnapshot): Observable<boolean | UrlTree> {
     return this.authService.auth$.pipe(
       first(),
       map((auth) => {

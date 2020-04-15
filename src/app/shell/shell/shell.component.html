@@ -1,8 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <button mat-icon-button class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
     <hrh-title></hrh-title>
-
-    <a *hrhOnlyAuthenticated mat-button routerLink="shopping">Shopping</a>
 
     <div class="fill"></div>
 
@@ -10,6 +11,14 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-{{ test$ | async | json }}
-
-<router-outlet></router-outlet>
+<mat-sidenav-container [autosize]="true" class="sidebar">
+  <mat-sidenav mode="side" [opened]="true">
+    <a *hrhOnlyAuthenticated mat-button routerLink="/shopping">Shopping</a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="white-space: pre;">{{ active$ | async }}</div>
+    <br />
+    <div style="white-space: pre;">{{ mode$ | async }}</div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

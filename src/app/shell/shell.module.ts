@@ -12,6 +12,7 @@ import { BasicLayoutModule } from '@hrh/layout/basic-layout.module';
 import { AuthModule } from '@hrh/auth/auth.module';
 import { SdkModule } from '@hrh/sdk/sdk.module';
 import { PersonsModule } from '@hrh/persons/persons.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [ShellComponent, UserMenuComponent],
@@ -26,7 +27,8 @@ import { PersonsModule } from '@hrh/persons/persons.module';
     MatDividerModule,
     PersonsModule,
     BasicLayoutModule,
-    AuthModule
+    AuthModule,
+    MatSidenavModule
   ]
 })
 export class ShellModule {}
