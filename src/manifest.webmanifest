@@ -1,7 +1,7 @@
 {
   "name": "hrh",
   "short_name": "hrh",
-  "theme_color": "#1976d2",
+  "theme_color": "#607d8b",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
