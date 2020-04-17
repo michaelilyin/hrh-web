@@ -14,9 +14,9 @@ import { Platform } from '@angular/cdk/platform';
 import { MatSpinner } from '@angular/material/progress-spinner';
 
 @Directive({
-  selector: '[hrhOnlyBrowser]'
+  selector: '[hrhOnlyBrowserPlatform]'
 })
-export class OnlyBrowserDirective implements OnInit, OnDestroy {
+export class OnlyBrowserPlatformDirective implements OnInit, OnDestroy {
   @Input() else?: TemplateRef<void> | 'spinner';
 
   private view?: EmbeddedViewRef<void>;

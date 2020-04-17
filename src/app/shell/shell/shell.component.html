@@ -1,9 +1,17 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button class="menu-button">
+    <button *ngIf="showMenuOpen$ | async" mat-icon-button class="menu-button" (click)="menuOpenChange(true)">
       <mat-icon>menu</mat-icon>
     </button>
+    <button *ngIf="showMenuCollapse$ | async" mat-icon-button class="menu-button" (click)="menuCollapseChange(true)">
+      <mat-icon class="rotate-icon">unfold_less</mat-icon>
+    </button>
+    <button *ngIf="showMenuExpand$ | async" mat-icon-button class="menu-button" (click)="menuCollapseChange(false)">
+      <mat-icon class="rotate-icon">unfold_more</mat-icon>
+    </button>
     <hrh-title></hrh-title>
+
+    {{ modes$ | async | json }}
 
     <div class="fill"></div>
 
@@ -11,14 +19,22 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container [autosize]="true" class="sidebar">
-  <mat-sidenav mode="side" [opened]="true">
-    <a *hrhOnlyAuthenticated mat-button routerLink="/shopping">Shopping</a>
+<mat-sidenav-container [autosize]="true" class="sidebar" (backdropClick)="menuOpenChange(false)">
+  <mat-sidenav
+    [mode]="drawerMode$ | async"
+    [opened]="menuOpened$ | async"
+    (openedChange)="menuOpenChange($event)"
+    hrhCollapsibleMenu
+    [collapsed]="menuCollapsed$ | async"
+  >
+    <mat-nav-list>
+      <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping">
+        <mat-icon matListIcon hrhMenuItemIcon>shopping_cart</mat-icon>
+        <span *hrhMenuItemContent>Shopping</span>
+      </a>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="white-space: pre;">{{ active$ | async }}</div>
-    <br />
-    <div style="white-space: pre;">{{ mode$ | async }}</div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -13,9 +13,19 @@ import { AuthModule } from '@hrh/auth/auth.module';
 import { SdkModule } from '@hrh/sdk/sdk.module';
 import { PersonsModule } from '@hrh/persons/persons.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MenuItemIconDirective } from './menu/menu-item/menu-item-icon.directive';
+import { MenuItemContentDirective } from './menu/menu-item/menu-item-content.directive';
+import { CollapsibleMenuDirective } from './menu/menu-item/collapsible-menu.directive';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
-  declarations: [ShellComponent, UserMenuComponent],
+  declarations: [
+    ShellComponent,
+    UserMenuComponent,
+    MenuItemIconDirective,
+    MenuItemContentDirective,
+    CollapsibleMenuDirective
+  ],
   imports: [
     CommonModule,
     ShellRoutingModule,
@@ -28,7 +38,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     PersonsModule,
     BasicLayoutModule,
     AuthModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule
   ]
 })
 export class ShellModule {}

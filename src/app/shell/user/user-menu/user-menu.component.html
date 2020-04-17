@@ -1,4 +1,4 @@
-<ng-template hrhOnlyBrowser else="spinner">
+<ng-template hrhOnlyBrowserPlatform else="spinner">
   <ng-container *ngIf="profile$ | async as profile">
     <ng-container *ngIf="profile.authenticated; else loginTemplate">
       <button mat-icon-button [mat-menu-trigger-for]="menu">
