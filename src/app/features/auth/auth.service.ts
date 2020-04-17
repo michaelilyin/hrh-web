@@ -45,14 +45,21 @@ export class AuthService {
 
     this.initReloadProfileOnNewToken();
 
-    return this.oAuthService.loadDiscoveryDocumentAndTryLogin().then(() => {
-      if (this.oAuthService.hasValidAccessToken()) {
-        return this.loadProfile().then((auth) => this._auth$.next(auth));
-      }
-      this._auth$.next({
-        authenticated: false
-      });
-    });
+    return this.oAuthService
+      .loadDiscoveryDocumentAndTryLogin()
+      .then(() => {
+        if (this.oAuthService.hasValidAccessToken()) {
+          return this.loadProfile().then((auth) => this._auth$.next(auth));
+        }
+        this._auth$.next({
+          authenticated: false
+        });
+      })
+      .catch(() =>
+        this._auth$.next({
+          authenticated: false
+        })
+      );
   }
 
   public login() {
