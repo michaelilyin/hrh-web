@@ -11,6 +11,7 @@ class DoOperator<T> implements Operator<T, T> {
 
   // tslint:disable-next-line:no-any
   call(subscriber: Subscriber<T>, source: any): TeardownLogic {
+    // tslint:disable-next-line:no-unsafe-any
     return source.subscribe(new SpySubscriber(subscriber, this.message));
   }
 }

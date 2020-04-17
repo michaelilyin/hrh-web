@@ -15,7 +15,7 @@ export class CollapsibleMenuDirective implements OnChanges {
   constructor() {}
 
   ngOnChanges(changes: Changes<this>): void {
-    if (changes.collapsed) {
+    if (changes.collapsed != undefined) {
       this._collapsed$.next(changes.collapsed.currentValue ?? false);
     }
   }
