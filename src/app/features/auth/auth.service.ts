@@ -24,7 +24,7 @@ export class AuthService {
   constructor(private readonly oAuthService: OAuthService, private readonly platform: Platform) {}
 
   init(env: Environment): Promise<void> {
-    if (!this.platform.isBrowser) {
+    if (!this.platform.isBrowser || !env.online) {
       this._auth$.next({
         authenticated: false
       });

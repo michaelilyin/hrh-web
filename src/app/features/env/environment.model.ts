@@ -1,4 +1,9 @@
-export interface Environment {
+export interface OfflineEnvironment {
+  online: false;
+}
+
+export interface OnlineEnvironment {
+  online: true;
   api: string;
   auth: {
     clientId: string;
@@ -7,3 +12,5 @@ export interface Environment {
     loginRedirectHost: string;
   };
 }
+
+export type Environment = OnlineEnvironment | OfflineEnvironment;

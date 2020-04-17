@@ -38,6 +38,7 @@ export function app() {
   // Example Express Rest API endpoints
   server.get('/environment', (req, res) => {
     const env: Environment = {
+      online: true,
       api: requireEnv('API'),
       auth: {
         clientId: requireEnv('AUTH_CLIENT_ID'),

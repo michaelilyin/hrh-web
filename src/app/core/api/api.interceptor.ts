@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional, Provider } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
 import { EnvironmentService } from '@hrh/env/environment.service';
@@ -22,6 +22,10 @@ export class ApiInterceptor implements HttpInterceptor {
       return this.environmentService.environment$.pipe(
         first(),
         switchMap((env) => {
+          if (env.online === false) {
+            // TODO: improve
+            return throwError('offline');
+          }
           const newUrl = this.concatUrl(env.api, request.url);
           return next.handle(
             request.clone({

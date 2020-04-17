@@ -172,6 +172,20 @@
           "configurations": {
             "production": {}
           }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "hrh:build",
+            "serverTarget": "hrh:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hrh:build:production",
+              "serverTarget": "hrh:server:production"
+            }
+          }
         }
       }
     }},
