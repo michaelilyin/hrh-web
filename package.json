@@ -13,8 +13,9 @@
     "e2e": "ng e2e",
     "dev:ssr": "ng run hrh:serve-ssr",
     "serve:ssr": "node dist/hrh/server/main.js",
-    "build:ssr": "ng run hrh:app-shell:production",
-    "prerender": "ng run hrh:prerender"
+    "build:ssr": "ng run hrh:server:production",
+    "prerender": "ng run hrh:prerender",
+    "build:ci": "ng run hrh:app-shell:production && ng run hrh:server:production"
   },
   "private": true,
   "dependencies": {
