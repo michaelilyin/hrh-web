@@ -106,7 +106,6 @@
           "options": {
             "tsConfig": [
               "tsconfig.app.json",
-              "tsconfig.shell-server.json",
               "tsconfig.server.json",
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
@@ -175,38 +174,17 @@
             "production": {}
           }
         },
-        "shell-server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/hrh/shell-server",
-            "main": "shell-server.ts",
-            "tsConfig": "tsconfig.shell-server.json"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
         "app-shell": {
           "builder": "@angular-devkit/build-angular:app-shell",
           "options": {
             "browserTarget": "hrh:build",
-            "serverTarget": "hrh:shell-server",
+            "serverTarget": "hrh:server",
             "route": "shell"
           },
           "configurations": {
             "production": {
               "browserTarget": "hrh:build:production",
-              "serverTarget": "hrh:shell-server:production"
+              "serverTarget": "hrh:server:production"
             }
           }
         }
