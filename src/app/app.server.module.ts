@@ -17,9 +17,7 @@ const routes: Routes = [{ path: 'shell', component: AppShellComponent }];
   imports: [
     AppModule,
     ServerModule,
-    RouterModule.forRoot(routes, {
-      initialNavigation: 'enabled'
-    }),
+    RouterModule.forRoot(routes),
     MatToolbarModule,
     BasicLayoutModule,
     MatCardModule,

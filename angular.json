@@ -106,7 +106,6 @@
           "options": {
             "tsConfig": [
               "tsconfig.app.json",
-              "tsconfig.server.json",
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
