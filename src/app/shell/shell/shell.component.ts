@@ -5,11 +5,10 @@ import { distinctUntilChanged, map, shareReplay } from 'rxjs/operators';
 import { BreakpointName } from '@hrh/sdk/layout/adaptivity/breakpoint.model';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { spy } from '@hrh/sdk/observable/spy.operator';
 import { PwaService } from '@hrh/sdk/platform/pwa.service';
 import { Platform } from '@angular/cdk/platform';
 
-enum MenuMode {
+export enum MenuMode {
   Over,
   SideCollapsible,
   Side

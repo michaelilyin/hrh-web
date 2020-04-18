@@ -18,6 +18,7 @@ import { MenuItemContentDirective } from './menu/menu-item/menu-item-content.dir
 import { CollapsibleMenuDirective } from './menu/menu-item/collapsible-menu.directive';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MenuAutoCloseDirective } from './menu/menu-item/menu-auto-close.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UserMenuComponent,
     MenuItemIconDirective,
     MenuItemContentDirective,
-    CollapsibleMenuDirective
+    CollapsibleMenuDirective,
+    MenuAutoCloseDirective
   ],
   imports: [
     CommonModule,

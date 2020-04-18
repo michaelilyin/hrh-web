@@ -36,7 +36,7 @@
     [collapsed]="menuCollapsed$ | async"
   >
     <mat-nav-list class="nav-list">
-      <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping">
+      <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping" hrhMenuAutoClose>
         <mat-icon matListIcon hrhMenuItemIcon>shopping_cart</mat-icon>
         <span *hrhMenuItemContent>Shopping</span>
       </a>
