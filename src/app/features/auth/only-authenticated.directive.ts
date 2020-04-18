@@ -1,4 +1,4 @@
-import { Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, ViewRef } from '@angular/core';
+import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, ViewRef } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,8 @@ export class OnlyAuthenticatedDirective implements OnInit, OnDestroy {
   constructor(
     private readonly templateRef: TemplateRef<void>,
     private readonly viewContainerRef: ViewContainerRef,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -21,10 +22,12 @@ export class OnlyAuthenticatedDirective implements OnInit, OnDestroy {
       if (auth.authenticated) {
         if (this.view == undefined) {
           this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
+          this.cd.markForCheck();
         }
       } else {
         if (this.view != undefined) {
           this.view.destroy();
+          this.cd.markForCheck();
         }
       }
     });
