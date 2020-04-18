@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TestHttpService } from './test-http.service';
 import { BreakpointService } from '@hrh/sdk/layout/adaptivity/breakpoint.service';
 import { distinctUntilChanged, map, shareReplay } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { PwaService } from '@hrh/sdk/platform/pwa.service';
 import { Platform } from '@angular/cdk/platform';
+import { state, style, trigger, transition, animate } from '@angular/animations';
 
 export enum MenuMode {
   Over,
@@ -18,7 +19,13 @@ export enum MenuMode {
   selector: 'hrh-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('expandCollapse', [
+      transition(':enter', [style({ width: 0, overflow: 'hidden' }), animate('100ms')]),
+      transition(':leave', [style({ overflow: 'hidden' }), animate('100ms', style({ width: 0 }))])
+    ])
+  ]
 })
 export class ShellComponent implements OnInit {
   readonly test$ = this.testHttpService.getTest();
@@ -100,7 +107,8 @@ export class ShellComponent implements OnInit {
     private readonly testHttpService: TestHttpService,
     private readonly breakpointService: BreakpointService,
     private readonly pwaService: PwaService,
-    private readonly platform: Platform
+    private readonly platform: Platform,
+    private readonly cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {}
@@ -117,5 +125,10 @@ export class ShellComponent implements OnInit {
     if (this.platform.isBrowser) {
       window.location.reload();
     }
+  }
+
+  handleExpandCollapseDone() {
+    // Run Change Detection for resize page content after expand/collapse
+    this.cd.markForCheck();
   }
 }

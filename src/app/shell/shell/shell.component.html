@@ -38,7 +38,9 @@
     <mat-nav-list class="nav-list">
       <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping" hrhMenuAutoClose>
         <mat-icon matListIcon hrhMenuItemIcon>shopping_cart</mat-icon>
-        <span *hrhMenuItemContent>Shopping</span>
+        <span *hrhMenuItemContent @expandCollapse (@expandCollapse.done)="handleExpandCollapseDone()">
+          Shopping
+        </span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
