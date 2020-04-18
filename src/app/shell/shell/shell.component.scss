@@ -5,7 +5,13 @@
 }
 
 .menu-button {
-  margin-left: -1 * $unit;
+  &:first-of-type {
+    margin-left: -1 * $unit;
+  }
+
+  &:last-of-type {
+    margin-right: $unit;
+  }
 }
 
 .sidebar {

@@ -7,7 +7,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { PwaService } from '@hrh/sdk/platform/pwa.service';
 import { Platform } from '@angular/cdk/platform';
-import { state, style, trigger, transition, animate } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 export enum MenuMode {
   Over,
@@ -22,8 +22,8 @@ export enum MenuMode {
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('expandCollapse', [
-      transition(':enter', [style({ width: 0, overflow: 'hidden' }), animate('100ms')]),
-      transition(':leave', [style({ overflow: 'hidden' }), animate('100ms', style({ width: 0 }))])
+      transition(':enter', [style({ width: 0, overflow: 'hidden' }), animate('150ms')]),
+      transition(':leave', [style({ overflow: 'hidden' }), animate('150ms', style({ width: 0 }))])
     ])
   ]
 })
@@ -113,6 +113,10 @@ export class ShellComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get showBack(): boolean {
+    return this.pwaService.pwa;
+  }
+
   menuOpenChange(opened: boolean) {
     this._menuOpened$.next(opened);
   }
@@ -130,5 +134,11 @@ export class ShellComponent implements OnInit {
   handleExpandCollapseDone() {
     // Run Change Detection for resize page content after expand/collapse
     this.cd.markForCheck();
+  }
+
+  back() {
+    if (this.platform.isBrowser) {
+      window.history.back();
+    }
   }
 }

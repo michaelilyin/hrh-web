@@ -38,7 +38,7 @@ export class OnlyBrowserPlatformDirective implements OnInit, OnDestroy {
         const spinnerFactory = this.componentFactoryResolver.resolveComponentFactory(MatSpinner);
         this.component = this.viewContainerRef.createComponent(spinnerFactory);
         this.component.instance.color = 'accent';
-        this.component.instance.diameter = 25;
+        this.component.instance.diameter = 32;
 
         this.renderer.addClass(this.component.instance._elementRef.nativeElement, 'ssr-spinner');
         this.component.changeDetectorRef.markForCheck();

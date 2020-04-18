@@ -5,7 +5,7 @@ import { AuthService } from '@hrh/auth/auth.service';
 import { filter, first, switchMap } from 'rxjs/operators';
 import { AUTH_DELAY } from '../../models/config.model';
 import { PwaService } from '@hrh/sdk/platform/pwa.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hrh-login-result-page',
@@ -42,7 +42,7 @@ export class LoginResultPageComponent implements OnInit {
   }
 
   returnToApp = () => {
-    if (this.pwaService.isPwa()) {
+    if (this.pwaService.pwa) {
       this.router.navigate(['/']);
     }
 
