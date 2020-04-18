@@ -7,6 +7,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { spy } from '@hrh/sdk/observable/spy.operator';
 import { PwaService } from '@hrh/sdk/platform/pwa.service';
+import { Platform } from '@angular/cdk/platform';
 
 enum MenuMode {
   Over,
@@ -99,7 +100,8 @@ export class ShellComponent implements OnInit {
   constructor(
     private readonly testHttpService: TestHttpService,
     private readonly breakpointService: BreakpointService,
-    private readonly pwaService: PwaService
+    private readonly pwaService: PwaService,
+    private readonly platform: Platform
   ) {}
 
   ngOnInit(): void {}
@@ -110,5 +112,11 @@ export class ShellComponent implements OnInit {
 
   menuCollapseChange(collapsed: boolean) {
     this._menuCollapsed$.next(collapsed);
+  }
+
+  handleRefresh() {
+    if (this.platform.isBrowser) {
+      window.location.reload();
+    }
   }
 }

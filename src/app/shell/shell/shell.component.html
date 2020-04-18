@@ -15,8 +15,10 @@
 
     <button
       *ngIf="updateAvailable$ | async"
+      class="update"
       mat-icon-button
       matTooltip="Application update available, click for install or refresh browser tab"
+      (click)="handleRefresh()"
     >
       <mat-icon>system_update</mat-icon>
     </button>
