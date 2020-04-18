@@ -36,7 +36,9 @@ export class LogoutResultPageComponent implements OnInit {
 
   returnToApp = () => {
     if (this.pwaService.pwa) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/'], {
+        replaceUrl: true
+      });
     }
 
     if (this.platform.isBrowser) {
