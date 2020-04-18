@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 })
 export class MenuItemIconDirective implements OnInit, OnDestroy {
   @HostBinding('style.margin-right.px')
-  marginRight: number = 0;
+  marginRight = 0;
 
   private collapseSub = Subscription.EMPTY;
 

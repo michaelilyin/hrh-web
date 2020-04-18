@@ -13,6 +13,14 @@
 
     <div class="fill"></div>
 
+    <button
+      *ngIf="updateAvailable$ | async"
+      mat-icon-button
+      matTooltip="Application update available, click for install or refresh browser tab"
+    >
+      <mat-icon>system_update</mat-icon>
+    </button>
+
     <hrh-user-menu></hrh-user-menu>
   </mat-toolbar-row>
 </mat-toolbar>

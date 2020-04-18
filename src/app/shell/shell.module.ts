@@ -17,6 +17,7 @@ import { MenuItemIconDirective } from './menu/menu-item/menu-item-icon.directive
 import { MenuItemContentDirective } from './menu/menu-item/menu-item-content.directive';
 import { CollapsibleMenuDirective } from './menu/menu-item/collapsible-menu.directive';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatListModule } from '@angular/material/list';
     BasicLayoutModule,
     AuthModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ]
 })
 export class ShellModule {}

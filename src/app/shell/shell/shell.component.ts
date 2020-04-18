@@ -6,6 +6,7 @@ import { BreakpointName } from '@hrh/sdk/layout/adaptivity/breakpoint.model';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { spy } from '@hrh/sdk/observable/spy.operator';
+import { PwaService } from '@hrh/sdk/platform/pwa.service';
 
 enum MenuMode {
   Over,
@@ -23,6 +24,8 @@ export class ShellComponent implements OnInit {
   readonly test$ = this.testHttpService.getTest();
 
   readonly modes$ = this.breakpointService.current$.pipe(map((m) => Array.from(m.mode.values())));
+
+  readonly updateAvailable$ = this.pwaService.updateAvailable$;
 
   readonly mode$ = this.breakpointService.current$.pipe(
     map((mode) => {
@@ -95,7 +98,8 @@ export class ShellComponent implements OnInit {
 
   constructor(
     private readonly testHttpService: TestHttpService,
-    private readonly breakpointService: BreakpointService
+    private readonly breakpointService: BreakpointService,
+    private readonly pwaService: PwaService
   ) {}
 
   ngOnInit(): void {}

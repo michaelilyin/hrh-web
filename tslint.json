@@ -63,7 +63,8 @@
     "no-unsafe-any": true,
     "variable-name": {
       "options": ["check-format", "allow-leading-underscore"]
-    }
+    },
+    "semicolon": [true, "always", "strict-bound-class-methods"]
   },
   "rulesDirectory": ["codelyzer"]
 }
