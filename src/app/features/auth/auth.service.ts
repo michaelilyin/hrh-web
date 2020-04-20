@@ -48,6 +48,7 @@ export class AuthService {
     return this.oAuthService
       .loadDiscoveryDocumentAndTryLogin()
       .then(() => {
+        // console.info('id token', this.oAuthService.getIdentityClaims());
         if (this.oAuthService.hasValidAccessToken()) {
           return this.loadProfile().then((auth) => this._auth$.next(auth));
         }
@@ -87,7 +88,8 @@ export class AuthService {
       )
       .subscribe((event: StorageEvent) => {
         if (event.newValue != undefined) {
-          return this.loadProfile().then((auth) => this._auth$.next(auth));
+          this.loadProfile().then((auth) => this._auth$.next(auth));
+          return;
         }
         this._auth$.next({
           authenticated: false

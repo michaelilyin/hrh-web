@@ -18,7 +18,7 @@ export class ApiInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    if (request.url.startsWith('/v1') || request.url.startsWith('v1')) {
+    if (request.url.startsWith('/v1/') || request.url.startsWith('v1/')) {
       return this.environmentService.environment$.pipe(
         first(),
         switchMap((env) => {
