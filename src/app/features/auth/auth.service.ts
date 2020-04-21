@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { fromEvent, ReplaySubject } from 'rxjs';
 import { Authentication } from './auth.model';
 import { filter, map } from 'rxjs/operators';
-import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { Environment } from '@hrh/env/environment.model';
 
-interface OAuthProfile extends UserInfo {
+interface OAuthProfile {
   preferred_username: string;
   given_name: string;
   family_name: string;
@@ -40,9 +40,7 @@ export class AuthService {
       scope: 'openid profile email roles',
       showDebugInformation: true,
       disableAtHashCheck: true,
-      clearHashAfterLogin: true,
-      useSilentRefresh: true,
-      silentRefreshRedirectUri: `${env.auth.loginRedirectHost}/auth/login/result`
+      clearHashAfterLogin: true
     });
 
     this.initReloadProfileOnNewToken();
