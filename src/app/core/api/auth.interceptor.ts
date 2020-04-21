@@ -1,5 +1,12 @@
 import { Injectable, Provider } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OAuthResourceServerErrorHandler, OAuthStorage } from 'angular-oauth2-oidc';
 import { catchError } from 'rxjs/operators';
@@ -24,9 +31,11 @@ export class AuthInterceptor implements HttpInterceptor {
             }
           })
         )
-        .pipe(catchError((error) => this.errorHandler.handleError(error)));
+        .pipe(catchError((error: HttpResponse<unknown>) => this.errorHandler.handleError(error)));
     }
-    return next.handle(request).pipe(catchError((error) => this.errorHandler.handleError(error)));
+    return next
+      .handle(request)
+      .pipe(catchError((error: HttpResponse<unknown>) => this.errorHandler.handleError(error)));
   }
 }
 
