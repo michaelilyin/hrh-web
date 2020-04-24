@@ -7,6 +7,10 @@ import {
   OnlyTabletDirective,
   OnlyWebDirective
 } from '@hrh/sdk/layout/adaptivity/breakpoint.directive';
+import { LineSkeletonComponent } from './skeleton/line-skeleton/line-skeleton.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CircleSkeletonComponent } from '@hrh/sdk/skeleton/line-skeleton/circle-skeleton.component';
+import { TextSkeletonComponent } from '@hrh/sdk/skeleton/line-skeleton/text-skeleton.component';
 
 @NgModule({
   declarations: [
@@ -14,15 +18,21 @@ import {
     ColoredDialogHeaderDirective,
     OnlyHandsetDirective,
     OnlyTabletDirective,
-    OnlyWebDirective
+    OnlyWebDirective,
+    LineSkeletonComponent,
+    CircleSkeletonComponent,
+    TextSkeletonComponent
   ],
   exports: [
     OnlyBrowserPlatformDirective,
     ColoredDialogHeaderDirective,
     OnlyHandsetDirective,
     OnlyTabletDirective,
-    OnlyWebDirective
+    OnlyWebDirective,
+    LineSkeletonComponent,
+    CircleSkeletonComponent,
+    TextSkeletonComponent
   ],
-  imports: [CommonModule]
+  imports: [CommonModule, NgxSkeletonLoaderModule]
 })
 export class SdkModule {}

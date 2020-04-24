@@ -1,0 +1,47 @@
+@import 'src/sass/utils';
+
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: $unit;
+}
+
+.house-link {
+  margin: $unit;
+  min-width: 40 * $unit;
+  max-width: 40 * $unit;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+
+  &:hover,
+  &:visited {
+    color: inherit;
+  }
+
+  @include xsmall {
+    min-width: inherit;
+    max-width: inherit;
+    width: 100%;
+  }
+}
+
+.house-card {
+  height: 100%;
+}
+
+.ripple {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0.5 * $unit;
+  z-index: 100;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

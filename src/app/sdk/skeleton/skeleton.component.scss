@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+
+  .loader {
+    display: block;
+    flex: 1;
+  }
+}
+
+.loader.line {
+  &:not(:last-child) {
+    padding-right: 8px;
+  }
+}

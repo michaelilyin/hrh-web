@@ -1,7 +1,8 @@
 import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { CanColor, mixinColor } from '@angular/material/core';
+import { HasElementRef } from '@angular/material/core/common-behaviors/color';
 
-class ColoredDialogHeaderBase {
+class ColoredDialogHeaderBase implements HasElementRef {
   constructor(public _elementRef: ElementRef) {}
 }
 

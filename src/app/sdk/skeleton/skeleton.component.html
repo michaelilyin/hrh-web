@@ -1,0 +1,15 @@
+<ng-container *ngIf="showContent; else loader">
+  <ng-content></ng-content>
+</ng-container>
+
+<ng-template #loader>
+  <ngx-skeleton-loader
+    *ngFor="let skeleton of skeletons"
+    [appearance]="type"
+    class="loader {{ type }}"
+    [count]="lines"
+    [theme]="skeletonStyle"
+    [style.width.%]="skeleton.width"
+    [style.max-width.%]="skeleton.width"
+  ></ngx-skeleton-loader>
+</ng-template>

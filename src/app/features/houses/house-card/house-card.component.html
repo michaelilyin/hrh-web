@@ -1,0 +1,25 @@
+<mat-card *ngIf="house == undefined">
+  <mat-card-header>
+    <hrh-circle-skeleton mat-card-avatar [disableAnimation]="addNewPlaceholder"></hrh-circle-skeleton>
+    <hrh-line-skeleton mat-card-title [disableAnimation]="addNewPlaceholder" [words]="true"></hrh-line-skeleton>
+  </mat-card-header>
+
+  <mat-card-content>
+    <hrh-text-skeleton [disableAnimation]="addNewPlaceholder" [lines]="2"></hrh-text-skeleton>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="addNewPlaceholder" class="add-new">
+  <mat-icon>add</mat-icon>
+  <span>Create new house</span>
+</div>
+
+<mat-card *ngIf="house != undefined">
+  <mat-card-header>
+    <span mat-card-title>{{ house?.name }}</span>
+  </mat-card-header>
+
+  <mat-card-content>
+    {{ house?.info }}
+  </mat-card-content>
+</mat-card>

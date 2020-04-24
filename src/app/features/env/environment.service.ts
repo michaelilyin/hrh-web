@@ -23,6 +23,7 @@ export class EnvironmentService {
           if (isDevMode()) {
             return {
               ...env,
+              api: '',
               auth: {
                 ...env.auth,
                 loginRedirectHost: window.location.origin

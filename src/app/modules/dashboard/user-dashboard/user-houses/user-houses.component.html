@@ -1,2 +1,5 @@
-<div>houses</div>
-<div>{{ houses$ | async | json }}</div>
+<!--<a href="#" class="house-link"><hrh-house-card class="house-card"></hrh-house-card></a>-->
+<div class="house-link">
+  <div class="ripple" matRipple></div>
+  <hrh-house-card class="house-card" [addNewPlaceholder]="true"></hrh-house-card>
+</div>

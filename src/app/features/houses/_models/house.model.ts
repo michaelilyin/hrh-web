@@ -1,6 +1,7 @@
 import { ID } from '@hrh/sdk/api/id.model';
 
-export interface House {
+export interface CurrentHouse {
   id: ID;
   name: string;
+  info: string;
 }

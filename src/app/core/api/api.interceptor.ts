@@ -52,6 +52,9 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   concatUrl(host: string, path: string): string {
+    if (host === '') {
+      return path;
+    }
     if (host.startsWith('http')) {
       return this.concatWithProtocol('', path, host);
     }
