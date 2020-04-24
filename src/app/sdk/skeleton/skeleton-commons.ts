@@ -31,10 +31,10 @@ export function mixinSkeleton<T extends Constructor<HasSkeletonProperties>>(
       return this._disableAnimation;
     }
     set disableAnimation(value: boolean | undefined) {
-      const disableAnimation = value || false;
+      const disableAnimation = value ?? false;
 
       if (disableAnimation !== this._disableAnimation) {
-        if (this._disableAnimation) {
+        if (this._disableAnimation === true) {
           this.skeletonStyle = {
             ...this.skeletonStyle,
             'background-image': undefined,

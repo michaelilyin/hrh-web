@@ -34,6 +34,7 @@ export class LineSkeletonComponent extends _LineSkeletonBase implements Skeleton
 
   ngOnInit(): void {}
 
+  // tslint:disable-next-line:no-unsafe-any
   @Input() set words(value: boolean) {
     if (value) {
       this.skeletons = this.generateSkeletonWords();
