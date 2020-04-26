@@ -1,9 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist/hrh/simple-server",
+    "outDir": "./out-tsc/simple-server",
     "module": "commonjs",
     "types": ["node"]
+
   },
-  "files": ["simple-server.ts"]
+  "files": [
+    "simple-server.ts"
+  ]
 }

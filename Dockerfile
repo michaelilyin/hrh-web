@@ -7,4 +7,4 @@ WORKDIR /opt/service
 EXPOSE 4000
 
 #CMD [ "node", "/opt/service/dist/hrh/server/main.js" ]
-CMD [ "node", "/opt/service/dist/hrh/simple-server/simple-server.js" ]
+CMD [ "node", "/opt/service/dist/hrh/simple-server/main.js" ]

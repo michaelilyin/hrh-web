@@ -14,7 +14,8 @@
     "dev:ssr": "ng run hrh:serve-ssr",
     "serve:ssr": "node dist/hrh/server/main.js",
     "build:ssr": "ng run hrh:app-shell:production && ng run hrh:server:production",
-    "build:ci": "ng build --prod && tsc --project tsconfig.simple-server.json",
+    "build:simple-server": "ng build --prod && webpack --config simple-server.webpack.js",
+    "build:ci": "npm run build:simple-server",
     "prerender": "ng run hrh:prerender"
   },
   "private": true,
@@ -63,9 +64,12 @@
     "lint-staged": "^10.1.2",
     "prettier": "2.0.4",
     "protractor": "~5.4.3",
+    "ts-loader": "^7.0.1",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "husky": {
     "hooks": {
