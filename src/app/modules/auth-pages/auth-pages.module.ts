@@ -35,7 +35,7 @@ import { AUTH_DELAY } from './models/config.model';
   providers: [
     {
       provide: AUTH_DELAY,
-      useValue: 3
+      useValue: 2
     }
   ]
 })

@@ -14,8 +14,8 @@ const _LineSkeletonBase = mixinSkeleton(CircleSkeletonComponentBase);
 
 @Component({
   selector: 'hrh-circle-skeleton',
-  templateUrl: '../skeleton.component.html',
-  styleUrls: ['../skeleton.component.scss'],
+  templateUrl: './skeleton.component.html',
+  styleUrls: ['./skeleton.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disableAnimation', 'showContent']

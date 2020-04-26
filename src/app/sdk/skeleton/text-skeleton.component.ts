@@ -15,8 +15,8 @@ const _LineSkeletonBase = mixinSkeleton(TextSkeletonComponentBase);
 
 @Component({
   selector: 'hrh-text-skeleton',
-  templateUrl: '../skeleton.component.html',
-  styleUrls: ['../skeleton.component.scss'],
+  templateUrl: './skeleton.component.html',
+  styleUrls: ['./skeleton.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disableAnimation', 'showContent', 'lines'],

@@ -6,11 +6,19 @@ import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { Environment } from '@hrh/env/environment.model';
 
+interface RolesContainer {
+  roles: string[];
+}
+
 interface OAuthProfile extends UserInfo {
   preferred_username: string;
   given_name: string;
   family_name: string;
   email: string;
+  realm_access: RolesContainer;
+  resource_access: {
+    [p: string]: RolesContainer;
+  };
 }
 
 @Injectable({
@@ -107,12 +115,21 @@ export class AuthService {
   private loadProfile(): Promise<Authentication> {
     return this.oAuthService.loadUserProfile().then((profileObj) => {
       const profile = profileObj as OAuthProfile;
+
+      const roles = [
+        ...profile.realm_access.roles,
+        ...Object.entries(profile.resource_access).flatMap(([k, v]) => {
+          return v.roles.map((r) => `${k}:${r}`);
+        })
+      ];
+
       const auth: Authentication = {
         authenticated: true,
         email: profile.email as string,
         username: profile.preferred_username as string,
         firstName: profile.given_name as string,
-        lastName: profile.family_name as string
+        lastName: profile.family_name as string,
+        roles
       };
       return auth;
     });

@@ -40,6 +40,13 @@ const routes: Routes = [
           import('src/app/modules/shopping-pages/shopping-pages-routing.module').then(
             (m) => m.ShoppingPagesRoutingModule
           )
+      },
+      {
+        path: 'profile',
+        canActivate: [AuthenticatedGuard],
+        canActivateChild: [AuthenticatedGuard],
+        loadChildren: () =>
+          import('src/app/modules/profile-pages/profile-pages.module').then((m) => m.ProfilePagesModule)
       }
     ]
   }

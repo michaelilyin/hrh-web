@@ -15,7 +15,6 @@
       const checks = [/[?&#]code=/, /[?&#]error=/, /[?&#]token=/, /[?&#]id_token=/];
 
       function isResponse(str) {
-        const count = 0;
         if (!str) return false;
         for (let i = 0; i < checks.length; i++) {
           if (str.match(checks[i])) return true;
@@ -24,8 +23,6 @@
       }
 
       const message = isResponse(location.hash) ? location.hash : '#' + location.search;
-
-      console.info('message', message);
 
       (window.opener || window.parent).postMessage(message, location.origin);
     </script>

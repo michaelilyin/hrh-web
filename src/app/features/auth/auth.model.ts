@@ -4,6 +4,7 @@ export interface UserAuthentication {
   email: string;
   firstName: string;
   lastName?: string;
+  roles: string[];
 }
 
 export interface AnonymousAuthentication {

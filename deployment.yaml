@@ -65,7 +65,7 @@ spec:
           - name: AUTH_LOGIN_REDIRECT_HOST
             value: "https://hrh.michaelilyin.ru"
           - name: AUTH_CLIENT_ID
-            value: "hrh-web-dev"
+            value: "hrh-web"
 ---
 apiVersion: v1
 kind: Service

@@ -19,8 +19,8 @@ function randomRange(start: number, end: number): number {
 
 @Component({
   selector: 'hrh-line-skeleton',
-  templateUrl: '../skeleton.component.html',
-  styleUrls: ['../skeleton.component.scss'],
+  templateUrl: './skeleton.component.html',
+  styleUrls: ['./skeleton.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['disableAnimation', 'showContent']

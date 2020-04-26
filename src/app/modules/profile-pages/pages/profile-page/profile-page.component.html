@@ -1,0 +1,5 @@
+<ng-container *ngIf="user$ | async as user">
+  <div>User {{ user.firstName }} {{ user.lastName }}</div>
+  <div>Email {{ user.email }}</div>
+  <div>{{ user.roles | json }}</div>
+</ng-container>
