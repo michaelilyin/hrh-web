@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { fromEvent, ReplaySubject } from 'rxjs';
 import { Authentication } from './auth.model';
 import { filter, map } from 'rxjs/operators';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
 import { Environment } from '@hrh/env/environment.model';
 
-interface OAuthProfile {
+interface OAuthProfile extends UserInfo {
   preferred_username: string;
   given_name: string;
   family_name: string;
@@ -36,19 +36,26 @@ export class AuthService {
       issuer: env.auth.path,
       redirectUri: `${env.auth.loginRedirectHost}/auth/login/result`,
       postLogoutRedirectUri: `${env.auth.loginRedirectHost}/auth/logout/result`,
+      silentRefreshRedirectUri: `${env.auth.loginRedirectHost}/silent-refresh.html`,
       responseType: 'code',
       scope: 'openid profile email roles',
       showDebugInformation: true,
       disableAtHashCheck: true,
-      clearHashAfterLogin: true
+      clearHashAfterLogin: true,
+      useSilentRefresh: 'true'
     });
 
     this.initReloadProfileOnNewToken();
+    this.oAuthService.setupAutomaticSilentRefresh();
 
     return this.oAuthService
       .loadDiscoveryDocumentAndTryLogin()
       .then(() => {
-        // console.info('id token', this.oAuthService.getIdentityClaims());
+        if (this.oAuthService.getAccessToken() != undefined && !this.oAuthService.hasValidAccessToken()) {
+          return this.oAuthService.silentRefresh();
+        }
+      })
+      .then(() => {
         if (this.oAuthService.hasValidAccessToken()) {
           return this.loadProfile().then((auth) => this._auth$.next(auth));
         }

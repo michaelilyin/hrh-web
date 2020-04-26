@@ -3,7 +3,7 @@ import { ServerModule } from '@angular/platform-server';
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BasicLayoutModule } from '@hrh/layout/basic-layout.module';

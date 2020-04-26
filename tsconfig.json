@@ -12,7 +12,7 @@
     "importHelpers": true,
     "target": "es2015",
     "strict": true,
-    "lib": ["es2018", "dom"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
       "@hrh/sdk/*": ["src/app/sdk/*"],
       "@hrh/env/*": ["src/app/features/env/*"],
