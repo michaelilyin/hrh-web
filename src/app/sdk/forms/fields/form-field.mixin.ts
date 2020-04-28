@@ -79,7 +79,7 @@ export function mixinFormField<T extends Constructor<FormFieldMixinBase>, V>(bas
       this.cd = this.injector.get(ChangeDetectorRef);
       this.externalControlContainer = this.injector.get(NgControl);
 
-      this.valueChangesSub = this.control.control.valueChanges.subscribe((value) => {
+      this.valueChangesSub = this.control.control.valueChanges.subscribe((value: V | undefined) => {
         this._valueChange(value);
       });
     }
