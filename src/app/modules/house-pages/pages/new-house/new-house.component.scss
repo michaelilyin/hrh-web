@@ -1,0 +1,7 @@
+@import 'src/sass/utils';
+
+:host {
+  display: grid;
+  @include small-viewport;
+  @include viewport-padding;
+}

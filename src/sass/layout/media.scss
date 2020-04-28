@@ -3,3 +3,19 @@
     @content;
   }
 }
+
+@mixin viewport-padding {
+  padding: 2 * $unit;
+}
+
+@mixin limited-viewport {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin small-viewport {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}

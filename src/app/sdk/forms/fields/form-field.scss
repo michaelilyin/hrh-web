@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+}
+
+.mat-form-field {
+  flex: 1;
+}
+
+.mat-form-field.readonly {
+  ::ng-deep.mat-form-field-label {
+    color: inherit;
+  }
+
+  .mat-input-element:disabled {
+    color: inherit;
+  }
+}

@@ -8,6 +8,7 @@ import { MatDrawerMode } from '@angular/material/sidenav';
 import { PwaService } from '@hrh/sdk/platform/pwa.service';
 import { Platform } from '@angular/cdk/platform';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { Location } from '@angular/common';
 
 export enum MenuMode {
   Over,
@@ -108,7 +109,8 @@ export class ShellComponent implements OnInit {
     private readonly breakpointService: BreakpointService,
     private readonly pwaService: PwaService,
     private readonly platform: Platform,
-    private readonly cd: ChangeDetectorRef
+    private readonly cd: ChangeDetectorRef,
+    private readonly location: Location
   ) {}
 
   ngOnInit(): void {}
@@ -137,8 +139,6 @@ export class ShellComponent implements OnInit {
   }
 
   back() {
-    if (this.platform.isBrowser) {
-      window.history.back();
-    }
+    this.location.back();
   }
 }

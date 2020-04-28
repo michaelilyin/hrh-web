@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="createHouse(form.getRawValue())">
+  <mat-card>
+    <mat-card-header>
+      <span mat-card-title>New House</span>
+    </mat-card-header>
+    <mat-card-content>
+      <hrh-text-field
+        label="House Name"
+        [required]="true"
+        formControlName="name"
+        [maxLength]="HouseValidation.MAX_NAME_LENGTH"
+      ></hrh-text-field>
+
+      <hrh-textarea-field
+        label="Description"
+        formControlName="description"
+        [maxLength]="HouseValidation.MAX_DESCRIPTION_LENGTH"
+      ></hrh-textarea-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-flat-button color="primary" [disabled]="!form.valid">Create</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

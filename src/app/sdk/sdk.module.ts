@@ -11,6 +11,8 @@ import { LineSkeletonComponent } from './skeleton/line-skeleton.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CircleSkeletonComponent } from '@hrh/sdk/skeleton/circle-skeleton.component';
 import { TextSkeletonComponent } from '@hrh/sdk/skeleton/text-skeleton.component';
+import { FormsModule } from '@hrh/sdk/forms/forms.module';
+import { NotificationsModule } from '@hrh/sdk/notifications/notifications.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { TextSkeletonComponent } from '@hrh/sdk/skeleton/text-skeleton.component
     TextSkeletonComponent
   ],
   exports: [
+    FormsModule,
+    NotificationsModule,
     OnlyBrowserPlatformDirective,
     ColoredDialogHeaderDirective,
     OnlyHandsetDirective,

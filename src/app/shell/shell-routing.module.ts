@@ -47,6 +47,12 @@ const routes: Routes = [
         canActivateChild: [AuthenticatedGuard],
         loadChildren: () =>
           import('src/app/modules/profile-pages/profile-pages.module').then((m) => m.ProfilePagesModule)
+      },
+      {
+        path: 'houses',
+        canActivate: [AuthenticatedGuard],
+        canActivateChild: [AuthenticatedGuard],
+        loadChildren: () => import('src/app/modules/house-pages/house-pages.module').then((m) => m.HousePagesModule)
       }
     ]
   }

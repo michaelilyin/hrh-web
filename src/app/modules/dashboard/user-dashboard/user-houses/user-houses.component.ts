@@ -12,12 +12,6 @@ import { CurrentHouse } from '@hrh/houses/_models/house.model';
 export class UserHousesComponent implements OnInit {
   houses$ = this.housesService.getCurrentUserHouses().pipe(shareReplay(1));
 
-  house: CurrentHouse = {
-    id: '123',
-    name: 'Test House',
-    info: 'Test Info Line'
-  };
-
   constructor(private readonly housesService: HousesService) {}
 
   ngOnInit(): void {}

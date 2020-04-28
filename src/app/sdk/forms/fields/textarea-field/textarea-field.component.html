@@ -1,0 +1,23 @@
+<mat-form-field [floatLabel]="_floatLabelType" [appearance]="_appearance" [class.readonly]="readonly">
+  <mat-label>{{ label }}</mat-label>
+  <textarea
+    #input
+    matInput
+    [ngModel]="_value"
+    (ngModelChange)="_valueChange($event)"
+    [required]="required"
+    [disabled]="_disabled"
+    cdkTextareaAutosize
+    [placeholder]="_placeholder"
+    [cdkAutosizeMinRows]="rowsMin"
+    [cdkAutosizeMaxRows]="rowsMax"
+    [maxlength]="maxLength"
+  ></textarea>
+
+  <mat-hint *ngIf="showLengthHint" align="end">
+    {{ lengthHint }}
+  </mat-hint>
+  <mat-error *hrhValidationError="let error of control.errors; by: label">
+    {{ error }}
+  </mat-error>
+</mat-form-field>
