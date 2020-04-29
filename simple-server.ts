@@ -7,7 +7,7 @@ import { env } from './server.env';
 export function app() {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/hrh/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index.html';
 
   server.set('views', distFolder);
 
@@ -25,7 +25,7 @@ export function app() {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.sendFile(indexHtml);
+    res.sendFile(join(distFolder, indexHtml));
   });
 
   return server;
