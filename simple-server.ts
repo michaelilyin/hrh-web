@@ -9,7 +9,6 @@ export function app() {
   const distFolder = join(process.cwd(), 'dist/hrh/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
-  server.set('view engine', 'html');
   server.set('views', distFolder);
 
   server.get('/environment', (req, res) => {
@@ -26,7 +25,7 @@ export function app() {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml);
+    res.sendFile(indexHtml);
   });
 
   return server;
