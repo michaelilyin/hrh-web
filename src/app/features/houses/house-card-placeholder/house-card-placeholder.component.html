@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <hrh-circle-skeleton mat-card-avatar [disableAnimation]="addNewOverlay"></hrh-circle-skeleton>
+    <hrh-line-skeleton mat-card-title [disableAnimation]="addNewOverlay" [words]="true"></hrh-line-skeleton>
+  </mat-card-header>
+
+  <mat-card-content>
+    <hrh-text-skeleton [disableAnimation]="addNewOverlay" [lines]="2"></hrh-text-skeleton>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="addNewOverlay" class="add-new">
+  <mat-icon>add</mat-icon>
+  <span>Create new house</span>
+</div>

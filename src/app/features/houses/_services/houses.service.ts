@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { Page } from '@hrh/sdk/api/page.model';
 import { CurrentHouse, House, HouseCreate } from '../_models/house.model';
 import { map } from 'rxjs/operators';
+import { Value } from '@hrh/sdk/api/value.model';
 
 const routes = {
   houses: () => '/v1/houses',
-  currentHouses: () => `${routes.houses()}`
+  currentHouses: () => `${routes.houses()}`,
+  currentHousesCount: () => `${routes.currentHouses()}/count`
 };
 
 @Injectable({
@@ -18,6 +20,10 @@ export class HousesService {
 
   getCurrentUserHouses(): Observable<ReadonlyArray<CurrentHouse>> {
     return this.httpClient.get<Page<CurrentHouse>>(routes.currentHouses()).pipe(map((page) => page.items));
+  }
+
+  getCurrentUserHousesCount(): Observable<number> {
+    return this.httpClient.get<Value<number>>(routes.currentHousesCount()).pipe(map((value) => value.value));
   }
 
   createHouse(input: HouseCreate): Observable<House> {

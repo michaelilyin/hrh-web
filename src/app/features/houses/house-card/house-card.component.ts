@@ -10,8 +10,6 @@ import { CurrentHouse } from '@hrh/houses/_models/house.model';
 export class HouseCardComponent implements OnInit {
   @Input() house?: CurrentHouse;
 
-  @Input() addNewPlaceholder = false;
-
   constructor() {}
 
   ngOnInit(): void {}
