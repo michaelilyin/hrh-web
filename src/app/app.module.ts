@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { RouterModule } from '@angular/router';
+import { NgProgressRouterModule } from 'ngx-progressbar/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,10 @@ import { RouterModule } from '@angular/router';
     CoreModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    RouterModule
+    RouterModule,
+    NgProgressRouterModule.withConfig({
+      id: 'navigation-progress-bar'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -19,6 +19,7 @@ import { CollapsibleMenuDirective } from './menu/menu-item/collapsible-menu.dire
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MenuAutoCloseDirective } from './menu/menu-item/menu-auto-close.directive';
+import { NgProgressModule } from 'ngx-progressbar';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MenuAutoCloseDirective } from './menu/menu-item/menu-auto-close.directi
     AuthModule,
     MatSidenavModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgProgressModule
   ]
 })
 export class ShellModule {}

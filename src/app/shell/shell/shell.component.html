@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar mat-elevation-z6">
   <mat-toolbar-row>
     <button *ngIf="showBack" class="menu-button" mat-icon-button (click)="back()">
       <mat-icon>arrow_back</mat-icon>
@@ -31,8 +31,11 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container [autosize]="true" class="sidebar" (backdropClick)="menuOpenChange(false)">
-  <mat-sidenav
+<ng-progress id="navigation-progress-bar" [debounceTime]="100" [fixed]="false" [thick]="true" [spinner]="false">
+</ng-progress>
+
+<mat-drawer-container [autosize]="true" class="sidebar" (backdropClick)="menuOpenChange(false)">
+  <mat-drawer
     [mode]="drawerMode$ | async"
     [opened]="menuOpened$ | async"
     (openedChange)="menuOpenChange($event)"
@@ -47,8 +50,8 @@
         </span>
       </a>
     </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
+  </mat-drawer>
+  <mat-drawer-content class="sidenav-content">
     <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer-content>
+</mat-drawer-container>

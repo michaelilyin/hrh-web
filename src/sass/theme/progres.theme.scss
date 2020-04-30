@@ -1,0 +1,26 @@
+@import '~@angular/material/theming';
+
+@mixin ng-progress-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  $barColor: mat-color($accent, darker);
+
+  ng-progress {
+    .ng-bar {
+      background-color: $barColor !important;
+    }
+
+    .ng-spinner-icon {
+      border-top-color: $barColor !important;
+      border-left-color: $barColor !important;
+    }
+
+    .ng-meteor {
+      box-shadow: rgba($barColor, 1) 0 0 10px, rgba($barColor, 1) 0 0 5px !important;
+    }
+  }
+}

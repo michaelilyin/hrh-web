@@ -1,7 +1,15 @@
 @import 'src/sass/utils';
 
 :host {
-  @include toolbar-and-body;
+}
+
+.toolbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
 }
 
 .menu-button {
@@ -14,9 +22,35 @@
   }
 }
 
+#navigation-progress-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  top: 8 * $unit;
+
+  @include xsmall {
+    top: 7 * $unit;
+  }
+}
+
 .sidebar {
   height: 100%;
   width: 100%;
+  padding-top: 8 * $unit;
+
+  .mat-drawer {
+    top: 8 * $unit;
+  }
+
+  @include xsmall {
+    padding-top: 7 * $unit;
+
+    .mat-drawer {
+      top: 7 * $unit;
+    }
+  }
 }
 
 .fill {

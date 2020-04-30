@@ -1,4 +1,5 @@
 @import '~@angular/material/theming';
+@import 'progres.theme';
 @import 'src/app/sdk/layout/colored-dialog-header/colored-dialog-header.theme';
 
 @include mat-core();
@@ -11,3 +12,4 @@ $hrh-theme: mat-light-theme($hrh-primary, $hrh-accent, $hrh-warn);
 
 @include angular-material-theme($hrh-theme);
 @include colored-dialog-header($hrh-theme);
+@include ng-progress-theme($hrh-theme);
