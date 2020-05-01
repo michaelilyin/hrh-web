@@ -1,0 +1,22 @@
+<div class="toolbar mat-elevation-z6">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <ng-content select="[hrhShellBeforeTitle]"> </ng-content>
+
+      <hrh-title></hrh-title>
+
+      <ng-content select="[hrhShellAfterTitle]"> </ng-content>
+
+      <div class="fill"></div>
+
+      <ng-content select="[hrhShellAtTheEnd]"> </ng-content>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <ng-progress id="navigation-progress-bar" [debounceTime]="100" [fixed]="false" [thick]="true" [spinner]="false">
+  </ng-progress>
+</div>
+
+<div class="content">
+  <ng-content select="[hrhShellContent]"> </ng-content>
+</div>

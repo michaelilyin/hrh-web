@@ -1,21 +1,17 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <hrh-title></hrh-title>
-  </mat-toolbar-row>
-</mat-toolbar>
+<hrh-shell-layout>
+  <div hrhShellContent class="viewport">
+    <mat-card class="content">
+      <mat-card-title-group hrhColoredDialogHeader color="primary">
+        <h2 mat-card-title>Auth check</h2>
+      </mat-card-title-group>
 
-<div class="content">
-  <mat-card>
-    <mat-card-title-group hrhColoredDialogHeader color="primary">
-      <h2 mat-card-title>Auth check</h2>
-    </mat-card-title-group>
+      <mat-card-content class="dialog-content">
+        <p>Checking your authentication...</p>
 
-    <mat-card-content class="dialog-content">
-      <p>Checking your authentication...</p>
+        <mat-spinner class="ssr-spinner"></mat-spinner>
 
-      <mat-spinner class="ssr-spinner"></mat-spinner>
-
-      <p>You'll see requested page in a few seconds</p>
-    </mat-card-content>
-  </mat-card>
-</div>
+        <p>You'll see requested page in a few seconds</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</hrh-shell-layout>

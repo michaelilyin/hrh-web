@@ -19,7 +19,7 @@
       "@hrh/auth/*": ["src/app/features/auth/*"],
       "@hrh/persons/*": ["src/app/features/persons/*"],
       "@hrh/houses/*": ["src/app/features/houses/*"],
-      "@hrh/layout/*": ["src/app/features/basic-layout/*"]
+      "@hrh/shell/*": ["src/app/features/shell-shared/*"]
     }
   },
   "angularCompilerOptions": {

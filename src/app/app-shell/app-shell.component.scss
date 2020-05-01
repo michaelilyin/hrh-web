@@ -1,11 +1,11 @@
 @import 'src/sass/utils';
 
-:host {
-  @include toolbar-and-body;
+.viewport {
+  @include viewport-padding;
 }
 
 .content {
-  padding: $unit * 2;
+  @include small-viewport;
 }
 
 .dialog-content {

@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { UserMenuComponent } from './user/user-menu/user-menu.component';
-import { BasicLayoutModule } from '@hrh/layout/basic-layout.module';
 import { AuthModule } from '@hrh/auth/auth.module';
 import { SdkModule } from '@hrh/sdk/sdk.module';
 import { PersonsModule } from '@hrh/persons/persons.module';
@@ -20,6 +19,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MenuAutoCloseDirective } from './menu/menu-item/menu-auto-close.directive';
 import { NgProgressModule } from 'ngx-progressbar';
+import { ShellSharedModule } from '@hrh/shell/shell-shared.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { NgProgressModule } from 'ngx-progressbar';
     SdkModule,
     MatDividerModule,
     PersonsModule,
-    BasicLayoutModule,
+    ShellSharedModule,
     AuthModule,
     MatSidenavModule,
     MatListModule,

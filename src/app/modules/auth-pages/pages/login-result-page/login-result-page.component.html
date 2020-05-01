@@ -1,22 +1,18 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <hrh-title></hrh-title>
-  </mat-toolbar-row>
-</mat-toolbar>
+<hrh-shell-layout>
+  <div hrhShellContent class="viewport">
+    <mat-card *ngIf="user$ | async as user" class="content">
+      <mat-card-title-group hrhColoredDialogHeader color="primary">
+        <h2 mat-card-title>Welcome, {{ user.firstName }}</h2>
+      </mat-card-title-group>
 
-<div class="content">
-  <mat-card *ngIf="user$ | async as user">
-    <mat-card-title-group hrhColoredDialogHeader color="primary">
-      <h2 mat-card-title>Welcome, {{ user.firstName }}</h2>
-    </mat-card-title-group>
+      <mat-card-content>
+        <p>Logged in successfully!</p>
+        <p>You will be returned to the App automatically in {{ countdown$ | async }} seconds</p>
+      </mat-card-content>
 
-    <mat-card-content>
-      <p>Logged in successfully!</p>
-      <p>You will be returned to the App automatically in {{ countdown$ | async }} seconds</p>
-    </mat-card-content>
-
-    <mat-card-actions align="end">
-      <button mat-flat-button color="primary" (click)="handleReturnToApp()">Return to the App</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      <mat-card-actions align="end">
+        <button mat-flat-button color="primary" (click)="handleReturnToApp()">Return to the App</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</hrh-shell-layout>

@@ -25,7 +25,7 @@ export class LogoutPageComponent implements OnInit {
   }
 
   handleReturnClick() {
-    if (this.pwaService.pwa) {
+    if (this.pwaService.pwa || (this.platform.isBrowser && window.opener == undefined)) {
       this.router.navigate(['/'], {
         replaceUrl: true
       });

@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BasicLayoutModule } from '@hrh/layout/basic-layout.module';
 import { MatCardModule } from '@angular/material/card';
 import { SdkModule } from '@hrh/sdk/sdk.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ShellSharedModule } from '@hrh/shell/shell-shared.module';
 
 const routes: Routes = [{ path: 'shell', component: AppShellComponent }];
 
@@ -19,10 +19,10 @@ const routes: Routes = [{ path: 'shell', component: AppShellComponent }];
     ServerModule,
     RouterModule.forRoot(routes),
     MatToolbarModule,
-    BasicLayoutModule,
     MatCardModule,
     SdkModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ShellSharedModule
   ],
   bootstrap: [AppComponent],
   declarations: [AppShellComponent]

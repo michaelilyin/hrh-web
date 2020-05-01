@@ -1,5 +1,5 @@
-<mat-toolbar color="primary" class="toolbar mat-elevation-z6">
-  <mat-toolbar-row>
+<hrh-shell-layout>
+  <ng-container hrhShellBeforeTitle>
     <button *ngIf="showBack" class="menu-button" mat-icon-button (click)="back()">
       <mat-icon>arrow_back</mat-icon>
     </button>
@@ -12,11 +12,9 @@
     <button *ngIf="showMenuExpand$ | async" class="menu-button" mat-icon-button (click)="menuCollapseChange(false)">
       <mat-icon class="rotate-icon">unfold_more</mat-icon>
     </button>
+  </ng-container>
 
-    <hrh-title></hrh-title>
-
-    <div class="fill"></div>
-
+  <ng-container hrhShellAtTheEnd>
     <button
       *ngIf="updateAvailable$ | async"
       class="update"
@@ -28,30 +26,27 @@
     </button>
 
     <hrh-user-menu></hrh-user-menu>
-  </mat-toolbar-row>
-</mat-toolbar>
+  </ng-container>
 
-<ng-progress id="navigation-progress-bar" [debounceTime]="100" [fixed]="false" [thick]="true" [spinner]="false">
-</ng-progress>
-
-<mat-drawer-container [autosize]="true" class="sidebar" (backdropClick)="menuOpenChange(false)">
-  <mat-drawer
-    [mode]="drawerMode$ | async"
-    [opened]="menuOpened$ | async"
-    (openedChange)="menuOpenChange($event)"
-    hrhCollapsibleMenu
-    [collapsed]="menuCollapsed$ | async"
-  >
-    <mat-nav-list class="nav-list">
-      <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping" hrhMenuAutoClose>
-        <mat-icon matListIcon hrhMenuItemIcon>shopping_cart</mat-icon>
-        <span *hrhMenuItemContent @expandCollapse (@expandCollapse.done)="handleExpandCollapseDone()">
-          Shopping
-        </span>
-      </a>
-    </mat-nav-list>
-  </mat-drawer>
-  <mat-drawer-content class="sidenav-content">
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+  <mat-drawer-container hrhShellContent [autosize]="true" (backdropClick)="menuOpenChange(false)">
+    <mat-drawer
+      [mode]="drawerMode$ | async"
+      [opened]="menuOpened$ | async"
+      (openedChange)="menuOpenChange($event)"
+      hrhCollapsibleMenu
+      [collapsed]="menuCollapsed$ | async"
+    >
+      <mat-nav-list class="nav-list">
+        <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping" hrhMenuAutoClose>
+          <mat-icon matListIcon hrhMenuItemIcon>shopping_cart</mat-icon>
+          <span *hrhMenuItemContent @expandCollapse (@expandCollapse.done)="handleExpandCollapseDone()">
+            Shopping
+          </span>
+        </a>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</hrh-shell-layout>
