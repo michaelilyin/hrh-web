@@ -11,9 +11,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Location } from '@angular/common';
 
 export enum MenuMode {
-  Over,
-  SideCollapsible,
-  Side
+  Over = 'Over',
+  SideCollapsible = 'SideCollapsible',
+  Side = 'Side'
 }
 
 @Component({
