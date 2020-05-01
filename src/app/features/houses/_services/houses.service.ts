@@ -9,7 +9,8 @@ import { Value } from '@hrh/sdk/api/value.model';
 const routes = {
   houses: () => '/v1/houses',
   currentHouses: () => `${routes.houses()}`,
-  currentHousesCount: () => `${routes.currentHouses()}/count`
+  currentHousesCount: () => `${routes.currentHouses()}/count`,
+  houseById: (id: string) => `${routes.houses()}/${id}`
 };
 
 @Injectable({
@@ -28,5 +29,9 @@ export class HousesService {
 
   createHouse(input: HouseCreate): Observable<House> {
     return this.httpClient.post<House>(routes.houses(), input);
+  }
+
+  getHouseById(id: string): Observable<House> {
+    return this.httpClient.get<House>(routes.houseById(id));
   }
 }

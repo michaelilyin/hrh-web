@@ -7,9 +7,10 @@ import { SdkModule } from '@hrh/sdk/sdk.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { HouseDashboardComponent } from './pages/house-dashboard/house-dashboard.component';
 
 @NgModule({
-  declarations: [NewHouseComponent],
+  declarations: [NewHouseComponent, HouseDashboardComponent],
   imports: [CommonModule, HousePagesRoutingModule, SdkModule, ReactiveFormsModule, MatButtonModule, MatCardModule]
 })
 export class HousePagesModule {}
