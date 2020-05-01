@@ -29,18 +29,16 @@ export enum MenuMode {
   ]
 })
 export class ShellComponent implements OnInit {
-  readonly test$ = this.testHttpService.getTest();
-
   readonly modes$ = this.breakpointService.current$.pipe(map((m) => Array.from(m.mode.values())));
 
   readonly updateAvailable$ = this.pwaService.updateAvailable$;
 
   readonly mode$ = this.breakpointService.current$.pipe(
     map((mode) => {
-      if (mode.has(BreakpointName.HandsetPortrait, BreakpointName.TabletPortrait)) {
+      if (mode.has(BreakpointName.Handset, BreakpointName.TabletPortrait)) {
         return MenuMode.Over;
       }
-      if (mode.has(BreakpointName.HandsetLandscape, BreakpointName.TabletLandscape, BreakpointName.WebPortrait)) {
+      if (mode.has(BreakpointName.TabletLandscape, BreakpointName.WebPortrait)) {
         return MenuMode.SideCollapsible;
       }
       return MenuMode.Side;

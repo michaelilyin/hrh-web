@@ -46,7 +46,7 @@
       </mat-nav-list>
     </mat-drawer>
     <mat-drawer-content class="sidenav-content">
-      <div>
+      <div *ngIf="false">
         <div>Modes:&nbsp; {{ modes$ | async | json }}</div>
         <div>Mode:&nbsp; {{ mode$ | async | json }}</div>
         <div>Drawer:&nbsp; {{ drawerMode$ | async | json }}</div>
