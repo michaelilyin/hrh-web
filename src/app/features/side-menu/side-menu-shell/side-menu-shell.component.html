@@ -1,0 +1,19 @@
+<ng-template #toolbarButtons cdkPortal>
+  <button *ngIf="showMenuOpen$ | async" class="menu-button" mat-icon-button (click)="toggleMenuOpen()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button *ngIf="showMenuExpandCollapse$ | async" class="menu-button" mat-icon-button (click)="toggleExpandCollapse()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</ng-template>
+
+<mat-drawer-container class="sidebar" [autosize]="true" (backdropClick)="toggleMenuOpen(false)">
+  <mat-drawer [mode]="drawerMode$ | async" [opened]="menuOpened$ | async" (openedChange)="toggleMenuOpen($event)">
+    <ng-container *ngFor="let sideMenu of sideMenuPortals$ | async">
+      <ng-container *cdkPortalOutlet="sideMenu"></ng-container>
+    </ng-container>
+  </mat-drawer>
+  <mat-drawer-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

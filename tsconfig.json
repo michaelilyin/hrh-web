@@ -19,7 +19,8 @@
       "@hrh/auth/*": ["src/app/features/auth/*"],
       "@hrh/persons/*": ["src/app/features/persons/*"],
       "@hrh/houses/*": ["src/app/features/houses/*"],
-      "@hrh/shell/*": ["src/app/features/shell-shared/*"]
+      "@hrh/shell/*": ["src/app/features/shell-shared/*"],
+      "@hrh/side-menu/*": ["src/app/features/side-menu/*"]
     }
   },
   "angularCompilerOptions": {

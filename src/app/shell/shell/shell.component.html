@@ -1,17 +1,11 @@
 <hrh-shell-layout>
   <ng-container hrhShellBeforeTitle>
-    <button *ngIf="showBack" class="menu-button" mat-icon-button (click)="back()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <button *ngIf="showMenuOpen$ | async" class="menu-button" mat-icon-button (click)="menuOpenChange(true)">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <button *ngIf="showMenuCollapse$ | async" class="menu-button" mat-icon-button (click)="menuCollapseChange(true)">
-      <mat-icon class="rotate-icon">unfold_less</mat-icon>
-    </button>
-    <button *ngIf="showMenuExpand$ | async" class="menu-button" mat-icon-button (click)="menuCollapseChange(false)">
-      <mat-icon class="rotate-icon">unfold_more</mat-icon>
-    </button>
+    <!--    <button *ngIf="showBack" class="menu-button" mat-icon-button (click)="back()">-->
+    <!--      <mat-icon>arrow_back</mat-icon>-->
+    <!--    </button>-->
+    <div class="menu-buttons">
+      <ng-container *cdkPortalOutlet="menuButtons"></ng-container>
+    </div>
   </ng-container>
 
   <ng-container hrhShellAtTheEnd>
@@ -28,30 +22,5 @@
     <hrh-user-menu></hrh-user-menu>
   </ng-container>
 
-  <mat-drawer-container hrhShellContent [autosize]="true" (backdropClick)="menuOpenChange(false)">
-    <mat-drawer
-      [mode]="drawerMode$ | async"
-      [opened]="menuOpened$ | async"
-      (openedChange)="menuOpenChange($event)"
-      hrhCollapsibleMenu
-      [collapsed]="menuCollapsed$ | async"
-    >
-      <mat-nav-list class="nav-list">
-        <a *hrhOnlyAuthenticated mat-list-item routerLink="/shopping" hrhMenuAutoClose>
-          <mat-icon matListIcon hrhMenuItemIcon>shopping_cart</mat-icon>
-          <span *hrhMenuItemContent @expandCollapse (@expandCollapse.done)="handleExpandCollapseDone()">
-            Shopping
-          </span>
-        </a>
-      </mat-nav-list>
-    </mat-drawer>
-    <mat-drawer-content class="sidenav-content">
-      <div *ngIf="false">
-        <div>Modes:&nbsp; {{ modes$ | async | json }}</div>
-        <div>Mode:&nbsp; {{ mode$ | async | json }}</div>
-        <div>Drawer:&nbsp; {{ drawerMode$ | async | json }}</div>
-      </div>
-      <router-outlet></router-outlet>
-    </mat-drawer-content>
-  </mat-drawer-container>
+  <hrh-side-menu-shell hrhShellContent (menuButtonsPortal)="menuButtons = $event"></hrh-side-menu-shell>
 </hrh-shell-layout>

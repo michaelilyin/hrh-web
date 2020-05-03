@@ -1,0 +1,20 @@
+@import 'src/sass/utils';
+
+:host {
+  @include small-viewport;
+  @include viewport-padding;
+  display: grid;
+}
+
+.danger-action {
+  display: flex;
+  align-items: flex-start;
+
+  @include xsmall {
+    flex-direction: column;
+  }
+
+  .description {
+    flex: 1;
+  }
+}

@@ -3,22 +3,13 @@
 :host {
 }
 
-.menu-button {
-  &:first-of-type {
-    margin-left: -1 * $unit;
-  }
-
-  &:last-of-type {
-    margin-right: $unit;
-  }
+.menu-buttons {
+  margin-left: -1 * $unit;
+  margin-right: $unit;
 }
 
 .rotate-icon {
   transform: rotate(90deg);
-}
-
-.nav-list {
-  padding: 0;
 }
 
 .update {

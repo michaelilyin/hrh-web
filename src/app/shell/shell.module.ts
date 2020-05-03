@@ -17,9 +17,10 @@ import { MenuItemContentDirective } from './menu/menu-item/menu-item-content.dir
 import { CollapsibleMenuDirective } from './menu/menu-item/collapsible-menu.directive';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MenuAutoCloseDirective } from './menu/menu-item/menu-auto-close.directive';
 import { NgProgressModule } from 'ngx-progressbar';
 import { ShellSharedModule } from '@hrh/shell/shell-shared.module';
+import { PortalModule } from '@angular/cdk/portal';
+import { SideMenuModule } from '@hrh/side-menu/side-menu.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,9 @@ import { ShellSharedModule } from '@hrh/shell/shell-shared.module';
     UserMenuComponent,
     MenuItemIconDirective,
     MenuItemContentDirective,
-    CollapsibleMenuDirective,
-    MenuAutoCloseDirective
+    CollapsibleMenuDirective
   ],
+  exports: [CollapsibleMenuDirective],
   imports: [
     CommonModule,
     ShellRoutingModule,
@@ -45,7 +46,9 @@ import { ShellSharedModule } from '@hrh/shell/shell-shared.module';
     MatSidenavModule,
     MatListModule,
     MatTooltipModule,
-    NgProgressModule
+    NgProgressModule,
+    PortalModule,
+    SideMenuModule
   ]
 })
 export class ShellModule {}

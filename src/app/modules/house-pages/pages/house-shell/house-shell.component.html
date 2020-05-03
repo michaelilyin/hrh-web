@@ -1,0 +1,20 @@
+<ng-container *ngIf="house$ | async as house">
+  <hrh-side-menu *hrhSideMenuDef="let expanded = expanded">
+    <div class="menu-header">
+      <hrh-circle-skeleton [disableAnimation]="true"></hrh-circle-skeleton>
+      <h3 *ngIf="expanded">{{ house.name }}</h3>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="overview" hrhMenuAutoClose>
+        <mat-icon>home</mat-icon>
+        <span *ngIf="expanded">Overview</span>
+      </a>
+      <a mat-list-item routerLink="settings" hrhMenuAutoClose>
+        <mat-icon>settings</mat-icon>
+        <span *ngIf="expanded">Settings</span>
+      </a>
+    </mat-nav-list>
+  </hrh-side-menu>
+</ng-container>
+
+<router-outlet></router-outlet>

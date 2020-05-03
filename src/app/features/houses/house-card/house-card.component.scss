@@ -6,9 +6,16 @@
 
   .mat-card {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .mat-card-content {
     margin-top: $unit;
+  }
+
+  .mat-card-header {
+    overflow: hidden;
+    word-wrap: break-spaces;
   }
 }

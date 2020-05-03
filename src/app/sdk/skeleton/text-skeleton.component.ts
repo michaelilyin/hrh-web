@@ -22,7 +22,7 @@ const _LineSkeletonBase = mixinSkeleton(TextSkeletonComponentBase);
   inputs: ['disableAnimation', 'showContent', 'lines'],
   // tslint:disable-next-line:no-host-metadata-property
   host: {
-    '[style.margin-bottom.px]': '-8'
+    '[style.margin-bottom.px]': '-5'
   }
 })
 export class TextSkeletonComponent extends _LineSkeletonBase implements SkeletonBehaviour, OnInit {

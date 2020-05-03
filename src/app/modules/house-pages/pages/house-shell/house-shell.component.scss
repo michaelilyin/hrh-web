@@ -1,0 +1,15 @@
+@import 'src/sass/utils';
+
+.menu-header {
+  display: flex;
+  flex-direction: row;
+  padding: $unit;
+}
+
+.mat-nav-list {
+  padding: 0;
+}
+
+h3 {
+  margin: 0;
+}

@@ -6,7 +6,8 @@
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
 
-  .mat-card .mat-card-title-group.dialog-colored-header {
+  .mat-card .mat-card-title-group.dialog-colored-header,
+  .mat-card .mat-card-header.dialog-colored-header {
     margin: -2 * $unit -2 * $unit 2 * $unit;
 
     padding-top: 2 * $unit;
@@ -22,13 +23,17 @@
     }
 
     &.mat-accent {
-      background-color: mat-color($accent, lighter);
-      color: mat-color($accent, lighter-contrast);
+      background-color: mat-color($accent);
+      color: mat-color($accent, default-contrast);
     }
 
     &.mat-warn {
-      background-color: mat-color($warn, lighter);
-      color: mat-color($warn, lighter-contrast);
+      background-color: mat-color($warn);
+      color: mat-color($warn, default-contrast);
+    }
+
+    .mat-card-title {
+      margin-bottom: 2 * $unit;
     }
   }
 }
