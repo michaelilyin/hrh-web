@@ -8,7 +8,9 @@
         <h3>Delete this house</h3>
         <p>Once you delete a house, there is no going back. Please be certain.</p>
       </div>
-      <button class="action" mat-flat-button color="warn">Delete This House</button>
+      <button class="action" mat-flat-button color="warn" (click)="handleDeleteHouseClick()">
+        Delete this house
+      </button>
     </div>
   </mat-card-content>
 </mat-card>

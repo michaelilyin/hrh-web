@@ -13,6 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { HouseDashboardComponent } from './pages/house-dashboard/house-dashboard.component';
 import { HouseSettingsComponent } from './pages/house-settings/house-settings.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [NewHouseComponent, HouseShellComponent, HouseDashboardComponent, HouseSettingsComponent],
@@ -25,7 +26,8 @@ import { HouseSettingsComponent } from './pages/house-settings/house-settings.co
     MatCardModule,
     SideMenuModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ]
 })
 export class HousePagesModule {}

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title hrhColoredDialogHeader color="warn">
+  Are you absolutely sure?
+</h1>
+<form [formGroup]="form" (ngSubmit)="handleConfirmSubmit(form.getRawValue())">
+  <mat-dialog-content>
+    <hrh-message color="accent" class="message">
+      Unexpected bad things will happen if you don’t read this!
+    </hrh-message>
+    <p>
+      This action <span class="mat-body-strong">cannot</span> be undone. This will
+      <span class="mat-body-strong">permanently delete</span> the
+      <span class="mat-body-strong">{{ data.name }}</span> house.
+    </p>
+    <p>
+      Please type <span class="mat-body-strong">{{ data.name }}</span> to confirm
+    </p>
+    <hrh-text-field [required]="true" label="House name" formControlName="name"></hrh-text-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button [disabled]="!form.valid" mat-flat-button color="warn" class="confirm">
+      I understand the consequences, delete this house
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -54,6 +54,9 @@ export class ValidationErrorsDirective implements OnChanges, OnDestroy {
       this.vcr.createEmbeddedView(this.template, {
         $implicit: transformValidationError(controlLabel, error, errors[error])
       });
+
+      // Render only first error for save layout
+      return;
     }
   }
 }

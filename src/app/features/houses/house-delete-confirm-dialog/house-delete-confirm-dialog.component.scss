@@ -1,0 +1,10 @@
+@import 'src/sass/utils';
+
+.confirm {
+  width: 100%;
+}
+
+.message {
+  margin-top: 2 * $unit;
+  margin-bottom: 2 * $unit;
+}

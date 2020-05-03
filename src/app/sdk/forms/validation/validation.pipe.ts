@@ -21,6 +21,7 @@ export interface TypedValidationErrors {
   required?: true;
   max?: MaxError;
   min?: MinError;
+  match?: string;
 }
 
 export function transformValidationError<K extends keyof TypedValidationErrors>(
@@ -43,6 +44,9 @@ export function transformValidationError<K extends keyof TypedValidationErrors>(
     case 'min':
       const minError = error as MinError;
       return `${field} exceeds a minimum of ${minError.min}`;
+    case 'match':
+      const match = error as string;
+      return `${field} does not match '${match}'`;
     default:
       if (isDevMode()) {
         console.warn('unimplemented validator', field, key, error);

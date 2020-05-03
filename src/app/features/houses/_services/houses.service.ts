@@ -34,4 +34,8 @@ export class HousesService {
   getHouseById(id: string): Observable<House> {
     return this.httpClient.get<House>(routes.houseById(id));
   }
+
+  deleteHouse(id: string): Observable<void> {
+    return this.httpClient.delete<void>(routes.houseById(id));
+  }
 }
