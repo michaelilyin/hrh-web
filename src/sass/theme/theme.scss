@@ -1,7 +1,11 @@
 @import '~@angular/material/theming';
 @import 'progres.theme';
+
 @import 'src/app/sdk/layout/colored-dialog-header/colored-dialog-header.theme';
+
 @import 'src/app/features/message/message/message.theme';
+
+@import 'src/app/modules/house-pages/pages/house-shell/house-shell.theme';
 
 @include mat-core();
 
@@ -12,6 +16,10 @@ $hrh-warn: mat-palette($mat-red);
 $hrh-theme: mat-light-theme($hrh-primary, $hrh-accent, $hrh-warn);
 
 @include angular-material-theme($hrh-theme);
-@include colored-dialog-header($hrh-theme);
-@include message($hrh-theme);
 @include ng-progress-theme($hrh-theme);
+
+@include colored-dialog-header($hrh-theme);
+
+@include message($hrh-theme);
+
+@include house-shell-theme($hrh-theme);

@@ -4,12 +4,18 @@
   display: flex;
   flex-direction: row;
   padding: $unit;
+
+  .heading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .header {
+      margin: 0 0 0 $unit;
+    }
+  }
 }
 
-.mat-nav-list {
-  padding: 0;
-}
-
-h3 {
-  margin: 0;
+.extended-content {
+  margin-left: $unit;
 }

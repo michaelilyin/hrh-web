@@ -1,0 +1,15 @@
+@import 'src/sass/utils';
+
+.snackbar {
+  margin: -3 * $unit;
+  display: grid;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.message {
+  flex: 1;
+}

@@ -84,8 +84,12 @@ export class SideMenuShellComponent implements OnInit, AfterViewInit, OnDestroy 
     shareReplay(1)
   );
   readonly drawerMode$: Observable<MatDrawerMode> = this.mode$.pipe(map((mode) => modeToDrawerMode(mode)));
-  readonly showMenuOpen$ = this.mode$.pipe(map((mode) => mode === MenuMode.Over));
-  readonly showMenuExpandCollapse$ = this.mode$.pipe(map((mode) => mode === MenuMode.SideCollapsible));
+  readonly showMenuOpen$ = combineLatest([this.mode$, this.sideMenuShellService.sideMenuPortals$]).pipe(
+    map(([mode, portals]) => mode === MenuMode.Over && portals?.length > 0)
+  );
+  readonly showMenuExpandCollapse$ = combineLatest([this.mode$, this.sideMenuShellService.sideMenuPortals$]).pipe(
+    map(([mode, portals]) => mode === MenuMode.SideCollapsible && portals?.length > 0)
+  );
 
   private readonly _manualMenuOpenState$ = new BehaviorSubject<boolean>(false);
   readonly menuOpened$ = combineLatest([this.mode$, this._manualMenuOpenState$]).pipe(

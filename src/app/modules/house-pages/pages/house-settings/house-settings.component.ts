@@ -38,6 +38,7 @@ export class HouseSettingsComponent implements OnInit {
         switchMap((house) => {
           return this.dialog
             .open<HouseDeleteConfirmDialogComponent, HouseDeleteConfirmDialogInput>(HouseDeleteConfirmDialogComponent, {
+              autoFocus: false,
               data: {
                 id: house.id,
                 name: house.name

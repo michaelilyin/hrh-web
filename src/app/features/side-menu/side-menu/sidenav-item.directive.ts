@@ -1,11 +1,11 @@
 import { Directive, HostListener } from '@angular/core';
-import { MenuMode, SideMenuShellComponent } from '../side-menu-shell/side-menu-shell.component';
+import { MenuMode, SideMenuShellComponent } from '@hrh/side-menu/side-menu-shell/side-menu-shell.component';
 import { first } from 'rxjs/operators';
 
 @Directive({
-  selector: '[hrhMenuAutoClose]'
+  selector: '[mat-list-item][hrhSidenavItem]'
 })
-export class MenuAutoCloseDirective {
+export class SidenavItemDirective {
   constructor(private shellComponent: SideMenuShellComponent) {}
 
   // tslint:disable-next-line:no-unsafe-any

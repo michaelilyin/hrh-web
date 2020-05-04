@@ -1,0 +1,11 @@
+@import 'src/sass/utils';
+@import 'node_modules/@angular/material/theming';
+
+@mixin house-shell-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .menu-header {
+    background-color: mat-color($primary, lighter);
+    color: mat-color($primary, lighter-contrast);
+  }
+}

@@ -10,11 +10,27 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { AuthModule } from '@hrh/auth/auth.module';
 import { RouterModule } from '@angular/router';
-import { MenuAutoCloseDirective } from './side-menu/menu-auto-close.directive';
+import { SidenavExpandedContentDirective } from './side-menu/sidenav-expanded-content.directive';
+import { SidenavListDirective } from '@hrh/side-menu/side-menu/sidenav-list.directive';
+import { SidenavItemDirective } from '@hrh/side-menu/side-menu/sidenav-item.directive';
 
 @NgModule({
-  declarations: [SideMenuShellComponent, SideMenuComponent, SideMenuDefDirective, MenuAutoCloseDirective],
-  exports: [SideMenuShellComponent, SideMenuComponent, SideMenuDefDirective, MenuAutoCloseDirective],
+  declarations: [
+    SideMenuShellComponent,
+    SideMenuComponent,
+    SideMenuDefDirective,
+    SidenavListDirective,
+    SidenavItemDirective,
+    SidenavExpandedContentDirective
+  ],
+  exports: [
+    SideMenuShellComponent,
+    SideMenuComponent,
+    SideMenuDefDirective,
+    SidenavListDirective,
+    SidenavItemDirective,
+    SidenavExpandedContentDirective
+  ],
   imports: [
     CommonModule,
     PortalModule,

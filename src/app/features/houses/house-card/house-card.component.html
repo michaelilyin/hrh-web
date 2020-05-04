@@ -1,9 +1,10 @@
 <mat-card>
   <mat-card-header>
+    <hrh-circle-skeleton mat-card-avatar [disableAnimation]="true"></hrh-circle-skeleton>
     <span mat-card-title>{{ house?.name }}</span>
   </mat-card-header>
 
   <mat-card-content>
-    No Additional Info Provided
+    {{ house?.description }}
   </mat-card-content>
 </mat-card>

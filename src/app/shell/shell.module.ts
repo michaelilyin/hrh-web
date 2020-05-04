@@ -12,9 +12,6 @@ import { AuthModule } from '@hrh/auth/auth.module';
 import { SdkModule } from '@hrh/sdk/sdk.module';
 import { PersonsModule } from '@hrh/persons/persons.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MenuItemIconDirective } from './menu/menu-item/menu-item-icon.directive';
-import { MenuItemContentDirective } from './menu/menu-item/menu-item-content.directive';
-import { CollapsibleMenuDirective } from './menu/menu-item/collapsible-menu.directive';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgProgressModule } from 'ngx-progressbar';
@@ -23,14 +20,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { SideMenuModule } from '@hrh/side-menu/side-menu.module';
 
 @NgModule({
-  declarations: [
-    ShellComponent,
-    UserMenuComponent,
-    MenuItemIconDirective,
-    MenuItemContentDirective,
-    CollapsibleMenuDirective
-  ],
-  exports: [CollapsibleMenuDirective],
+  declarations: [ShellComponent, UserMenuComponent],
   imports: [
     CommonModule,
     ShellRoutingModule,

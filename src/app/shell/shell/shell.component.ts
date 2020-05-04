@@ -10,6 +10,7 @@ import { Platform } from '@angular/cdk/platform';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Location } from '@angular/common';
 import { CdkPortal } from '@angular/cdk/portal';
+import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
 
 @Component({
   selector: 'hrh-shell',
@@ -24,19 +25,7 @@ import { CdkPortal } from '@angular/cdk/portal';
   ]
 })
 export class ShellComponent implements OnInit {
-  readonly modes$ = this.breakpointService.current$.pipe(map((m) => Array.from(m.mode.values())));
-
   readonly updateAvailable$ = this.pwaService.updateAvailable$;
-
-  // private readonly _menuCollapsed$ = new BehaviorSubject(true);
-  //
-  //
-  //
-  // readonly showMenuExpand$ = combineLatest([this.mode$, this.menuCollapsed$]).pipe(
-  //   map(([mode, collapsed]) => mode === MenuMode.SideCollapsible && collapsed),
-  //   distinctUntilChanged(),
-  //   shareReplay(1)
-  // );
 
   menuButtons?: CdkPortal;
 
@@ -46,7 +35,8 @@ export class ShellComponent implements OnInit {
     private readonly pwaService: PwaService,
     private readonly platform: Platform,
     private readonly cd: ChangeDetectorRef,
-    private readonly location: Location
+    private readonly location: Location,
+    private readonly notificationsService: NotificationsService
   ) {}
 
   ngOnInit(): void {}
@@ -55,19 +45,10 @@ export class ShellComponent implements OnInit {
     return this.pwaService.pwa;
   }
 
-  // menuCollapseChange(collapsed: boolean) {
-  //   this._menuCollapsed$.next(collapsed);
-  // }
-
   handleRefresh() {
     if (this.platform.isBrowser) {
       window.location.reload();
     }
-  }
-
-  handleExpandCollapseDone() {
-    // Run Change Detection for resize page content after expand/collapse
-    this.cd.markForCheck();
   }
 
   back() {

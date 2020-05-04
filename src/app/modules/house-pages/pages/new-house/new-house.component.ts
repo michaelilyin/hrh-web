@@ -29,9 +29,7 @@ export class NewHouseComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       name: this.fb.control('', [Validators.required, Validators.maxLength(HouseValidation.MAX_NAME_LENGTH)]),
-      description: this.fb.control({ value: '', disabled: true }, [
-        Validators.maxLength(HouseValidation.MAX_DESCRIPTION_LENGTH)
-      ])
+      description: this.fb.control('', [Validators.maxLength(HouseValidation.MAX_DESCRIPTION_LENGTH)])
     });
   }
 
@@ -40,10 +38,11 @@ export class NewHouseComponent implements OnInit {
   createHouse(value: CreateHouseForm) {
     this.housesService
       .createHouse({
-        name: value.name
+        name: value.name,
+        description: value.description
       })
       .subscribe(() => {
-        this.notificationsService.success('House Created');
+        this.notificationsService.success('House created');
         this.location.back();
       });
   }

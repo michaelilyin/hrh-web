@@ -18,11 +18,7 @@ const _LineSkeletonBase = mixinSkeleton(CircleSkeletonComponentBase);
   styleUrls: ['./skeleton.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line:no-inputs-metadata-property
-  inputs: ['disableAnimation', 'showContent'],
-  // tslint:disable-next-line:no-host-metadata-property
-  host: {
-    '[style.margin-bottom.px]': '-5'
-  }
+  inputs: ['disableAnimation', 'showContent']
 })
 export class CircleSkeletonComponent extends _LineSkeletonBase implements SkeletonBehaviour, OnInit {
   ngOnInit(): void {}
