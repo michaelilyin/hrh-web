@@ -4,7 +4,7 @@
   <div class="monospace">Status: {{ error.response.status }} {{ error.response.statusText }}</div>
 </hrh-message>
 
-<div class="monospace">Request URL: {{ error.request.urlWithParams }}</div>
-<div class="monospace formatted">Requst body: {{ error.request.body | json }}</div>
+<div class="monospace">Request URL: {{ error.request?.urlWithParams }}</div>
+<div class="monospace formatted">Requst body: {{ error.request?.body | json }}</div>
 
 <div class="monospace formatted">Response details: {{ error.response.error }}</div>
