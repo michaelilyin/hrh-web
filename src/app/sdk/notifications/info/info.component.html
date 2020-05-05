@@ -1,6 +1,8 @@
 <hrh-message color="primary" class="snackbar">
   <div class="content">
     <div class="message">{{ data.message }}</div>
-    <button mat-button (click)="handleDismissClick()">Dismiss</button>
+    <button mat-icon-button (click)="handleDismissClick()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 </hrh-message>

@@ -8,10 +8,18 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { RouterModule } from '@angular/router';
 import { AUTH_INTERCEPTOR } from './api/auth.interceptor';
 import { NotificationsModule } from '@hrh/sdk/notifications/notifications.module';
+import { HTTP_ERROR_INTERCEPTOR } from './api/http-error.interceptor';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, HttpClientModule, OAuthModule.forRoot(), RouterModule, NotificationsModule],
-  providers: [ENVIRONMENT_INITIALIZER, AUTH_INITIALIZER, API_INTERCEPTOR, AUTH_INTERCEPTOR, OAUTH_STORAGE]
+  providers: [
+    ENVIRONMENT_INITIALIZER,
+    AUTH_INITIALIZER,
+    API_INTERCEPTOR,
+    AUTH_INTERCEPTOR,
+    HTTP_ERROR_INTERCEPTOR,
+    OAUTH_STORAGE
+  ]
 })
 export class CoreModule {}

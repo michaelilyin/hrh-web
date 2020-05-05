@@ -1,0 +1,17 @@
+@import 'src/sass/utils';
+
+.message-container {
+  padding-top: 2 * $unit;
+  padding-bottom: 2 * $unit;
+}
+
+.monospace {
+  font-family: Roboto Mono, monospace;
+}
+
+.message {
+}
+
+.formatted {
+  white-space: pre-wrap;
+}

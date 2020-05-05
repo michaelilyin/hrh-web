@@ -8,6 +8,8 @@ import {
   TextNotificationInput
 } from '@hrh/sdk/notifications/_models/notification-component.model';
 import { ErrorComponent } from '@hrh/sdk/notifications/error/error.component';
+import { type } from 'os';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: NotificationsModule
@@ -26,10 +28,14 @@ export class NotificationsService {
   }
 
   error(error: KnownError) {
+    console.error('Handled Error', error);
+
+    const arg: KnownError = error instanceof HttpErrorResponse ? { request: undefined, response: error } : error;
+
     this.snackBar.openFromComponent(ErrorComponent, {
       verticalPosition: 'top',
       data: {
-        error
+        error: arg
       } as ErrorNotificationInput
     });
   }

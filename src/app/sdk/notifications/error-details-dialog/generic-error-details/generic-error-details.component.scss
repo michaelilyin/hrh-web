@@ -1,0 +1,10 @@
+@import 'src/sass/utils';
+
+.message-container {
+  padding-top: 2 * $unit;
+  padding-bottom: 2 * $unit;
+}
+
+.message {
+  font-family: Roboto Mono, monospace;
+}

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title hrhColoredDialogHeader color="warn">Error details</h1>
+<mat-dialog-content [ngSwitch]="type">
+  <hrh-http-error-details *ngSwitchCase="ErrorType.HTTP" [error]="data.error"></hrh-http-error-details>
+  <hrh-exception-details *ngSwitchCase="ErrorType.EXCEPTION" [error]="data.error"></hrh-exception-details>
+  <hrh-generic-error-details *ngSwitchDefault [error]="data.error"></hrh-generic-error-details>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <!--  <button mat-flat-button color="primary">Copy details</button>-->
+  <button mat-button [mat-dialog-close]="undefined">Dismiss</button>
+</mat-dialog-actions>

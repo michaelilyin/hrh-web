@@ -1,0 +1,25 @@
+@import 'src/sass/utils';
+
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.message-container {
+  padding-top: 2 * $unit;
+  padding-bottom: 2 * $unit;
+}
+
+.message {
+  font-family: Roboto Mono, monospace;
+}
+
+.stack-container {
+  overflow-y: auto;
+  height: 30 * $unit;
+}
+
+.stack-text {
+  white-space: pre-wrap;
+  font-family: Roboto Mono, monospace;
+}

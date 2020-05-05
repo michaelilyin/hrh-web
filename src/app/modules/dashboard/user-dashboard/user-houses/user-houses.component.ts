@@ -5,7 +5,7 @@ import { CurrentHouse } from '@hrh/houses/_models/house.model';
 import { ActivatedRoute } from '@angular/router';
 import { CurrentHousesCountResolver } from '@hrh/houses/_resolver/current-houses-count.resolver';
 import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
-import { EMPTY, of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { KnownError } from '@hrh/sdk/notifications/_models/notification-component.model';
 
 @Component({
@@ -23,7 +23,7 @@ export class UserHousesComponent implements OnInit {
   houses$ = this.housesService.getCurrentUserHouses().pipe(
     catchError((error: KnownError) => {
       this.notificationsService.error(error);
-      return EMPTY;
+      return of([]);
     }),
     shareReplay(1)
   );

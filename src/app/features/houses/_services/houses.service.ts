@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Page } from '@hrh/sdk/api/page.model';
 import { CurrentHouse, House, HouseCreate } from '../_models/house.model';
 import { map } from 'rxjs/operators';

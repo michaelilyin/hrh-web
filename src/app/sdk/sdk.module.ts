@@ -13,26 +13,15 @@ import { CircleSkeletonComponent } from '@hrh/sdk/skeleton/circle-skeleton.compo
 import { TextSkeletonComponent } from '@hrh/sdk/skeleton/text-skeleton.component';
 import { FormsModule } from '@hrh/sdk/forms/forms.module';
 import { NotificationsModule } from '@hrh/sdk/notifications/notifications.module';
+import { LayoutModule } from '@hrh/sdk/layout/layout.module';
 
 @NgModule({
-  declarations: [
-    OnlyBrowserPlatformDirective,
-    ColoredDialogHeaderDirective,
-    OnlyHandsetDirective,
-    OnlyTabletDirective,
-    OnlyWebDirective,
-    LineSkeletonComponent,
-    CircleSkeletonComponent,
-    TextSkeletonComponent
-  ],
+  declarations: [OnlyBrowserPlatformDirective, LineSkeletonComponent, CircleSkeletonComponent, TextSkeletonComponent],
   exports: [
     FormsModule,
+    LayoutModule,
     NotificationsModule,
     OnlyBrowserPlatformDirective,
-    ColoredDialogHeaderDirective,
-    OnlyHandsetDirective,
-    OnlyTabletDirective,
-    OnlyWebDirective,
     LineSkeletonComponent,
     CircleSkeletonComponent,
     TextSkeletonComponent

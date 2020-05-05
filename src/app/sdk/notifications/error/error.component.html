@@ -1,7 +1,16 @@
 <hrh-message color="warn" class="snackbar">
   <div class="content">
-    <div class="message">Unexpected error occurred</div>
-    <button mat-button (click)="handleDetailsClick()">Details</button>
-    <button mat-button (click)="handleDismissClick()">Dismiss</button>
+    <div class="message">
+      <div class="mat-subheading-2">{{ message }}</div>
+      <div class="mat-small">Click 'Details' for get more details or report a bug</div>
+    </div>
+    <div class="actions">
+      <button mat-icon-button (click)="handleDetailsClick()">
+        <mat-icon>info</mat-icon>
+      </button>
+      <button mat-icon-button (click)="handleDismissClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   </div>
 </hrh-message>
