@@ -3,6 +3,7 @@
     <mat-card-header>
       <span mat-card-title>New House</span>
     </mat-card-header>
+    <hrh-loader></hrh-loader>
     <mat-card-content>
       <hrh-text-field
         label="Name"
@@ -18,8 +19,6 @@
         formControlName="description"
         [maxLength]="HouseValidation.MAX_DESCRIPTION_LENGTH"
       ></hrh-textarea-field>
-
-      <hrh-loader></hrh-loader>
     </mat-card-content>
 
     <mat-card-actions align="end">

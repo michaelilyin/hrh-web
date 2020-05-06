@@ -1,0 +1,18 @@
+@import 'src/sass/utils';
+
+:host {
+  display: grid;
+  position: relative;
+  width: 100%;
+}
+
+.mat-progress-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+:host-context(.mat-card) .mat-progress-bar {
+  top: -1.25 * $unit;
+}
