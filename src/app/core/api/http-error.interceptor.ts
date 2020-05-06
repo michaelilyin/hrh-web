@@ -1,14 +1,13 @@
 import { Injectable, Provider } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
   HTTP_INTERCEPTORS,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { ApiInterceptor } from './api.interceptor';
 import { catchError } from 'rxjs/operators';
 import { HttpError } from '@hrh/sdk/notifications/_models/notification-component.model';
 

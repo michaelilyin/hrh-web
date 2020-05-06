@@ -8,8 +8,9 @@ import {
   TextNotificationInput
 } from '@hrh/sdk/notifications/_models/notification-component.model';
 import { ErrorComponent } from '@hrh/sdk/notifications/error/error.component';
-import { type } from 'os';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ObservableInput, ObservedValueOf, OperatorFunction } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: NotificationsModule
@@ -37,6 +38,15 @@ export class NotificationsService {
       data: {
         error: arg
       } as ErrorNotificationInput
+    });
+  }
+
+  handleError = (error: KnownError) => this.error(error);
+
+  catchError<T, O extends ObservableInput<unknown>>(returnValue: () => O): OperatorFunction<T, T | ObservedValueOf<O>> {
+    return catchError<T, O>((error: KnownError) => {
+      this.error(error);
+      return returnValue();
     });
   }
 }

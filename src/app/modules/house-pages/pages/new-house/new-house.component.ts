@@ -44,6 +44,6 @@ export class NewHouseComponent implements OnInit {
       .subscribe(() => {
         this.notificationsService.success('House created');
         this.location.back();
-      });
+      }, this.notificationsService.handleError);
   }
 }

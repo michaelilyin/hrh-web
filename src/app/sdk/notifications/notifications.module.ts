@@ -13,6 +13,7 @@ import { LayoutModule } from '@hrh/sdk/layout/layout.module';
 import { ExceptionDetailsComponent } from './error-details-dialog/exception-details/exception-details.component';
 import { HttpErrorDetailsComponent } from './error-details-dialog/http-error-details/http-error-details.component';
 import { GenericErrorDetailsComponent } from './error-details-dialog/generic-error-details/generic-error-details.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { GenericErrorDetailsComponent } from './error-details-dialog/generic-err
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    LayoutModule
+    LayoutModule,
+    MatDividerModule
   ]
 })
 export class NotificationsModule {}

@@ -1,10 +1,30 @@
-<hrh-message color="accent">
-  <div class="monospace">URL:{{ error.response.url }}</div>
-  <div class="monospace">Message: {{ error.response.message }}</div>
-  <div class="monospace">Status: {{ error.response.status }} {{ error.response.statusText }}</div>
+<hrh-message color="accent" class="message">
+  <div class="monospace formatted">
+    <span class="mat-body-strong">URL:</span>
+    {{ error.response.url }}
+  </div>
+  <div class="monospace formatted">
+    <span class="mat-body-strong">Status:</span>
+    {{ error.response.status }} {{ error.response.statusText }}
+  </div>
+  <div class="monospace formatted">
+    <span class="mat-body-strong">Message:</span>
+    {{ error.response.message }}
+  </div>
 </hrh-message>
 
-<div class="monospace">Request URL: {{ error.request?.urlWithParams }}</div>
-<div class="monospace formatted">Requst body: {{ error.request?.body | json }}</div>
+<mat-divider></mat-divider>
 
-<div class="monospace formatted">Response details: {{ error.response.error }}</div>
+<div class="monospace formatted">
+  <span class="mat-body-strong">Request URL:</span>
+  {{ error.request?.urlWithParams }}
+</div>
+<div class="monospace formatted">
+  <div class="mat-body-strong">Request body:</div>
+  <div>{{ request }}</div>
+</div>
+
+<div class="monospace formatted">
+  <div class="mat-body-strong">Response details:</div>
+  <div>{{ response }}</div>
+</div>

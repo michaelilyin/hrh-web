@@ -56,6 +56,6 @@ export class HouseSettingsComponent implements OnInit {
       .subscribe(() => {
         this.notificationsService.success('House deleted');
         this.router.navigate(['']);
-      });
+      }, this.notificationsService.handleError);
   }
 }

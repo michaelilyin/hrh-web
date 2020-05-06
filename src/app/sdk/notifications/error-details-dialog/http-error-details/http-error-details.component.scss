@@ -9,9 +9,16 @@
   font-family: Roboto Mono, monospace;
 }
 
-.message {
-}
-
 .formatted {
   white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message {
+  margin-top: 2 * $unit;
+}
+
+.mat-divider {
+  margin-top: 2 * $unit;
+  margin-bottom: 2 * $unit;
 }

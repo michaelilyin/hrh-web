@@ -14,4 +14,26 @@ export class HttpErrorDetailsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  get request(): string {
+    const body = this.error.request?.body;
+    if (body == undefined) {
+      return '';
+    }
+    if (typeof body === 'string') {
+      return body;
+    }
+    return JSON.stringify(body, undefined, '  ');
+  }
+
+  get response(): string {
+    const error = this.error.response.error;
+    if (error == undefined) {
+      return '';
+    }
+    if (typeof error === 'string') {
+      return error;
+    }
+    return JSON.stringify(error, undefined, '  ');
+  }
 }

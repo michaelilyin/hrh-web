@@ -2,7 +2,8 @@ import { ActivatedRouteSnapshot, Data, Resolve, RouterStateSnapshot } from '@ang
 import { House } from '@hrh/houses/_models/house.model';
 import { Injectable } from '@angular/core';
 import { HousesService } from '@hrh/houses/_services/houses.service';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
+import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class HouseInfoResolver implements Resolve<House> {
     return data[HouseInfoResolver.field] as House;
   }
 
-  constructor(private readonly housesService: HousesService) {}
+  constructor(
+    private readonly housesService: HousesService,
+    private readonly notificationsService: NotificationsService
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<House> | Promise<House> | House {
     const id = route.paramMap.get('houseId');
@@ -21,6 +25,6 @@ export class HouseInfoResolver implements Resolve<House> {
       throw Error('ID must be present');
     }
 
-    return this.housesService.getHouseById(id);
+    return this.housesService.getHouseById(id).pipe(this.notificationsService.catchError(() => EMPTY));
   }
 }

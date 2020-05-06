@@ -8,18 +8,18 @@
 
   .message {
     &.mat-primary .mat-card {
-      background-color: mat-color($primary, darker);
-      color: mat-color($primary, darker-contrast);
+      background-color: mat-color($primary, lighter);
+      color: mat-color($primary, lighter-contrast);
     }
 
     &.mat-accent .mat-card {
-      background-color: mat-color($accent);
-      color: mat-color($accent, default-contrast);
+      background-color: mat-color($accent, lighter);
+      color: mat-color($accent, lighter-contrast);
     }
 
     &.mat-warn .mat-card {
-      background-color: mat-color($warn);
-      color: mat-color($warn, default-contrast);
+      background-color: mat-color($warn, lighter);
+      color: mat-color($warn, lighter-contrast);
     }
   }
 }
