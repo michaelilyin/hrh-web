@@ -14,9 +14,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { HouseDashboardComponent } from './pages/house-dashboard/house-dashboard.component';
 import { HouseSettingsComponent } from './pages/house-settings/house-settings.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HouseSettingsAdministrativePage } from './pages/house-settings-administrative/house-settings-administrative.page';
+import { HouseSettingsMembersPage } from './pages/house-settings-members/house-settings-members.page';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [NewHouseComponent, HouseShellComponent, HouseDashboardComponent, HouseSettingsComponent],
+  declarations: [
+    NewHouseComponent,
+    HouseShellComponent,
+    HouseDashboardComponent,
+    HouseSettingsComponent,
+    HouseSettingsAdministrativePage,
+    HouseSettingsMembersPage
+  ],
   imports: [
     CommonModule,
     HousePagesRoutingModule,
@@ -27,7 +37,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     SideMenuModule,
     MatListModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ]
 })
 export class HousePagesModule {}

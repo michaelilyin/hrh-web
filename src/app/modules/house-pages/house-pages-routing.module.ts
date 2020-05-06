@@ -5,6 +5,8 @@ import { HouseShellComponent } from './pages/house-shell/house-shell.component';
 import { HouseInfoResolver } from '@hrh/houses/_resolver/house-info.resolver';
 import { HouseDashboardComponent } from './pages/house-dashboard/house-dashboard.component';
 import { HouseSettingsComponent } from './pages/house-settings/house-settings.component';
+import { HouseSettingsAdministrativePage } from './pages/house-settings-administrative/house-settings-administrative.page';
+import { HouseSettingsMembersPage } from './pages/house-settings-members/house-settings-members.page';
 
 const routes: Routes = [
   {
@@ -29,7 +31,22 @@ const routes: Routes = [
       },
       {
         path: 'settings',
-        component: HouseSettingsComponent
+        component: HouseSettingsComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'administrative'
+          },
+          {
+            path: 'administrative',
+            component: HouseSettingsAdministrativePage
+          },
+          {
+            path: 'members',
+            component: HouseSettingsMembersPage
+          }
+        ]
       }
     ]
   }

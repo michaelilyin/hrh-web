@@ -5,7 +5,7 @@
   $primary: map-get($theme, primary);
 
   .menu-header {
-    background-color: mat-color($primary, lighter);
-    color: mat-color($primary, lighter-contrast);
+    background-color: mat-color($primary);
+    color: mat-color($primary, default-contrast);
   }
 }

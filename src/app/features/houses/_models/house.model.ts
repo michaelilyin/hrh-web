@@ -17,3 +17,9 @@ export interface HouseCreate {
   name: string;
   description?: string;
 }
+
+export interface HouseBasicUpdate {
+  id: ID;
+  name: string;
+  description?: string;
+}

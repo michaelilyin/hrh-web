@@ -1,0 +1,55 @@
+<form [formGroup]="namingForm" (ngSubmit)="handleNamingUpdateSubmit(namingForm.getRawValue())">
+  <mat-card>
+    <mat-card-header>
+      <h2 mat-card-title>House naming</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <hrh-text-field
+        label="Name"
+        [required]="true"
+        [readonly]="deleted || namingLoader.locked"
+        formControlName="name"
+        [maxLength]="HouseValidation.MAX_NAME_LENGTH"
+      ></hrh-text-field>
+
+      <hrh-textarea-field
+        label="Description"
+        [readonly]="deleted || namingLoader.locked"
+        formControlName="description"
+        [maxLength]="HouseValidation.MAX_DESCRIPTION_LENGTH"
+      ></hrh-textarea-field>
+
+      <hrh-loader #naming></hrh-loader>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-flat-button color="primary" [disabled]="deleted || !namingForm.valid || namingLoader.locked">
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+<mat-card>
+  <mat-card-header hrhColoredDialogHeader color="warn">
+    <h2 mat-card-title>Danger zone</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="danger-action">
+      <div class="description">
+        <h3>Delete this house</h3>
+        <p>Once you delete a house, there is no going back. Please be certain.</p>
+      </div>
+      <button
+        class="action"
+        mat-flat-button
+        color="warn"
+        (click)="handleDeleteHouseClick()"
+        [disabled]="deleted || dangerLoader.locked"
+      >
+        Delete this house
+      </button>
+    </div>
+
+    <hrh-loader #danger></hrh-loader>
+  </mat-card-content>
+</mat-card>

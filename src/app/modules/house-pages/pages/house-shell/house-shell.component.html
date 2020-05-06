@@ -9,8 +9,16 @@
 
     <mat-nav-list hrhSidenavList>
       <a mat-list-item routerLink="overview" hrhSidenavItem>
-        <mat-icon>home</mat-icon>
+        <mat-icon>house</mat-icon>
         <span *hrhSidenavExpandedContent class="extended-content">Overview</span>
+      </a>
+      <a mat-list-item routerLink="locations" hrhSidenavItem>
+        <mat-icon>home_work</mat-icon>
+        <span *hrhSidenavExpandedContent class="extended-content">Locations</span>
+      </a>
+      <a mat-list-item routerLink="stock" hrhSidenavItem>
+        <mat-icon>all_inbox</mat-icon>
+        <span *hrhSidenavExpandedContent class="extended-content">Stock</span>
       </a>
       <a mat-list-item routerLink="settings" hrhSidenavItem>
         <mat-icon>settings</mat-icon>

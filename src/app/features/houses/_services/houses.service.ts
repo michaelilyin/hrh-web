@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Page } from '@hrh/sdk/api/page.model';
-import { CurrentHouse, House, HouseCreate } from '../_models/house.model';
+import { CurrentHouse, House, HouseCreate, HouseBasicUpdate } from '../_models/house.model';
 import { map } from 'rxjs/operators';
 import { Value } from '@hrh/sdk/api/value.model';
 
@@ -29,6 +29,10 @@ export class HousesService {
 
   createHouse(input: HouseCreate): Observable<House> {
     return this.httpClient.post<House>(routes.houses(), input);
+  }
+
+  updateHouseBasicInfo(input: HouseBasicUpdate): Observable<House> {
+    return this.httpClient.put<House>(routes.houseById(input.id), input);
   }
 
   getHouseById(id: string): Observable<House> {
