@@ -7,18 +7,25 @@
       <hrh-text-field
         label="Name"
         [required]="true"
+        [readonly]="created || loader.locked"
         formControlName="name"
         [maxLength]="HouseValidation.MAX_NAME_LENGTH"
       ></hrh-text-field>
 
       <hrh-textarea-field
         label="Description"
+        [readonly]="created || loader.locked"
         formControlName="description"
         [maxLength]="HouseValidation.MAX_DESCRIPTION_LENGTH"
       ></hrh-textarea-field>
+
+      <hrh-loader></hrh-loader>
     </mat-card-content>
+
     <mat-card-actions align="end">
-      <button mat-flat-button color="primary" [disabled]="!form.valid">Create</button>
+      <button mat-flat-button color="primary" [disabled]="!form.valid || created || loader.locked">
+        Create
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

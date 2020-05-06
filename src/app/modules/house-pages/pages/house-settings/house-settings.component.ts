@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { HouseDeleteConfirmDialogComponent } from '@hrh/houses/house-delete-confirm-dialog/house-delete-confirm-dialog.component';
 import {
@@ -11,6 +11,7 @@ import { first, map, shareReplay, switchMap } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 import { HousesService } from '@hrh/houses/_services/houses.service';
 import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
+import { Loader } from '@hrh/sdk/layout/loader/loader.component';
 
 @Component({
   selector: 'hrh-house-settings',
@@ -21,12 +22,17 @@ import { NotificationsService } from '@hrh/sdk/notifications/_services/notificat
 export class HouseSettingsComponent implements OnInit {
   private house$ = this.activatedRoute.parent?.data.pipe(map(HouseInfoResolver.extract), shareReplay(1)) ?? EMPTY;
 
+  deleted = false;
+
+  @ViewChild(Loader, { static: true }) loader!: Loader;
+
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly dialog: MatDialog,
     private readonly housesService: HousesService,
     private readonly notificationsService: NotificationsService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {}
@@ -48,13 +54,15 @@ export class HouseSettingsComponent implements OnInit {
         }),
         switchMap((res?: HouseDeleteConfirmDialogResult) => {
           if (res?.confirmed === true) {
-            return this.housesService.deleteHouse(res.id);
+            return this.loader.operationOn(this.housesService.deleteHouse(res.id));
           }
           return EMPTY;
         })
       )
       .subscribe(() => {
         this.notificationsService.success('House deleted');
+        this.deleted = true;
+        this.cd.markForCheck();
         this.router.navigate(['']);
       }, this.notificationsService.handleError);
   }
