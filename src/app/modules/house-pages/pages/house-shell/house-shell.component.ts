@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HouseInfoResolver } from '@hrh/houses/_resolver/house-info.resolver';
-import { map, shareReplay } from 'rxjs/operators';
+import { HouseContextService } from '../../_context/house.context';
 
 @Component({
   selector: 'hrh-house-shell',
@@ -10,9 +8,9 @@ import { map, shareReplay } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HouseShellComponent implements OnInit {
-  readonly house$ = this.activatedRoute.data.pipe(map(HouseInfoResolver.extract), shareReplay(1));
+  readonly house$ = this.houseContextService.context$;
 
-  constructor(private readonly activatedRoute: ActivatedRoute) {}
+  constructor(private readonly houseContextService: HouseContextService) {}
 
   ngOnInit(): void {}
 }

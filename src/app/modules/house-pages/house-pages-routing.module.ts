@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NewHouseComponent } from './pages/new-house/new-house.component';
 import { HouseShellComponent } from './pages/house-shell/house-shell.component';
-import { HouseInfoResolver } from '@hrh/houses/_resolver/house-info.resolver';
 import { HouseDashboardComponent } from './pages/house-dashboard/house-dashboard.component';
 import { HouseSettingsComponent } from './pages/house-settings/house-settings.component';
 import { HouseSettingsAdministrativePage } from './pages/house-settings-administrative/house-settings-administrative.page';
 import { HouseSettingsMembersPage } from './pages/house-settings-members/house-settings-members.page';
+import { HouseContextService } from './_context/house.context';
 
 const routes: Routes = [
   {
@@ -16,9 +16,8 @@ const routes: Routes = [
   {
     path: ':houseId',
     component: HouseShellComponent,
-    resolve: {
-      [HouseInfoResolver.field]: HouseInfoResolver
-    },
+    canActivate: [HouseContextService],
+    canDeactivate: [HouseContextService],
     children: [
       {
         path: '',
@@ -54,6 +53,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [HouseContextService]
 })
 export class HousePagesRoutingModule {}

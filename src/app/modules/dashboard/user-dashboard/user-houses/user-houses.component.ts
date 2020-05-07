@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { HousesService } from '@hrh/houses/_services/houses.service';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { CurrentHousesCountResolver } from '@hrh/houses/_resolver/current-houses-count.resolver';
+import { CurrentHousesCountResolver } from '../_resolver/current-houses-count.resolver';
 import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
 
 @Component({

@@ -1,9 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { first, map, shareReplay, switchMap } from 'rxjs/operators';
-import { HouseInfoResolver } from '@hrh/houses/_resolver/house-info.resolver';
-import { EMPTY, Subscription } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { first, switchMap } from 'rxjs/operators';
+import { EMPTY, Observable, Subscription } from 'rxjs';
 import { Loader } from '@hrh/sdk/layout/loader/loader.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HousesService } from '@hrh/houses/_services/houses.service';
 import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
@@ -14,6 +13,8 @@ import {
 } from '@hrh/houses/house-delete-confirm-dialog/house-delete-confirm-dialog-input.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HouseValidation } from '@hrh/houses/_validation/house.validation';
+import { HouseContextService } from '../../_context/house.context';
+import { House } from '@hrh/houses/_models/house.model';
 
 interface NamingUpdateForm {
   name: string;
@@ -26,9 +27,7 @@ interface NamingUpdateForm {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HouseSettingsAdministrativePage implements OnInit, OnDestroy {
-  // TODO: think about parent data observe
-  private house$ =
-    this.activatedRoute.parent?.parent?.data.pipe(map(HouseInfoResolver.extract), shareReplay(1)) ?? EMPTY;
+  private house$ = this.houseContextService.context$ ?? EMPTY;
 
   deleted = false;
   namingForm!: FormGroup;
@@ -40,7 +39,7 @@ export class HouseSettingsAdministrativePage implements OnInit, OnDestroy {
   private namingFormHouseSub = Subscription.EMPTY;
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
+    private readonly houseContextService: HouseContextService,
     private readonly dialog: MatDialog,
     private readonly housesService: HousesService,
     private readonly notificationsService: NotificationsService,
@@ -56,6 +55,10 @@ export class HouseSettingsAdministrativePage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.namingFormHouseSub = this.house$.subscribe((house) => {
+      if (house == undefined) {
+        this.namingForm.reset();
+        return;
+      }
       const namingForm: NamingUpdateForm = {
         name: house.name,
         description: house.description ?? ''
@@ -69,26 +72,18 @@ export class HouseSettingsAdministrativePage implements OnInit, OnDestroy {
   }
 
   handleDeleteHouseClick() {
-    this.house$
-      .pipe(
-        first(),
-        switchMap((house) => {
-          return this.dialog
-            .open<HouseDeleteConfirmDialogComponent, HouseDeleteConfirmDialogInput>(HouseDeleteConfirmDialogComponent, {
-              autoFocus: false,
-              data: {
-                id: house.id,
-                name: house.name
-              }
-            })
-            .afterClosed();
-        }),
-        switchMap((res?: HouseDeleteConfirmDialogResult) => {
-          if (res?.confirmed === true) {
-            return this.dangerLoader.operationOn(this.housesService.deleteHouse(res.id));
-          }
-          return EMPTY;
-        })
+    this.dangerLoader
+      .operationOn(
+        this.house$.pipe(
+          first(),
+          switchMap((house) => this.confirmDeleteHouse(house)),
+          switchMap((res?: HouseDeleteConfirmDialogResult) => {
+            if (res?.confirmed === true) {
+              return this.housesService.deleteHouse(res.id);
+            }
+            return EMPTY;
+          })
+        )
       )
       .subscribe(() => {
         this.notificationsService.success('House deleted');
@@ -98,18 +93,40 @@ export class HouseSettingsAdministrativePage implements OnInit, OnDestroy {
       }, this.notificationsService.handleError);
   }
 
+  private confirmDeleteHouse(house: House | undefined): Observable<HouseDeleteConfirmDialogResult | undefined> {
+    if (house == undefined) {
+      return EMPTY;
+    }
+    return this.dialog
+      .open<HouseDeleteConfirmDialogComponent, HouseDeleteConfirmDialogInput, HouseDeleteConfirmDialogResult>(
+        HouseDeleteConfirmDialogComponent,
+        {
+          autoFocus: false,
+          data: {
+            id: house.id,
+            name: house.name
+          }
+        }
+      )
+      .afterClosed();
+  }
+
   handleNamingUpdateSubmit(value: NamingUpdateForm) {
-    this.house$
-      .pipe(
-        first(),
-        switchMap((house) =>
-          this.namingLoader.operationOn(
-            this.housesService.updateHouseBasicInfo({
+    this.namingLoader
+      .operationOn(
+        this.house$.pipe(
+          first(),
+          switchMap((house) => {
+            if (house == undefined) {
+              return EMPTY;
+            }
+            return this.housesService.updateHouseBasicInfo({
               id: house.id,
               name: value.name,
               description: value.description
-            })
-          )
+            });
+          }),
+          switchMap((house) => this.houseContextService.refresh(house))
         )
       )
       .subscribe((house) => {
