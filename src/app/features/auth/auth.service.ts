@@ -79,19 +79,11 @@ export class AuthService {
   }
 
   public login() {
-    const login = window.open(
-      `${window.location.origin}/auth/login`,
-      'Log In',
-      'menubar=no,toolbar=no,location=no,status=no'
-    );
+    const login = window.open(`${window.location.origin}/auth/login`, '_blank');
   }
 
   public logout() {
-    const logout = window.open(
-      `${window.location.origin}/auth/logout`,
-      'Log Out',
-      'menubar=no,toolbar=no,location=no,status=no'
-    );
+    const logout = window.open(`${window.location.origin}/auth/logout`, '_blank');
   }
 
   private initReloadProfileOnNewToken() {

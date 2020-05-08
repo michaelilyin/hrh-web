@@ -1,0 +1,15 @@
+@import 'src/sass/utils';
+
+:host {
+  @include small-viewport;
+  @include viewport-padding;
+  display: grid;
+}
+
+.can-copy {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,1 +1,21 @@
-<p>anonymous-dashboard works!</p>
+<mat-card>
+  <mat-card-header hrhColoredDialogHeader color="primary">
+    <h1 matCardTitle>Welcome to House Routines Hub</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <hrh-message color="accent">
+      <p>You can use on of below demo user accounts for learn how HRH application works</p>
+    </hrh-message>
+
+    <mat-list>
+      <mat-list-item *ngFor="let cred of demoCreds">
+        <div mat-line>
+          <span class="can-copy" matTooltip="Username" (click)="copy(cred.username)">{{ cred.username }}</span>
+          <span>&nbsp;/&nbsp;</span>
+          <span class="can-copy" matTooltip="Password" (click)="copy(cred.password)">{{ cred.password }}</span>
+        </div>
+        <span mat-line>{{ cred.role }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
