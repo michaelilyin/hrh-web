@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { fromEvent, ReplaySubject } from 'rxjs';
-import { Authentication } from './auth.model';
+import { Authentication, UserAuthentication } from './auth.model';
 import { filter, map } from 'rxjs/operators';
 import { OAuthService, UserInfo } from 'angular-oauth2-oidc';
 import { Platform } from '@angular/cdk/platform';
@@ -108,22 +108,43 @@ export class AuthService {
     return this.oAuthService.loadUserProfile().then((profileObj) => {
       const profile = profileObj as OAuthProfile;
 
-      const roles = [
-        ...profile.realm_access.roles,
-        ...Object.entries(profile.resource_access).flatMap(([k, v]) => {
-          return v.roles.map((r) => `${k}:${r}`);
-        })
-      ];
-
-      const auth: Authentication = {
-        authenticated: true,
-        email: profile.email as string,
-        username: profile.preferred_username as string,
-        firstName: profile.given_name as string,
-        lastName: profile.family_name as string,
-        roles
-      };
-      return auth;
+      return new UserAuthImpl(profile);
     });
+  }
+}
+
+class UserAuthImpl implements UserAuthentication {
+  authenticated: true = true;
+  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  roles: ReadonlySet<string>;
+
+  constructor(profile: OAuthProfile) {
+    this.email = profile.email as string;
+    this.username = profile.preferred_username as string;
+    this.firstName = profile.given_name as string;
+    this.lastName = profile.family_name as string;
+
+    const roles = [
+      ...profile.realm_access.roles,
+      ...Object.entries(profile.resource_access).flatMap(([k, v]) => {
+        return v.roles.map((r) => `${k}:${r}`);
+      })
+    ];
+    this.roles = new Set(roles);
+  }
+
+  hasAnyRole(...role: string[]): boolean {
+    return role.some((r) => this.roles.has(r));
+  }
+
+  hasRole(role: string): boolean {
+    return this.roles.has(role);
+  }
+
+  hasRoleExcept(role: string, except: string): boolean {
+    return this.roles.has(role) && !this.roles.has(except);
   }
 }

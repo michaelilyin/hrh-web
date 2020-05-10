@@ -4,7 +4,11 @@ export class HttpError {
   constructor(readonly request: HttpRequest<unknown> | undefined, readonly response: HttpErrorResponse) {}
 }
 
-export type KnownError = HttpError | HttpErrorResponse | Error;
+export class DemoError {
+  constructor(readonly message: string) {}
+}
+
+export type KnownError = HttpError | HttpErrorResponse | Error | DemoError;
 
 export interface TextNotificationInput {
   message: string;

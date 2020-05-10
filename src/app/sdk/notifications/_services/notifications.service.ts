@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationsModule } from '@hrh/sdk/notifications/notifications.module';
 import { InfoComponent } from '@hrh/sdk/notifications/info/info.component';
 import {
+  DemoError,
   ErrorNotificationInput,
   KnownError,
   TextNotificationInput
@@ -29,6 +30,11 @@ export class NotificationsService {
   }
 
   error(error: KnownError) {
+    if (error instanceof DemoError) {
+      this.success(error.message);
+      return;
+    }
+
     console.error('Handled Error', error);
 
     const arg: KnownError = error instanceof HttpErrorResponse ? { request: undefined, response: error } : error;

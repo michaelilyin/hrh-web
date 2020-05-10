@@ -1,14 +1,18 @@
 export interface UserAuthentication {
-  authenticated: true;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName?: string;
-  roles: string[];
+  readonly authenticated: true;
+  readonly username: string;
+  readonly email: string;
+  readonly firstName: string;
+  readonly lastName?: string;
+  readonly roles: ReadonlySet<string>;
+
+  hasRole(role: string): boolean;
+  hasRoleExcept(role: string, except: string): boolean;
+  hasAnyRole(...role: string[]): boolean;
 }
 
 export interface AnonymousAuthentication {
-  authenticated: false;
+  readonly authenticated: false;
 }
 
 export type Authentication = UserAuthentication | AnonymousAuthentication;
