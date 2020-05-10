@@ -15,7 +15,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDialogActionsAlignDirective,
     LoaderComponent
   ],
-  exports: [ColoredDialogHeaderDirective, OnlyHandsetDirective, OnlyTabletDirective, OnlyWebDirective, LoaderComponent],
+  exports: [
+    ColoredDialogHeaderDirective,
+    OnlyHandsetDirective,
+    OnlyTabletDirective,
+    OnlyWebDirective,
+    LoaderComponent,
+    MatDialogActionsAlignDirective
+  ],
   imports: [CommonModule, MatProgressBarModule]
 })
 export class LayoutModule {}

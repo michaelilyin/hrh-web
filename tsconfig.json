@@ -19,6 +19,7 @@
       "@hrh/auth/*": ["src/app/features/auth/*"],
       "@hrh/persons/*": ["src/app/features/persons/*"],
       "@hrh/houses/*": ["src/app/features/houses/*"],
+      "@hrh/invitations/*": ["src/app/features/invitations/*"],
       "@hrh/message/*": ["src/app/features/message/*"],
       "@hrh/shell/*": ["src/app/features/shell-shared/*"],
       "@hrh/side-menu/*": ["src/app/features/side-menu/*"]

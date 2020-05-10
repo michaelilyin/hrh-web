@@ -13,6 +13,7 @@
   top: 0;
 }
 
-:host-context(.mat-card) .mat-progress-bar {
+:host-context(.mat-card) .mat-progress-bar,
+:host-context(.mat-dialog-container) .mat-progress-bar {
   top: -1.25 * $unit;
 }

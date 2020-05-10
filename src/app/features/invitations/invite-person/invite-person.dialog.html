@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Invite person</h1>
+<hrh-loader #loader></hrh-loader>
+<form [formGroup]="form" (ngSubmit)="handleFormSubmit(form.getRawValue())">
+  <mat-dialog-content>
+    <hrh-text-field
+      label="E-mail"
+      [readonly]="loader.locked"
+      [required]="true"
+      formControlName="email"
+      [maxLength]="InvitationValidation.MAX_EMAIL_LENGTH"
+    ></hrh-text-field>
+
+    <hrh-textarea-field
+      label="Invitation"
+      [readonly]="loader.locked"
+      [required]="true"
+      formControlName="invitation"
+      [maxLength]="InvitationValidation.MAX_INVITATION_LENGTH"
+    ></hrh-textarea-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" [disabled]="!form.valid || loader.locked">Invite</button>
+    <button mat-button type="button" [mat-dialog-close]="undefined">Cancel</button>
+  </mat-dialog-actions>
+</form>

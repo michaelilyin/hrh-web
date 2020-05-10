@@ -15,6 +15,14 @@ export interface MinError {
   actual: number;
 }
 
+export interface Pattern {
+  requiredPattern: string;
+}
+
+export interface DetailedPattern extends Pattern {
+  message: string;
+}
+
 export interface TypedValidationErrors {
   maxlength?: LengthError;
   minlength?: LengthError;
@@ -22,6 +30,7 @@ export interface TypedValidationErrors {
   max?: MaxError;
   min?: MinError;
   match?: string;
+  pattern?: Pattern | DetailedPattern;
 }
 
 export function transformValidationError<K extends keyof TypedValidationErrors>(
@@ -47,6 +56,12 @@ export function transformValidationError<K extends keyof TypedValidationErrors>(
     case 'match':
       const match = error as string;
       return `${field} does not match '${match}'`;
+    case 'pattern':
+      const pattern = error as Pattern | DetailedPattern;
+      if ('message' in pattern) {
+        return `${field} ${pattern.message}`;
+      }
+      return `${field} not matched ${pattern.requiredPattern}`;
     default:
       if (isDevMode()) {
         console.warn('unimplemented validator', field, key, error);

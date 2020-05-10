@@ -7,6 +7,7 @@ import { HouseSettingsComponent } from './pages/house-settings/house-settings.co
 import { HouseSettingsAdministrativePage } from './pages/house-settings-administrative/house-settings-administrative.page';
 import { HouseSettingsMembersPage } from './pages/house-settings-members/house-settings-members.page';
 import { HouseContextService } from './_context/house.context';
+import { HouseSettingsInvitationsPage } from './pages/house-settings-invitations/house-settings-invitations.page';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
           {
             path: 'members',
             component: HouseSettingsMembersPage
+          },
+          {
+            path: 'invitations',
+            component: HouseSettingsInvitationsPage
           }
         ]
       }

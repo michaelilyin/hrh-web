@@ -6,11 +6,11 @@ import { CurrentHouse, House, HouseCreate, HouseBasicUpdate } from '../_models/h
 import { map } from 'rxjs/operators';
 import { Value } from '@hrh/sdk/api/value.model';
 
-const routes = {
+export const houseRoutes = {
   houses: () => '/v1/houses',
-  currentHouses: () => `${routes.houses()}`,
-  currentHousesCount: () => `${routes.currentHouses()}/count`,
-  houseById: (id: string) => `${routes.houses()}/${id}`
+  currentHouses: () => `${houseRoutes.houses()}`,
+  currentHousesCount: () => `${houseRoutes.currentHouses()}/count`,
+  houseById: (id: string) => `${houseRoutes.houses()}/${id}`
 };
 
 @Injectable({
@@ -20,26 +20,26 @@ export class HousesService {
   constructor(private httpClient: HttpClient) {}
 
   getCurrentUserHouses(): Observable<ReadonlyArray<CurrentHouse>> {
-    return this.httpClient.get<Page<CurrentHouse>>(routes.currentHouses()).pipe(map((page) => page.items));
+    return this.httpClient.get<Page<CurrentHouse>>(houseRoutes.currentHouses()).pipe(map((page) => page.items));
   }
 
   getCurrentUserHousesCount(): Observable<number> {
-    return this.httpClient.get<Value<number>>(routes.currentHousesCount()).pipe(map((value) => value.value));
+    return this.httpClient.get<Value<number>>(houseRoutes.currentHousesCount()).pipe(map((value) => value.value));
   }
 
   createHouse(input: HouseCreate): Observable<House> {
-    return this.httpClient.post<House>(routes.houses(), input);
+    return this.httpClient.post<House>(houseRoutes.houses(), input);
   }
 
   updateHouseBasicInfo(input: HouseBasicUpdate): Observable<House> {
-    return this.httpClient.put<House>(routes.houseById(input.id), input);
+    return this.httpClient.put<House>(houseRoutes.houseById(input.id), input);
   }
 
   getHouseById(id: string): Observable<House> {
-    return this.httpClient.get<House>(routes.houseById(id));
+    return this.httpClient.get<House>(houseRoutes.houseById(id));
   }
 
   deleteHouse(id: string): Observable<void> {
-    return this.httpClient.delete<void>(routes.houseById(id));
+    return this.httpClient.delete<void>(houseRoutes.houseById(id));
   }
 }
