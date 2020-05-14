@@ -44,8 +44,8 @@ export class NewHouseComponent implements OnInit {
 
   createHouse(value: CreateHouseForm) {
     const createHouse$ = this.housesService.createHouse({
-      name: value.name,
-      description: value.description
+      name: value.name.trim(),
+      description: value.description.trim()
     });
 
     this.loader.operationOn(createHouse$).subscribe(() => {

@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HouseSettingsInvitationsPage } from './pages/house-settings-invitations/house-settings-invitations.page';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { InvitationsModule } from '@hrh/invitations/invitations.module';
+import { DataModule } from '@hrh/sdk/data/data.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { InvitationsModule } from '@hrh/invitations/invitations.module';
     MatDialogModule,
     MatTabsModule,
     MatToolbarModule,
-    InvitationsModule
+    InvitationsModule,
+    DataModule
   ]
 })
 export class HousePagesModule {}

@@ -4,3 +4,20 @@
     <span>Invite person</span>
   </button>
 </mat-toolbar>
+
+<hrh-loader #loader></hrh-loader>
+
+<table mat-table class="invitations-table" [hrhMatTableFlatDs]="fetchInvitations" [loader]="loader">
+  <ng-container matColumnDef="email">
+    <th *matHeaderCellDef mat-header-cell>E-Mail</th>
+    <td *matCellDef="let row" mat-cell>{{row.userEmail}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="invitation">
+    <th *matHeaderCellDef mat-header-cell>Invitation</th>
+    <td *matCellDef="let row" mat-cell>{{row.invitation}}</td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="columns; sticky: true" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: columns" mat-row></tr>
+</table>

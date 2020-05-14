@@ -7,7 +7,7 @@ import { InvitationCreateInput } from '../_models/invitation.model';
 import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
 import { TextValidators } from '@hrh/sdk/forms/validation/text.validators';
 import { InvitePersonDialogInput } from './invite-person-dialog-input.model';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 interface InviteForm {
   email: string;
@@ -29,7 +29,8 @@ export class InvitePersonDialog implements OnInit {
     @Inject(MAT_DIALOG_DATA) private readonly data: InvitePersonDialogInput,
     private readonly fb: FormBuilder,
     private readonly invitationsService: InvitationsService,
-    private notificationsService: NotificationsService
+    private readonly notificationsService: NotificationsService,
+    private readonly dialogRef: MatDialogRef<InvitePersonDialog, void>
   ) {
     this.form = fb.group({
       email: fb.control('', [
@@ -56,6 +57,7 @@ export class InvitePersonDialog implements OnInit {
 
     this.loader.operationOn(create$).subscribe(() => {
       this.notificationsService.success('Invitation created');
+      this.dialogRef.close();
     }, this.notificationsService.handleError);
   }
 }

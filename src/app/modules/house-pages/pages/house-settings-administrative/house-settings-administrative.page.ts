@@ -122,8 +122,8 @@ export class HouseSettingsAdministrativePage implements OnInit, OnDestroy {
             }
             return this.housesService.updateHouseBasicInfo({
               id: house.id,
-              name: value.name,
-              description: value.description
+              name: value.name.trim(),
+              description: value.description.trim()
             });
           }),
           switchMap((house) => this.houseContextService.refresh(house))
