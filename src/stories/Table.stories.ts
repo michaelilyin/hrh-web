@@ -8,6 +8,7 @@ import { delay } from 'rxjs/operators';
 import { SdkModule } from '@hrh/sdk/sdk.module';
 import { action } from '@storybook/addon-actions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSortModule } from '@angular/material/sort';
 
 interface Entity {
   firstName: string;
@@ -27,9 +28,20 @@ const ENTITIES = Array.from(Array(1000)).map(() => {
 
 const FETCH_FN: FetchFn<Entity> = (request) => {
   action('fetch request')(request);
+  const field = request.sort.fields[0]?.name as keyof Entity | undefined;
+  const desc = request.sort.fields[0]?.direction === 'desc';
+  let entities = ENTITIES.slice();
+  if (field != undefined) {
+    entities = entities.sort((e1, e2) => {
+      if (desc) {
+        return e1[field] < e2[field] ? 1 : -1;
+      }
+      return e1[field] > e2[field] ? 1 : -1;
+    });
+  }
   const response: DataResponse<Entity> = {
-    items: ENTITIES.slice(request.page.offset, request.page.offset + request.page.limit),
-    total: ENTITIES.length
+    items: entities.slice(request.page.offset, request.page.offset + request.page.limit),
+    total: entities.length
   };
   return of(response).pipe(delay(1000));
 };
@@ -37,7 +49,7 @@ const FETCH_FN: FetchFn<Entity> = (request) => {
 storiesOf('Table and DataSource', module)
   .addDecorator(
     moduleMetadata({
-      imports: [MatTableModule, BrowserAnimationsModule, DataModule, SdkModule]
+      imports: [MatTableModule, MatSortModule, BrowserAnimationsModule, DataModule, SdkModule]
     })
   )
   .add('Simple table with primitive DataSource', () => ({
@@ -63,7 +75,7 @@ storiesOf('Table and DataSource', module)
       fetch: FETCH_FN
     }
   }))
-  .add('Simple table with pagination', () => ({
+  .add('Table with pagination', () => ({
     template: `
 <hrh-loader #loader></hrh-loader>
 <table mat-table #ds="ds" [hrhMatTableDs]="fetch" [loader]="loader" style="width: 100%;">
@@ -74,6 +86,39 @@ storiesOf('Table and DataSource', module)
 
   <ng-container matColumnDef="lastName">
     <th *matHeaderCellDef mat-header-cell>Last Name</th>
+    <td *matCellDef="let row" mat-cell>{{row.lastName}}</td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="columns; sticky: true" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: columns" mat-row></tr>
+</table>
+<hrh-ds-mat-paginator [paginatorFor]="ds">
+</hrh-ds-mat-paginator>
+    `,
+    props: {
+      columns: COLUMNS,
+      fetch: FETCH_FN
+    }
+  }))
+  .add('Table with sort and pagination', () => ({
+    template: `
+<hrh-loader #loader></hrh-loader>
+<table mat-table
+       #ds="ds"
+       [hrhMatTableDs]="fetch"
+       [loader]="loader"
+       matSort
+       matSortActive="firstName"
+       matSortDirection="asc"
+       style="width: 100%;"
+>
+  <ng-container matColumnDef="firstName">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="firstName">First Name</th>
+    <td *matCellDef="let row" mat-cell>{{row.firstName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header="lastName">Last Name</th>
     <td *matCellDef="let row" mat-cell>{{row.lastName}}</td>
   </ng-container>
 

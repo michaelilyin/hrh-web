@@ -42,8 +42,7 @@ export class DsMatPaginatorComponent implements OnInit, OnChanges, OnDestroy {
       if (this.paginator != undefined) {
         this.paginator.requestState({
           offset: this.state?.offset ?? 0,
-          limit: this.state?.limit ?? this.PAGE_SIZE_OPTIONS[0],
-          total: this.state?.total ?? 0
+          limit: this.state?.limit ?? this.PAGE_SIZE_OPTIONS[0]
         });
       }
     }
@@ -83,7 +82,6 @@ export class DsMatPaginatorComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.paginator?.requestState({
-      total: event.length,
       limit,
       offset
     });
