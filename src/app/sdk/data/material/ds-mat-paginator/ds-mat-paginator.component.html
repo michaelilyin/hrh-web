@@ -1,0 +1,12 @@
+<ng-container *ngIf="state != undefined">
+  <mat-spinner *ngIf="querying$ | async" diameter="25"></mat-spinner>
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [pageSize]="pageSize"
+    [showFirstLastButtons]="true"
+    [length]="totalItems"
+    [pageSizeOptions]="PAGE_SIZE_OPTIONS"
+    [hidePageSize]="true"
+    (page)="handlePageChange($event)"
+  ></mat-paginator>
+</ng-container>

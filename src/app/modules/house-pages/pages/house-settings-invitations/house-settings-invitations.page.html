@@ -7,7 +7,7 @@
 
 <hrh-loader #loader></hrh-loader>
 
-<table mat-table class="invitations-table" [hrhMatTableFlatDs]="fetchInvitations" [loader]="loader">
+<table mat-table class="invitations-table" [hrhMatTableDs]="fetchInvitations" [loader]="loader">
   <ng-container matColumnDef="email">
     <th *matHeaderCellDef mat-header-cell>E-Mail</th>
     <td *matCellDef="let row" mat-cell>{{row.userEmail}}</td>

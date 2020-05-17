@@ -1,0 +1,11 @@
+:host {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  // TODO: fix color
+  background-color: white;
+
+  justify-items: end;
+  align-items: center;
+}

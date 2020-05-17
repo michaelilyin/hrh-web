@@ -14,7 +14,7 @@ import { NotificationsService } from '@hrh/sdk/notifications/_services/notificat
 export class UserHousesComponent implements OnInit {
   housesCount$ = this.activatedRoute.data.pipe(
     map(CurrentHousesCountResolver.extract),
-    map((size) => Array(size)),
+    map((size) => Array.from(Array(size))),
     shareReplay(1)
   );
   houses$ = this.housesService.getCurrentUserHouses().pipe(
