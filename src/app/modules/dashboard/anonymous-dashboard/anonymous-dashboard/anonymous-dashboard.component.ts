@@ -29,7 +29,7 @@ const demoCreds = [
 export class AnonymousDashboardComponent implements OnInit, OnDestroy {
   readonly demoCreds = demoCreds;
 
-  tz = 'EST/EDT';
+  tz = 'America/New_York';
   time = '2020-05-29T06:56:34Z';
 
   mtime = moment(this.time);
