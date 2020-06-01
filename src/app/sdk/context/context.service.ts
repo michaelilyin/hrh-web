@@ -34,7 +34,10 @@ export abstract class ContextService<T extends HasId> implements CanActivate, Ca
 
     return this.loadById(idOrContext).pipe(
       takeUntil(this._destroyed$),
-      tap((context) => this._context$.next(context)),
+      tap((context) => {
+        this.outdated = false;
+        this._context$.next(context);
+      }),
       first()
     );
   }
@@ -81,6 +84,7 @@ export abstract class ContextService<T extends HasId> implements CanActivate, Ca
   }
 
   private clear(): void {
+    this.outdated = true;
     this._context$.next(undefined);
   }
 

@@ -19,3 +19,21 @@
     </mat-list>
   </mat-card-content>
 </mat-card>
+
+<mat-card>
+  <mat-card-header hrhColoredDialogHeader color="primary">
+    <h1 matCardTitle>Time Testing</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Just string time local: {{ time | date: 'short' }}</p>
+    <p>Just string time tz: {{ time | date: 'short':tz }}</p>
+    <br />
+    <p>Moment time local: {{ mtime | date: 'short' }}</p>
+    <p>Moment time tz: {{ mtime | date: 'short':tz }}</p>
+    <p>Moment time format: {{ mtimeformat }}</p>
+    <br />
+    <p>Moment time tz in moment: {{ mtimetz | date: 'short' }}</p>
+    <p>Moment time tz in moment and pipe: {{ mtimetz | date: 'short':tz }}</p>
+    <p>Moment time tz in moment format: {{ mtimetzformat }}</p>
+  </mat-card-content>
+</mat-card>

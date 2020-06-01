@@ -17,6 +17,9 @@
   <mat-hint *ngIf="showLengthHint" align="end">
     {{ lengthHint }}
   </mat-hint>
+  <ng-container matSuffix>
+    <ng-content select="[hrhFieldSuffix]"></ng-content>
+  </ng-container>
   <mat-error *hrhValidationError="let error of control.errors; by: label">
     {{ error }}
   </mat-error>

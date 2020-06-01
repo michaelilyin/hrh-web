@@ -1,6 +1,7 @@
 import { ID, UUID } from '@hrh/sdk/api/id.model';
+import { HasPageInfo } from '@hrh/sdk/api/page.model';
 
-export interface CurrentHouse {
+export interface CurrentHouse extends HasPageInfo {
   id: ID;
   name: string;
   description?: string;

@@ -1,0 +1,25 @@
+<div *ngIf="active" class="pager-container">
+  <mat-spinner *ngIf="querying$ | async; else prev" diameter="25"></mat-spinner>
+</div>
+
+<ng-content></ng-content>
+
+<div *ngIf="active" class="pager-container">
+  <mat-spinner *ngIf="querying$ | async; else more" diameter="25"></mat-spinner>
+</div>
+
+<ng-template #prev>
+  <ng-container *ngIf="displayed > 0">
+    Displayed {{ displayed }} of {{ total }}
+    <ng-container *ngIf="skipped > 0"> ({{ skipped }} are skipped) </ng-container>
+    <button *ngIf="skipped > 0" mat-stroked-button (click)="handleLoadPrevClick()">Load Prev</button>
+  </ng-container>
+</ng-template>
+
+<ng-template #more>
+  <ng-container *ngIf="displayed > 0">
+    Displayed {{ displayed }} of {{ total }}
+    <ng-container *ngIf="skipped > 0"> ({{ skipped }} are skipped) </ng-container>
+    <button *ngIf="hasMore" mat-stroked-button (click)="handleLoadMoreClick()">Load More</button>
+  </ng-container>
+</ng-template>

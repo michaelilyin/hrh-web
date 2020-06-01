@@ -1,12 +1,12 @@
-<ng-container *ngIf="houses$ | async as houses; else housePlaceholders">
-  <a *ngFor="let house of houses" class="house-link" routerLink="/houses/{{ house.id }}">
+<ng-container *ngFor="let house of houses$ | async; trackBy: placeholderTrack">
+  <a *ngIf="house != undefined; else placeholder" class="house-link" routerLink="/houses/{{ house.id }}">
     <div class="ripple" matRipple></div>
     <hrh-house-card class="house-card" [house]="house"></hrh-house-card>
   </a>
 </ng-container>
 
-<ng-template #housePlaceholders>
-  <div *ngFor="let _ of housesCount$ | async" class="house-link">
+<ng-template #placeholder>
+  <div class="house-link">
     <div class="ripple" matRipple></div>
     <hrh-house-card-placeholder class="house-card"></hrh-house-card-placeholder>
   </div>

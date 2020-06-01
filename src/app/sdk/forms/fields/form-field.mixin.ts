@@ -4,7 +4,9 @@ import { FloatLabelType, MatFormFieldAppearance } from '@angular/material/form-f
 import {
   ChangeDetectorRef,
   DoCheck,
+  EventEmitter,
   forwardRef,
+  InjectionToken,
   Injector,
   OnChanges,
   OnDestroy,
@@ -16,14 +18,6 @@ import { Subscription } from 'rxjs';
 import { skip, startWith } from 'rxjs/operators';
 import { Changes } from '@hrh/sdk/angular/changes/changes.model';
 
-export function formFieldProvider<T>(component: Type<T>): Provider {
-  return {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => component),
-    multi: true
-  };
-}
-
 export interface FormFieldMixinBase {
   // view
   control: NgModel;
@@ -32,11 +26,14 @@ export interface FormFieldMixinBase {
   readonly injector: Injector;
 }
 
-export interface FormFieldMixin<V> extends ControlValueAccessor, OnInit, DoCheck, OnDestroy {
+export interface FormFieldMixin<V> extends FormFieldMixinBase, ControlValueAccessor, OnInit, DoCheck, OnDestroy {
   // inputs
   label: string;
   required: boolean;
   readonly: boolean;
+
+  // outputs
+  valueChange: EventEmitter<V | undefined>;
 
   readonly _floatLabelType: FloatLabelType;
   readonly _appearance: MatFormFieldAppearance;
@@ -45,6 +42,24 @@ export interface FormFieldMixin<V> extends ControlValueAccessor, OnInit, DoCheck
 
   readonly _value: V | undefined;
   readonly _valueChange: (val: V | undefined) => void;
+
+  clear(): void;
+}
+
+export const FORM_FIELD = new InjectionToken<FormFieldMixin<unknown>>('FORM_FIELD');
+
+export function formFieldProvider<T>(component: Type<T>): Provider[] {
+  return [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => component),
+      multi: true
+    },
+    {
+      provide: FORM_FIELD,
+      useExisting: forwardRef(() => component)
+    }
+  ];
 }
 
 export type FormFieldCtor<V> = Constructor<FormFieldMixin<V>>;
@@ -54,6 +69,8 @@ export function mixinFormField<T extends Constructor<FormFieldMixinBase>, V>(bas
     label = '';
     required = false;
     readonly = false;
+
+    valueChange = new EventEmitter<V | undefined>();
 
     private externalControlContainer!: NgControl;
     private externalControl?: AbstractControl;
@@ -67,6 +84,8 @@ export function mixinFormField<T extends Constructor<FormFieldMixinBase>, V>(bas
 
     _value: V | undefined;
     _valueChange = (val: V | undefined) => {
+      this._value = val;
+      this.valueChange.next(val);
       this._onChange?.(val);
     };
 
@@ -109,6 +128,11 @@ export function mixinFormField<T extends Constructor<FormFieldMixinBase>, V>(bas
 
     get _placeholder(): string {
       return this._disabled ? '—' : this.label;
+    }
+
+    clear() {
+      this._value = undefined;
+      this._valueChange(undefined);
     }
 
     writeValue(value: V | undefined): void {

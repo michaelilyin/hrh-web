@@ -22,10 +22,12 @@ const _TextFieldBase = _TextFormFieldMixin;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['label', 'required', 'readonly', 'maxLength'],
+  // tslint:disable-next-line:no-outputs-metadata-property
+  outputs: ['valueChange'],
   queries: {
     control: new ViewChild('input', { static: true, read: NgModel })
   },
-  providers: [formFieldProvider(TextFieldComponent)]
+  providers: [...formFieldProvider(TextFieldComponent)]
 })
 export class TextFieldComponent extends _TextFieldBase implements FormFieldMixin<string> {
   constructor(readonly injector: Injector) {

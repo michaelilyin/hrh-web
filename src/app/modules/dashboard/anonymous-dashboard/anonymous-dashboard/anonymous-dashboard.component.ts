@@ -4,6 +4,8 @@ import { AuthService } from '@hrh/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NotificationsService } from '@hrh/sdk/notifications/_services/notifications.service';
+import * as moment from 'moment';
+import * as tz from 'moment-timezone';
 
 const demoCreds = [
   {
@@ -26,6 +28,15 @@ const demoCreds = [
 })
 export class AnonymousDashboardComponent implements OnInit, OnDestroy {
   readonly demoCreds = demoCreds;
+
+  tz = 'EST/EDT';
+  time = '2020-05-29T06:56:34Z';
+
+  mtime = moment(this.time);
+  mtimeformat = moment(this.time).format('hh:mm A MM/DD/YYYY Z');
+
+  mtimetz = tz.utc(this.time).tz('America/New_York');
+  mtimetzformat = tz.utc(this.time).tz('America/New_York').format('hh:mm A MM/DD/YYYY Z');
 
   private sub = Subscription.EMPTY;
 

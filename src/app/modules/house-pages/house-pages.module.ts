@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HousePagesRoutingModule } from './house-pages-routing.module';
 import { NewHouseComponent } from './pages/new-house/new-house.component';
 import { SdkModule } from '@hrh/sdk/sdk.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HouseShellComponent } from './pages/house-shell/house-shell.component';
@@ -21,6 +21,9 @@ import { HouseSettingsInvitationsPage } from './pages/house-settings-invitations
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { InvitationsModule } from '@hrh/invitations/invitations.module';
 import { DataModule } from '@hrh/sdk/data/data.module';
+import { TableModule } from '@hrh/sdk/table/table.module';
+import { FormsModule as HrhFormsModule } from '@hrh/sdk/forms/forms.module';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ import { DataModule } from '@hrh/sdk/data/data.module';
     CommonModule,
     HousePagesRoutingModule,
     SdkModule,
+    HrhFormsModule,
+    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
@@ -46,7 +51,9 @@ import { DataModule } from '@hrh/sdk/data/data.module';
     MatTabsModule,
     MatToolbarModule,
     InvitationsModule,
-    DataModule
+    DataModule,
+    TableModule,
+    MatSortModule
   ]
 })
 export class HousePagesModule {}

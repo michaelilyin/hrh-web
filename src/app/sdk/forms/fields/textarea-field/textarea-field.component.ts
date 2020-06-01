@@ -22,10 +22,12 @@ const _TextAreaBase = _TextFormFieldMixin;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line:no-inputs-metadata-property
   inputs: ['label', 'required', 'readonly', 'maxLength'],
+  // tslint:disable-next-line:no-outputs-metadata-property
+  outputs: ['valueChange'],
   queries: {
     control: new ViewChild('input', { static: true, read: NgModel })
   },
-  providers: [formFieldProvider(TextareaFieldComponent)]
+  providers: [...formFieldProvider(TextareaFieldComponent)]
 })
 export class TextareaFieldComponent extends _TextAreaBase implements FormFieldMixin<string>, OnInit {
   @Input() rowsMin = 2;

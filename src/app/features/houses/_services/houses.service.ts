@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Page } from '@hrh/sdk/api/page.model';
-import { CurrentHouse, House, HouseCreate, HouseBasicUpdate } from '../_models/house.model';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { CurrentHouse, House, HouseBasicUpdate, HouseCreate } from '../_models/house.model';
+import { filter, map, mapTo } from 'rxjs/operators';
 import { Value } from '@hrh/sdk/api/value.model';
+import { spy } from '@hrh/sdk/observable/spy.operator';
+import { HttpStreamService } from '@hrh/sdk/angular/http/http-stream.service';
 
 export const houseRoutes = {
   houses: () => '/v1/houses',
@@ -17,10 +18,10 @@ export const houseRoutes = {
   providedIn: 'root'
 })
 export class HousesService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private readonly stream: HttpStreamService) {}
 
-  getCurrentUserHouses(): Observable<ReadonlyArray<CurrentHouse>> {
-    return this.httpClient.get<Page<CurrentHouse>>(houseRoutes.currentHouses()).pipe(map((page) => page.items));
+  streamCurrentUserHouses(): Observable<readonly CurrentHouse[]> {
+    return this.stream.get<CurrentHouse>(houseRoutes.currentHouses(), true);
   }
 
   getCurrentUserHousesCount(): Observable<number> {

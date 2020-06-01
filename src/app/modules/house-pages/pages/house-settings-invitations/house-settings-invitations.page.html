@@ -3,21 +3,41 @@
     <mat-icon>add</mat-icon>
     <span>Invite person</span>
   </button>
+
+  <hrh-text-field label="E-mail" ngModel [hrhFilterFor]="ds" name="email" type="text">
+    <hrh-clear hrhFieldSuffix></hrh-clear>
+  </hrh-text-field>
 </mat-toolbar>
 
 <hrh-loader #loader></hrh-loader>
 
-<table mat-table class="invitations-table" [hrhMatTableDs]="fetchInvitations" [loader]="loader">
-  <ng-container matColumnDef="email">
-    <th *matHeaderCellDef mat-header-cell>E-Mail</th>
-    <td *matCellDef="let row" mat-cell>{{row.userEmail}}</td>
-  </ng-container>
+<hrh-table-container>
+  <hrh-load-more-fixture #lm [paginatorFor]="ds">
+    <table
+      mat-table
+      class="invitations-table"
+      matSort
+      matSortActive="email"
+      matSortDirection="asc"
+      #ds="ds"
+      [hrhMatTableDs]="fetchInvitations"
+      hrhDsRouterStore="hinv"
+      [loader]="loader"
+    >
+      <ng-container matColumnDef="email">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>E-Mail</th>
+        <td *matCellDef="let row" mat-cell>{{row.userEmail}}</td>
+      </ng-container>
 
-  <ng-container matColumnDef="invitation">
-    <th *matHeaderCellDef mat-header-cell>Invitation</th>
-    <td *matCellDef="let row" mat-cell>{{row.invitation}}</td>
-  </ng-container>
+      <ng-container matColumnDef="invitation">
+        <th *matHeaderCellDef mat-header-cell>Invitation</th>
+        <td *matCellDef="let row" mat-cell>{{row.invitation}}</td>
+      </ng-container>
 
-  <tr *matHeaderRowDef="columns; sticky: true" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: columns" mat-row></tr>
-</table>
+      <tr *matHeaderRowDef="columns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: columns" mat-row></tr>
+    </table>
+  </hrh-load-more-fixture>
+</hrh-table-container>
+
+<hrh-ds-mat-paginator *ngIf="!lm.active" [paginatorFor]="ds"> </hrh-ds-mat-paginator>

@@ -9,14 +9,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 import { env } from './server.env';
 
-function requireEnv(name: string): string {
-  const value = process.env[name];
-  if (value === undefined || value === null || value.trim().length === 0) {
-    throw Error(`${name} must be defined`);
-  }
-  return value;
-}
-
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
   const server = express();

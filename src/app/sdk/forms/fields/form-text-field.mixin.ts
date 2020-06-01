@@ -50,6 +50,10 @@ export function mixinTextFormField<T extends Constructor<FormTextFieldMixinBase>
     }
 
     writeValue(obj: string | undefined): void {
+      if (obj != undefined && typeof obj === 'object') {
+        console.error('Illegal object passed to text field', obj);
+        throw Error('Illegal object passed to text field');
+      }
       super.writeValue(obj);
       this.currentLength = obj?.trim()?.length ?? 0;
     }

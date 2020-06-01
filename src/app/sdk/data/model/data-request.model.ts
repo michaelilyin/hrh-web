@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
-import { FieldSort } from '@hrh/sdk/data/commons/ds.model';
+import { SortField } from '@hrh/sdk/data/commons/sorter.model';
+import { FilterFields } from '@hrh/sdk/data/commons/filter.model';
 
 export interface PageRequest {
   offset: number;
@@ -7,13 +8,18 @@ export interface PageRequest {
 }
 
 export interface SortRequest {
-  fields: ReadonlyArray<FieldSort>;
+  fields: ReadonlyArray<SortField>;
+}
+
+export interface FilterRequest<F extends FilterFields = FilterFields> {
+  fields: F;
 }
 
 // tslint:disable-next-line:no-empty-interface
-export interface DataRequest {
+export interface DataRequest<F extends FilterFields = FilterFields> {
   page: PageRequest;
   sort: SortRequest;
+  filter: FilterRequest<F>;
 }
 
 export interface DataResponse<T> {
@@ -21,4 +27,11 @@ export interface DataResponse<T> {
   total: number;
 }
 
-export type FetchFn<T> = (request: DataRequest) => Observable<DataResponse<T>>;
+export type FetchFn<T, F extends FilterFields = FilterFields> = (
+  request: DataRequest<F>
+) => Observable<DataResponse<T>>;
+
+export interface WrappedResponse<T> {
+  request: DataRequest;
+  response: DataResponse<T>;
+}

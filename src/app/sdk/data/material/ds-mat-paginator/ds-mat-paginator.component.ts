@@ -7,11 +7,12 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import { DataSource, PaginationState, Paginator } from '@hrh/sdk/data/commons/ds.model';
+import { DataSource } from '@hrh/sdk/data/commons/ds.model';
 import { PageEvent } from '@angular/material/paginator';
 import { Changes } from '@hrh/sdk/angular/changes/changes.model';
 import { Observable, Subscription } from 'rxjs';
 import { Loader } from '@hrh/sdk/layout/loader/loader.component';
+import { PaginationState, Paginator } from '../../commons/pagination/paginator.model';
 
 @Component({
   selector: 'hrh-ds-mat-paginator',
@@ -76,10 +77,6 @@ export class DsMatPaginatorComponent implements OnInit, OnChanges, OnDestroy {
   handlePageChange(event: PageEvent) {
     const limit = event.pageSize;
     const offset = event.pageIndex * limit;
-
-    if (limit === this.state?.limit && offset === this.state?.offset) {
-      return;
-    }
 
     this.paginator?.requestState({
       limit,

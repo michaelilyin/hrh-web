@@ -1,14 +1,21 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Sorter, SortState } from '@hrh/sdk/data/commons/ds.model';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { DSControlDSSide } from '@hrh/sdk/data/commons/services.model';
+import { Sorter, SortState } from '@hrh/sdk/data/commons/sorter.model';
 
 @Injectable()
-export class SorterService extends Sorter implements OnDestroy {
+export class SorterService extends Sorter implements DSControlDSSide<SortState>, OnDestroy {
   request$ = new BehaviorSubject<SortState>({
     fields: []
   });
 
-  state$ = new ReplaySubject<SortState>(1);
+  state$ = new BehaviorSubject<SortState>({
+    fields: []
+  });
+
+  constructor() {
+    super();
+  }
 
   requestState(state: SortState): void {
     this.request$.next({
@@ -19,10 +26,6 @@ export class SorterService extends Sorter implements OnDestroy {
 
   setState(state: SortState): void {
     this.state$.next(state);
-  }
-
-  constructor() {
-    super();
   }
 
   ngOnDestroy(): void {

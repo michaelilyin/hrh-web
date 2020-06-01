@@ -1,0 +1,108 @@
+@import 'src/sass/utils';
+
+.table-container {
+  display: flex;
+  flex-shrink: 0;
+
+  .mat-table {
+    flex: 1;
+    width: 100%;
+
+    tr.mat-row:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+  }
+}
+
+//.table-container:not(.card-view) {
+//  tr.mat-row, tr.mat-header-row {
+//    td.mat-cell:not(:first-child):not(:last-child) {
+//      padding-left: $sizeUnit;
+//      padding-right: $sizeUnit;
+//    }
+//
+//    td.mat-cell:first-child:not(:last-child) {
+//      padding-right: $sizeUnit;
+//    }
+//
+//    td.mat-cell:last-child:not(:first-child) {
+//      padding-left: $sizeUnit;
+//    }
+//
+//    th.mat-header-cell:not(:first-child):not(:last-child) {
+//      padding-left: $sizeUnit;
+//      padding-right: $sizeUnit;
+//    }
+//
+//    th.mat-header-cell:first-child:not(:last-child) {
+//      padding-right: $sizeUnit;
+//    }
+//
+//    th.mat-header-cell:last-child:not(:first-child) {
+//      padding-left: $sizeUnit;
+//    }
+//  }
+//}
+
+.table-container.card-view {
+  .mat-table {
+    flex-grow: 1;
+    min-width: 100%;
+    background-color: inherit;
+
+    tr.mat-row {
+      transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin: $unit * 2 $unit * 2;
+      border-radius: $unit / 2;
+      height: auto;
+    }
+
+    .mat-header-cell {
+      display: none;
+    }
+
+    tr.mat-header-row {
+      display: none;
+    }
+
+    tr.mat-row {
+      background-color: white;
+    }
+
+    td:first-child {
+      border-top-left-radius: $unit / 2;
+      border-top-right-radius: $unit / 2;
+    }
+
+    td.mat-cell {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: right;
+      min-width: calc(100% - (#{$unit} * 4));
+      padding: $unit * 2;
+
+      &:last-child {
+        border: none;
+      }
+    }
+
+    td.mat-cell:before {
+      content: attr(aria-label);
+      display: block;
+      font-weight: bold;
+      float: left;
+      text-align: left;
+      max-width: 50%;
+      text-transform: uppercase;
+      font-size: 0.85em;
+      margin-right: $unit * 2;
+    }
+  }
+}

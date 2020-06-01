@@ -1,46 +1,23 @@
 import { Observable, ReplaySubject } from 'rxjs';
 import { Loader } from '@hrh/sdk/layout/loader/loader.component';
+import { Paginator } from '@hrh/sdk/data/commons/pagination/paginator.model';
+import { Sorter } from '@hrh/sdk/data/commons/sorter.model';
+import { Filter } from '@hrh/sdk/data/commons/filter.model';
+import { Store } from '@hrh/sdk/data/store/store.model';
+import { DataSourcePostProcessor } from '@hrh/sdk/data/commons/post-processing/post-processor.model';
 
 export abstract class DataSource<T> {
   abstract readonly paginator: Paginator;
   abstract readonly sorter: Sorter;
+  abstract readonly filter: Filter;
   abstract readonly querying$: Observable<boolean>;
-}
 
-export interface DSControlDSSide<S> {
-  request$: Observable<S>;
-  setState(state: S): void;
-}
+  protected readonly refresh$ = new ReplaySubject<void>(1);
 
-export interface DSControlUserSide<S> {
-  readonly state$: Observable<S>;
+  refresh(): void {
+    this.refresh$.next();
+  }
 
-  requestState(state: Partial<S>): void;
-}
-
-export interface PaginationState {
-  limit: number;
-  offset: number;
-  total: number;
-}
-
-export abstract class Paginator implements DSControlUserSide<PaginationState> {
-  abstract state$: Observable<PaginationState>;
-
-  abstract requestState(page: Partial<PaginationState>): void;
-}
-
-export interface FieldSort {
-  name: string;
-  direction: 'asc' | 'desc';
-}
-
-export interface SortState {
-  fields: ReadonlyArray<FieldSort>;
-}
-
-export abstract class Sorter implements DSControlUserSide<SortState> {
-  abstract state$: Observable<SortState>;
-
-  abstract requestState(sort: Partial<SortState>): void;
+  abstract registerPostProcessor(name: string, postProcessor: DataSourcePostProcessor<T>): void;
+  abstract unregisterPostProcessor(name: string): void;
 }

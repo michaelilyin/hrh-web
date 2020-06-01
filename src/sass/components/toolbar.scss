@@ -1,0 +1,40 @@
+// TODO: must be improved
+@mixin initial-font {
+  font-weight: 400;
+  font-size: initial;
+}
+
+.mat-toolbar {
+  .mat-form-field {
+    @include initial-font;
+
+    .mat-form-field-underline {
+      background-color: rgba(0, 0, 0, 0.42);
+    }
+
+    .mat-form-field-label {
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    //.mat-form-field-flex,
+    .mat-form-field-label-wrapper {
+      padding-top: 0;
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-underline {
+      bottom: 0;
+    }
+
+    .mat-form-field-infix {
+      //border-top: 0;
+    }
+  }
+
+  .mat-button-toggle {
+    @include initial-font;
+  }
+}

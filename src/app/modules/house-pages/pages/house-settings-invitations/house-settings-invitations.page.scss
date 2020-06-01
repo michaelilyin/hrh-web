@@ -1,3 +1,9 @@
 .invitations-table {
   width: 100%;
 }
+
+:host {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100%;
+}

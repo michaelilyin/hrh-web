@@ -4,6 +4,7 @@
   @include small-viewport;
   @include viewport-padding;
   display: grid;
+  grid-row-gap: 2 * $unit;
 }
 
 .can-copy {
