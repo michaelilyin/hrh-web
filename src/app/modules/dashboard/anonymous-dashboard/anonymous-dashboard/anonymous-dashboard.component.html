@@ -26,14 +26,36 @@
   </mat-card-header>
   <mat-card-content>
     <p>Just string time local: {{ time | date: 'short' }}</p>
-    <p>Just string time tz: {{ time | date: 'short':tz }}</p>
+    <p>Just string time EST: {{ time | date: 'short':'EST' }}</p>
+    <p>Just string time EDT: {{ time | date: 'short':'EDT' }}</p>
+    <p>Just string time EST/EDT: {{ time | date: 'short':'EST/EDT' }}</p>
+    <p>Just string time America/New_York: {{ time | date: 'short':'America/New_York' }}</p>
     <br />
-    <p>Moment time local: {{ mtime | date: 'short' }}</p>
-    <p>Moment time tz: {{ mtime | date: 'short':tz }}</p>
-    <p>Moment time format: {{ mtimeformat }}</p>
+    <p>Moment time: {{ mtime }}</p>
+    <p>Moment time EST: {{ mtimeest }}</p>
+    <p>Moment time EDT: {{ mtimeedt }}</p>
+    <p>Moment time EST/EDT: {{ mtimeestsdt }}</p>
+    <p>Moment time America/New_York: {{ mtimeam }}</p>
     <br />
-    <p>Moment time tz in moment: {{ mtimetz | date: 'short' }}</p>
-    <p>Moment time tz in moment and pipe: {{ mtimetz | date: 'short':tz }}</p>
-    <p>Moment time tz in moment format: {{ mtimetzformat }}</p>
+    <p>Luxon time: {{ luxon }}</p>
+    <p>Luxon time EST: {{ luxonest }}</p>
+    <p>Luxon time EDT: {{ luxonedt }}</p>
+    <p>Luxon time EST/EDT: {{ luxonestedt }}</p>
+    <p>Luxon time America/New_York: {{ luxonam }}</p>
+    <br />
+    <p>Luxon name time EST: {{ luxonestfn }}</p>
+    <p>Luxon name time EDT: {{ luxonedtfn }}</p>
+    <p>Luxon name time EST/EDT: {{ luxonestedtfn }}</p>
+    <p>Luxon name time America/New_York: {{ luxonamfn }}</p>
+    <br />
+    <p>Luxon tz time EST: {{ luxonestftz }}</p>
+    <p>Luxon tz time EDT: {{ luxonedtftz }}</p>
+    <p>Luxon tz time EST/EDT: {{ luxonestedtftz }}</p>
+    <p>Luxon tz time America/New_York: {{ luxonamftz }}</p>
+    <br />
+    <p>{{ est | json }}</p>
+    <p>{{ edt | json }}</p>
+    <p>{{ estedt | json }}</p>
+    <p>{{ ny | json }}</p>
   </mat-card-content>
 </mat-card>
