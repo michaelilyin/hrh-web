@@ -6,7 +6,8 @@
   flex: 1;
 }
 
-.pager-container {
+.pager-container-top,
+.pager-container-bottom {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2 * $unit;

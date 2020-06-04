@@ -1,0 +1,17 @@
+<mat-drawer-container [autosize]="true" (backdropClick)="opened = false" [hasBackdrop]="hasBackdrop">
+  <mat-drawer [mode]="mode" [opened]="opened" (openedChange)="opened = $event" position="end">
+    <div class="drawer-content">
+      <div class="toolbar">
+        <h3>Filter</h3>
+        <div class="fx1"></div>
+        <button mat-icon-button (click)="togglePin()">
+          <mat-icon>push_pin</mat-icon>
+        </button>
+      </div>
+      <ng-content select="[hrhTableSideFilter]"></ng-content>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <ng-content select="hrh-table-container"></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

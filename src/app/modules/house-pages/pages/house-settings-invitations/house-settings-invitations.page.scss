@@ -5,5 +5,14 @@
 :host {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  height: 100%;
+}
+
+.space {
+  flex: 1;
+}
+
+.paginator {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
 }

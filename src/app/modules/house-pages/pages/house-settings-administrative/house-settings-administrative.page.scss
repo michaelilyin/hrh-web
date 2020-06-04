@@ -5,6 +5,7 @@
   @include viewport-padding;
   display: grid;
   grid-row-gap: 2 * $unit;
+  grid-template-rows: auto auto 1fr;
 }
 
 .danger-action {

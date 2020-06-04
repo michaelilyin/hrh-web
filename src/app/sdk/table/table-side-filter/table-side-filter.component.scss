@@ -1,0 +1,15 @@
+@import 'src/sass/utils';
+
+.mat-drawer-container {
+  height: 100%;
+}
+
+.drawer-content {
+  padding: 2 * $unit;
+  display: grid;
+  grid-row-gap: 2 * $unit;
+}
+
+.toolbar {
+  display: flex;
+}

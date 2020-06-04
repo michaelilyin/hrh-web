@@ -1,10 +1,10 @@
-<div *ngIf="active" class="pager-container">
+<div *ngIf="active && skipped > 0" class="pager-container-top">
   <mat-spinner *ngIf="querying$ | async; else prev" diameter="25"></mat-spinner>
 </div>
 
 <ng-content></ng-content>
 
-<div *ngIf="active" class="pager-container">
+<div *ngIf="active" class="pager-container-bottom">
   <mat-spinner *ngIf="querying$ | async; else more" diameter="25"></mat-spinner>
 </div>
 
