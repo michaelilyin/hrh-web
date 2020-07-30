@@ -156,6 +156,7 @@ storiesOf('Table and DataSource', module)
     })
   )
   .add('Simple table with primitive DataSource', () => ({
+    // language=Angular2Html
     template: `
 <hrh-loader #loader></hrh-loader>
 <table mat-table [hrhMatTableDs]="fetch" [loader]="loader" style="width: 100%;">
@@ -292,11 +293,12 @@ storiesOf('Table and DataSource', module)
     }
   }))
   .add('Full featured table', () => ({
+    // language=Angular2Html
     template: `
 <mat-toolbar>
   <hrh-text-field class="filter"
                   label="First Name"
-                  ngModel
+                  ngModel="John"
                   [hrhFilterFor]="ds"
                   name="firstName"
                   [type]="'text'">
