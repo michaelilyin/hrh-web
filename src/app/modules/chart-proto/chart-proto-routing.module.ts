@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: 'plotly',
         loadChildren: () => import('./plotly/plotly-module-pages.module').then((m) => m.PlotlyModulePages)
+      },
+      {
+        path: 'ngx-charts',
+        loadChildren: () => import('./ngx-charts-demo/ngx-charts-demo.module').then((m) => m.NgxChartsDemoModule)
       }
     ]
   }

@@ -57,6 +57,7 @@ export class DemoPage implements OnInit {
   };
   lineStroke: ApexStroke = {
     curve: 'straight',
+    show: false,
     colors: ['#CE252B', '#6FC5CC']
   };
   lineDataLabels: ApexDataLabels = {

@@ -18,3 +18,11 @@ body {
 .mat-icon {
   user-select: none;
 }
+
+.chart-legend .legend-labels {
+  width: initial !important;
+}
+
+.legend-title {
+  width: max-content;
+}

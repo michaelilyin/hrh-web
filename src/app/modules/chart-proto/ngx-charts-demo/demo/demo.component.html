@@ -1,0 +1,19 @@
+<ngx-charts-area-chart
+  [results]="lineResults"
+  [scheme]="lineColorScheme"
+  [legend]="true"
+  [view]="[800, 500]"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legendTitle]="'Encounter Volume'"
+>
+</ngx-charts-area-chart>
+
+<ngx-charts-pie-chart
+  [view]="[500, 500]"
+  [results]="circleResults"
+  [scheme]="circleColors"
+  [legendTitle]="'Active Outcomes: Jul 1 - Jul 2'"
+  [legend]="true"
+>
+</ngx-charts-pie-chart>
