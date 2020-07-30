@@ -1,4 +1,5 @@
 <nav mat-tab-nav-bar>
+  <a routerLink="hello" mat-tab-link routerLinkActive #hello="routerLinkActive" [active]="hello.isActive">Hello</a>
   <a routerLink="apex" mat-tab-link routerLinkActive #apex="routerLinkActive" [active]="apex.isActive">Apex</a>
   <a routerLink="plotly" mat-tab-link routerLinkActive #plotly="routerLinkActive" [active]="plotly.isActive">Plotly</a>
 </nav>
