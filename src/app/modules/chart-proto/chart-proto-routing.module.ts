@@ -10,6 +10,10 @@ const routes: Routes = [
       {
         path: 'apex',
         loadChildren: () => import('./apex/apex.module').then((m) => m.ApexModule)
+      },
+      {
+        path: 'plotly',
+        loadChildren: () => import('./plotly/plotly-module-pages.module').then((m) => m.PlotlyModulePages)
       }
     ]
   }

@@ -37,7 +37,9 @@
     "@angular/service-worker": "~9.0.7",
     "@nguniversal/express-engine": "^9.0.2",
     "@types/luxon": "^1.24.0",
+    "@types/plotly.js": "^1.50.16",
     "angular-oauth2-oidc": "^9.2.1",
+    "angular-plotly.js": "^2.0.0",
     "apexcharts": "^3.19.3",
     "express": "^4.15.2",
     "faker": "^4.1.0",
@@ -48,6 +50,7 @@
     "ng-apexcharts": "^1.5.0",
     "ngx-progressbar": "^6.0.2",
     "ngx-skeleton-loader": "^1.2.7",
+    "plotly.js": "^1.54.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

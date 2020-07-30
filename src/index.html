@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#607d8b" />
+    <script>
+      if (global === undefined) {
+        var global = window;
+      }
+    </script>
   </head>
   <body class="mat-typography">
     <hrh-root></hrh-root>
