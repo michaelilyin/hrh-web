@@ -28,6 +28,14 @@ const routes: Routes = [
       {
         path: 'ngx-charts',
         loadChildren: () => import('./ngx-charts-demo/ngx-charts-demo.module').then((m) => m.NgxChartsDemoModule)
+      },
+      {
+        path: 'chartjs',
+        loadChildren: () => import('./chartjs-demo/chartjs-demo.module').then((m) => m.ChartjsDemoModule)
+      },
+      {
+        path: 'canvasjs',
+        loadChildren: () => import('./canvasjs/cancas-js-demo.module').then((m) => m.CancasJsDemoModule)
       }
     ]
   }
