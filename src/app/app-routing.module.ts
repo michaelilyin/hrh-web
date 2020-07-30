@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./shell/shell.module').then((m) => m.ShellModule)
+  },
+  {
+    path: 'charts',
+    loadChildren: () => import('./modules/chart-proto/chart-proto.module').then((m) => m.ChartProtoModule)
   }
 ];
 
